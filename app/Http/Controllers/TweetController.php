@@ -14,7 +14,12 @@ class TweetController extends Controller
      */
     public function index()
     {
-        //
+        //get all tweets
+        $tweets = Tweet::with('user')->paginate(5);
+        //return $tweet;
+        return TweetResource::collection($tweets);
+
+
     }
 
     /**

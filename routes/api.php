@@ -17,4 +17,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/tweet', 'TweetController@index');
 Route::get('/tweet/{id}', 'TweetController@show');
