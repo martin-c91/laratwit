@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Tweet;
-use App\Http\Resources\Tweet as TweetResource;
+use App\Http\Resources\TweetResource as TweetResource;
 use Illuminate\Http\Request;
 
 class TweetController extends Controller
@@ -12,14 +12,12 @@ class TweetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function myTweets()
     {
         //get all tweets
         $tweets = Tweet::with('user')->paginate(5);
         //return $tweet;
         return TweetResource::collection($tweets);
-
-
     }
 
     /**
@@ -27,17 +25,7 @@ class TweetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
