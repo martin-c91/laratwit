@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
+    protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.
@@ -31,4 +32,25 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Tweet');
     }
+
+    public function followers()
+    {
+        return $this->belongsToMany('App\User', 'followers', 'user_id', 'follower_id');
+    }
+
+    public function followings()
+    {
+        return $this->belongsToMany('App\User', 'followers', 'follower_id', 'user_id');
+    }
+
+    public function follow(User $user){
+        $this->followers()->attach($user->id);
+    }
+
+    public function un_follow(User $user){
+        $this->followers()->detach($user->id);
+    }
+
+
+
 }

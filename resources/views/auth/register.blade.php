@@ -26,14 +26,14 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="user_id" class="col-md-4 col-form-label text-md-right">{{ __('User ID') }}</label>
+                            <label for="user_slug" class="col-md-4 col-form-label text-md-right">{{ __('User ID') }}</label>
 
                             <div class="col-md-6">
-                                <input id="user_id" type="text" class="form-control{{ $errors->has('user_id') ? ' is-invalid' : '' }}" name="user_id" value="{{ old('user_id') }}" required autofocus>
+                                <input id="user_slug" type="text" class="form-control{{ $errors->has('user_slug') ? ' is-invalid' : '' }}" name="user_slug" value="{{ old('user_slug') }}" required autofocus>
 
-                                @if ($errors->has('user_id'))
+                                @if ($errors->has('user_slug'))
                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('user_id') }}</strong>
+                                        <strong>{{ $errors->first('user_slug') }}</strong>
                                     </span>
                                 @endif
                             </div>

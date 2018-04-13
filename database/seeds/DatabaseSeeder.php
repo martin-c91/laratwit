@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,6 +12,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(TweetTableSeeder::class);
+        //$uid = 23;
+        //while($uid < 10){
+        //
+        //    $id = User::create(array(
+        //        'name' => "alex".$uid,
+        //        'email' => 'alex@gmail.com'.$uid,
+        //        'slug' => 'alex'.$uid,
+        //        'password' => Hash::make('testtest')
+        //    ))->id;
+        //
+        //    $uid++;
+        //}
+
     }
 }

@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\User;
+use App\Tweet;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,4 +20,26 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/home', 'TweetController@store')->name('new-tweet');
+
+//
+//tweet by individual user
+Route::get('/user/{user_slug}', 'HomeController@tweets_by_user');
+
+
+Route::get('/test1', 'TweetController@my_tweets')->name('myTweets');
+
+Route::get('test', function(){
+    //Auth::user()->follow(User::find(2));
+    //User::find(24)->follow(User::find(2));
+
+    $user = User::find(Auth::id());
+
+    $followings = $user->followings->all();
+    foreach($followings as $following){
+        echo $following->id;
+    }
+    //$followings = $user->followings->all();
+});

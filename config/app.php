@@ -151,6 +151,8 @@ return [
          * Package Service Providers...
          */
 
+        Thujohn\Twitter\TwitterServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -174,6 +176,9 @@ return [
     */
 
     'aliases' => [
+
+        //own custom alias
+        'Twitter' => Thujohn\Twitter\Facades\Twitter::class,
 
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,

@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TweetResource extends JsonResource
+class Tweet extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,10 +16,17 @@ class TweetResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'content' => $this->content,
-            'user_slug' => $this->user->slug,
-            'user_full_name' => $this->user->name,
+            'user_slug' => $this->slug,
+            'user_full_name' => $this->name,
             'created_at' => $this->created_at->toDateString(),
+            'tweets' => $this->tweet,
+        ];
+    }
+
+    public function with($request){
+        return [
+          'version' => '1.0.0',
+          'author_url' => url('http://martinchea.com')
         ];
     }
 }
