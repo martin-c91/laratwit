@@ -32,14 +32,5 @@ Route::get('/user/{user_slug}', 'HomeController@tweets_by_user');
 Route::get('/test1', 'TweetController@my_tweets')->name('myTweets');
 
 Route::get('test', function(){
-    //Auth::user()->follow(User::find(2));
-    //User::find(24)->follow(User::find(2));
 
-    $user = User::find(Auth::id());
-
-    $followings = $user->followings->all();
-    foreach($followings as $following){
-        echo $following->id;
-    }
-    //$followings = $user->followings->all();
 });

@@ -10,6 +10,7 @@ class Tweet extends Model
         'id',
         'content',
         'user_id',
+        'json_raw'
     ];
 
     public function user()
