@@ -1,4 +1,4 @@
-<div class="card-body">
+<div class="panel-body mt-3 mb-3">
     <div style="float: left; width: 48px;">
         <img class="avatar"
              src="{{$tweet->user->avatar}}"

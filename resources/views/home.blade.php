@@ -33,27 +33,12 @@
                 </div>
 
                 <br>
-                <div class="card">
-                    <div class="card-header">Timeline</div>
-
-
+                <div class="panel">
+                    <div class="panel-header">Timeline</div>
+                    
                     @foreach ($tweets as $tweet)
                         @include('partials.tweet-card')
                     @endforeach
-
-                    <div class="card-body">
-                        <div style="float: left; width: 48px;">
-                            <img class="avatar"
-                                 src="https://pbs.twimg.com/profile_images/378800000841793222/63b002503ab73a6abffaeaf213279f52_400x400.jpeg"
-                                 alt="avatar">
-                        </div>
-                        <div style="margin-left: -48px; margin-left: 58px; ">
-                            <h6>@CathyNewman</h6>
-                            Congratulations to all our wonderful nominees 👏👏👏 take a look at the full list 👉 http://www.bafta.org/television/awards/tv-2018 …
-                            We'll announce the winners on Sunday 13 May 😍🏆 #BAFTATV
-                        </div>
-
-                    </div>
 
                 </div>
             </div>
@@ -61,7 +46,7 @@
 
                 <div class="card" style="width: 18rem;">
                     <div class="card-header">
-                        Featured
+                        Featured Users
                     </div>
 
                     <ul class="list-group list-group-flush border-0">
