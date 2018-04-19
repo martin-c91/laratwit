@@ -36,7 +36,7 @@ Route::get('/user/{target_user_slug}/unfollow', 'UserController@unFollowUser')->
 Route::get('/user/{target_user_slug}/followers', 'UserController@followers')->name('user.followers');
 Route::get('/user/{target_user_slug}/followings', 'UserController@followings')->name('user.followings');
 
-//test functiond
+//test function
 Route::get('test', function () {
     $user = Auth::user();
     $user1 = User::where('slug', 'justinbieber')->first();
