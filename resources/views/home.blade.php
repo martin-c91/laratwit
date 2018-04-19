@@ -6,7 +6,7 @@
             <div class="col-md-3">
                 <div class="col-sm-3">
                     <img class="profile_pic"
-                         src="https://pbs.twimg.com/profile_images/378800000841793222/63b002503ab73a6abffaeaf213279f52_400x400.jpeg">
+                         src="{{str_replace('normal.jpg', '400x400.jpg', $user->avatar)}}">
                 </div>
                 <br>
 
@@ -15,7 +15,7 @@
                 </h3>
                 <a href="{{route('user.profile', $user->slug)}}" style="color: gray;">{{'@'.$user->slug }}</a>
                 <p>
-                    Presenter for Channel 4 News, blogger for the Telegraph. 2 husbands: Jon on-screen, John off-screen. Full-time job: mum of 2. Facebook http://on.fb.me/1yJVG7w
+                    {{$user->description}}
                 </p>
 
             </div>
@@ -28,14 +28,17 @@
                         </div>
                     </div>
                 @endif
-                <div class="card border-0 new-tweet-form">
-                    @include('partials/new-tweet-form')
-                </div>
+
+                @if($user->id == Auth::id())
+                    <div class="card border-0 new-tweet-form">
+                        @include('partials/new-tweet-form')
+                    </div>
+                @endif
 
                 <br>
                 <div class="panel">
                     <div class="panel-header">Timeline</div>
-                    
+
                     @foreach ($tweets as $tweet)
                         @include('partials.tweet-card')
                     @endforeach

@@ -36,7 +36,7 @@ class HomeController extends Controller
     public function tweets_by_user($user_slug){
         $tweet = new TweetControllerAPI();
         $data['tweets'] = $tweet->tweets_by_user($user_slug);
-        $data['user'] = User::where('slug', $user_slug);
+        $data['user'] = User::where('slug', $user_slug)->first();
 
         return view('home', $data);
     }

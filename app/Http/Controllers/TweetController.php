@@ -17,7 +17,7 @@ class TweetController extends Controller
     public function my_tweets()
     {
         //get followers
-        $user = User::find(Auth::id());
+        $user = Auth::user();
 
         $followings_user_id = $user->followings->pluck('id')->all();
 
@@ -31,7 +31,6 @@ class TweetController extends Controller
 
     public function tweets_by_user($user_slug)
     {
-
         $user_id = User::where('slug', $user_slug)->first()->id;
         $tweets = Tweet::with('user')->where('user_id', $user_id)->paginate(10);
         return $tweets;
