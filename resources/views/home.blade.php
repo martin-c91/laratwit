@@ -11,9 +11,9 @@
                 <br>
 
                 <h3>
-                    Cathy Newman
+                    {{$user->name}}
                 </h3>
-                <a style="color: gray;">@CathyNewman</a>
+                <a href="{{route('user.profile', $user->slug)}}" style="color: gray;">{{'@'.$user->slug }}</a>
                 <p>
                     Presenter for Channel 4 News, blogger for the Telegraph. 2 husbands: Jon on-screen, John off-screen. Full-time job: mum of 2. Facebook http://on.fb.me/1yJVG7w
                 </p>

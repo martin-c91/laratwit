@@ -21,11 +21,11 @@ class TweetController extends Controller
 
         $followings_user_id = $user->followings->pluck('id')->all();
 
-        //get all tweets
+        //get followings tweets + our own tweets
         array_push($followings_user_id, Auth::id());
 
         $tweets = Tweet::with('user')->whereIn('user_id', $followings_user_id)->orderBy('created_at', 'desc')->paginate(50);
-        //return TweetResource::collection($tweets);
+
         return $tweets;
     }
 

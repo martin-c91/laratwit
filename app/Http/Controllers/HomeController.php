@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\TweetController as TweetControllerAPI;
+use Auth;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -26,6 +28,7 @@ class HomeController extends Controller
     {
         $tweet = new TweetControllerAPI();
         $data['tweets'] = $tweet->my_tweets();
+        $data['user'] = Auth::user();
 
         return view('home', $data);
     }
@@ -33,6 +36,7 @@ class HomeController extends Controller
     public function tweets_by_user($user_slug){
         $tweet = new TweetControllerAPI();
         $data['tweets'] = $tweet->tweets_by_user($user_slug);
+        $data['user'] = User::where('slug', $user_slug);
 
         return view('home', $data);
     }

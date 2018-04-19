@@ -24,9 +24,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home', 'TweetController@store')->name('new-tweet');
 
-//user controller web
-Route::get('/user/{user_slug}', 'HomeController@tweets_by_user');
-Route::get('/user/{user_slug}', 'HomeController@tweets_by_user');
+//user profile
+Route::get('/user/{user_slug}', 'HomeController@tweets_by_user')->name('user.profile');
 
 //user follower action
 Route::get('/user/{target_user_slug}/follow', 'UserController@followUser')->name('user.follow');
@@ -38,7 +37,5 @@ Route::get('/user/{target_user_slug}/followings', 'UserController@followings')->
 
 //test function
 Route::get('test', function () {
-    $user = Auth::user();
-    $user1 = User::where('slug', 'justinbieber')->first();
-
+    return Auth::user();
 });
