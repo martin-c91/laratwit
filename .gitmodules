@@ -1,0 +1,3 @@
+[submodule "docker-files"]
+	path = docker-files
+	url = git@github.com:martin-c91/docker-files.git
