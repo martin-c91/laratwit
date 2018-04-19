@@ -24,7 +24,7 @@ class TweetController extends Controller
         //get all tweets
         array_push($followings_user_id, Auth::id());
 
-        $tweets = Tweet::with('user')->whereIn('user_id', $followings_user_id)->orderBy('created_at', 'desc')->paginate(10);
+        $tweets = Tweet::with('user')->whereIn('user_id', $followings_user_id)->orderBy('created_at', 'desc')->paginate(50);
         //return TweetResource::collection($tweets);
         return $tweets;
     }

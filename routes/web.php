@@ -10,9 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 use App\User;
 use App\Tweet;
-
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,13 +24,21 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home', 'TweetController@store')->name('new-tweet');
 
-//
-//tweet by individual user
+//user controller web
+Route::get('/user/{user_slug}', 'HomeController@tweets_by_user');
 Route::get('/user/{user_slug}', 'HomeController@tweets_by_user');
 
+//user follower action
+Route::get('/user/{target_user_slug}/follow', 'UserController@followUser')->name('user.follow');
+Route::get('/user/{target_user_slug}/unfollow', 'UserController@unFollowUser')->name('user.unfollow');
 
-Route::get('/test1', 'TweetController@my_tweets')->name('myTweets');
+//get user followers, followings
+Route::get('/user/{target_user_slug}/followers', 'UserController@followers')->name('user.followers');
+Route::get('/user/{target_user_slug}/followings', 'UserController@followings')->name('user.followings');
 
-Route::get('test', function(){
+//test functiond
+Route::get('test', function () {
+    $user = Auth::user();
+    $user1 = User::where('slug', 'justinbieber')->first();
 
 });

@@ -43,14 +43,4 @@ class User extends Authenticatable
         return $this->belongsToMany('App\User', 'followers', 'follower_id', 'user_id');
     }
 
-    public function follow(User $user){
-        $this->followers()->attach($user->id);
-    }
-
-    public function un_follow(User $user){
-        $this->followers()->detach($user->id);
-    }
-
-
-
 }
