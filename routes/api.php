@@ -36,3 +36,7 @@ Route::get('/myTweets', 'TweetController@tweets_dashboard');
 //user function
 Route::get('/user/{user_slug}/followers','UserController@followers');
 Route::get('/user/{user_slug}/followings','UserController@followings');
+
+//user following actions
+Route::get('/user/{target_user_slug}/follow', 'UserController@followUser')->name('user.follow');
+Route::get('/user/{target_user_slug}/unfollow', 'UserController@unFollowUser')->name('user.unfollow');
