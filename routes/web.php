@@ -13,6 +13,7 @@
 
 use App\User;
 use App\Tweet;
+Use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     if(Auth::check()) return redirect('home');
@@ -26,11 +27,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home', 'TweetController@store')->name('new-tweet');
 
 //user profile
-Route::get('/user/{user_slug}', 'HomeController@tweets_by_user')->name('user.profile');
+Route::get('/user/{user_slug}', 'HomeController@tweetsByUser')->name('user.profile');
 
 //user follower action
-Route::get('/user/{target_user_slug}/follow', 'UserController@followUser')->name('user.follow');
-Route::get('/user/{target_user_slug}/unfollow', 'UserController@unFollowUser')->name('user.unfollow');
+Route::post('/user/{target_user_slug}/follow', 'UserController@followUser')->name('user.follow');
+Route::post('/user/{target_user_slug}/unfollow', 'UserController@unFollowUser')->name('user.unfollow');
 
 //get user followers, followings
 Route::get('/user/{target_user_slug}/followers', 'UserController@followers')->name('user.followers');
@@ -38,5 +39,6 @@ Route::get('/user/{target_user_slug}/followings', 'UserController@followings')->
 
 //test function
 Route::get('test', function () {
-    return Auth::user();
+    $isfollowing = UserController::isFollowing(User::find(4), Auth::user());
+    if(!$isfollowing) echo "falsedsf";
 });

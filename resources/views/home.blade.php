@@ -4,27 +4,47 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-3">
-                <div class="col-sm-3">
+                <div class="row">
                     <img class="profile_pic"
                          src="{{str_replace('normal.jpg', '400x400.jpg', $user->avatar)}}">
                 </div>
-                <br>
 
-                <h3>
-                    {{$user->name}}
-                </h3>
-                <a href="{{route('user.profile', $user->slug)}}" style="color: gray;">{{'@'.$user->slug }}</a>
-                <p>
-                    {{$user->description}}
-                </p>
+
+
+                <div class="row pt-2">
+                    <div class="col pl-0">
+                        <h3>
+                            {{$user->name}}
+                        </h3>
+                    </div>
+                    <div class="col-fluid">
+                        @includeWhen((Auth::user()->slug !== $user->slug), 'partials.following-button')
+                    </div>
+                </div>
+                <div class="row">
+                    <a href="{{route('user.profile', $user->slug)}}" style="color: gray;">{{'@'.$user->slug }}</a>
+                </div>
+
+                <div class="row">
+                    <p>
+                        {{$user->description}}
+                    </p>
+                </div>
 
             </div>
             <div class="col-md-6">
                 @if (session('status'))
                     <div class="">
-
                         <div class="alert alert-success">
                             {{ session('status') }}
+                        </div>
+                    </div>
+                @endif
+                @if (session('message'))
+                    <div class="">
+
+                        <div class="alert alert-info">
+                            {{ session('message') }}
                         </div>
                     </div>
                 @endif

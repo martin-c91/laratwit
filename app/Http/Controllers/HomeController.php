@@ -16,7 +16,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
     }
 
     /**
@@ -26,17 +25,19 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $this->middleware('auth');
         $tweet = new TweetControllerAPI();
-        $data['tweets'] = $tweet->my_tweets();
+        $data['tweets'] = $tweet->myTweets();
         $data['user'] = Auth::user();
 
         return view('home', $data);
     }
 
-    public function tweets_by_user($user_slug){
+    public function tweetsByUser($user_slug){
         $tweet = new TweetControllerAPI();
-        $data['tweets'] = $tweet->tweets_by_user($user_slug);
+        $data['tweets'] = $tweet->tweetsByUser($user_slug);
         $data['user'] = User::where('slug', $user_slug)->first();
+        $data['is_following'] = UserController::isFollowing($data['user'], Auth::user());
 
         return view('home', $data);
     }

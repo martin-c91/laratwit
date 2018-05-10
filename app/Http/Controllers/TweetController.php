@@ -6,6 +6,7 @@ use App\User;
 use Auth;
 use App\Http\Resources\Tweet as TweetResource;
 use Illuminate\Http\Request;
+use Validator;
 
 class TweetController extends Controller
 {
@@ -14,7 +15,7 @@ class TweetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function my_tweets()
+    public function myTweets()
     {
         //get followers
         $user = Auth::user();
@@ -24,12 +25,12 @@ class TweetController extends Controller
         //get followings tweets + our own tweets
         array_push($followings_user_id, Auth::id());
 
-        $tweets = Tweet::with('user')->whereIn('user_id', $followings_user_id)->orderBy('created_at', 'desc')->paginate(50);
+        $tweets = Tweet::with('user')->whereIn('user_id', $followings_user_id)->orderBy('created_at', 'desc')->paginate(5);
 
         return $tweets;
     }
 
-    public function tweets_by_user($user_slug)
+    public function tweetsByUser($user_slug)
     {
         $user_id = User::where('slug', $user_slug)->first()->id;
         $tweets = Tweet::with('user')->where('user_id', $user_id)->paginate(10);
@@ -44,21 +45,24 @@ class TweetController extends Controller
 
     public function store(Request $request)
     {
-        //if($request->isMethod('put')){
-        //    //echo "sdf";
-        //    //return $request->input('tweet_id');
-        //    $tweet = Tweet::findOrFail($request->input('tweet_id'));
-        //}else{
-        $tweet = new Tweet;
-        //}
+        $validator = Validator::make($request->all(), [
+            'content' => 'required|max:400',
+        ]);
 
-        //$tweet->id = $request->input('tweet_id');
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $tweet = new Tweet;
+
         $tweet->content = $request->input('content');
         $tweet->user_id = Auth::id();
-        //$tweet->user_id = $request->input('user_id');
         if($tweet->save()){
-            return back()->with('status', 'Your tweet was posted.');
+            return back()->with('message', 'Your tweet was posted.');
         }
+        return back()->with('message', 'Error');
     }
 
     /**

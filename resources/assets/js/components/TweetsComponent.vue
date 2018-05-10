@@ -26,7 +26,7 @@
 
         methods: {
             fetchTweets(){
-                fetch('api/tweets')
+                fetch('api/myTweets')
                     .then(res => res.json())
                     .then(res => {
                         console.log(res.data);
