@@ -18,11 +18,6 @@ class HomeController extends Controller
     {
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $this->middleware('auth');
@@ -35,8 +30,11 @@ class HomeController extends Controller
 
     public function tweetsByUser($user_slug){
         $tweet = new TweetControllerAPI();
-        $data['tweets'] = $tweet->tweetsByUser($user_slug);
-        $data['user'] = User::where('slug', $user_slug)->first();
+
+        $user = User::where('slug', $user_slug)->first();
+        $data['tweets'] = $tweet->tweetsByUser($user);
+        //return $user;
+        $data['user'] = $user;
         $data['is_following'] = UserController::isFollowing($data['user'], Auth::user());
 
         return view('home', $data);

@@ -52,7 +52,7 @@ class UserController extends Controller
                 return back()->with('message', 'Already Followed '.$target_user->slug);
             };
         }
-        return back()->with('message', 'Error');
+        //return back()->with('message', 'Error');
     }
 
     public function unFollowUser($target_user_slug, $follower_user_slug = null)
