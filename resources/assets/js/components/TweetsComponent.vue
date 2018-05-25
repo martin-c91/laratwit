@@ -1,35 +1,43 @@
 <template>
-<div>
-    <h2>
+    <div>
+        <h2>
 
-    </h2>
-</div>
+        </h2>
+    </div>
 </template>
 
 <script>
     export default {
-        data(){
-            return{
-                tweets: [],
-                tweet: {
-                    id: '',
-                    content: '',
-                },
+        data() {
+            return {
+                tweets: [
+                    {
+                        id: '0',
+                        content: 'one',
+                    },
+                    {
+                        id: '1',
+                        content: 'two',
+                    },
+                    {
+                        id: '2',
+                        content: 'three',
+                    },
+                ],
                 tweet_id: '',
                 pagination: {},
             }
         },
 
-        created(){
+        created() {
             this.fetchTweets();
         },
 
         methods: {
-            fetchTweets(){
-                fetch('api/myTweets')
+            fetchTweets() {
+                fetch('')
                     .then(res => res.json())
                     .then(res => {
-                        console.log(res.data);
                     })
             }
         }

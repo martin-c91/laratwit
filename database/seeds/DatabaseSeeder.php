@@ -12,10 +12,24 @@ class DatabaseSeeder extends Seeder
      */
 
     protected $seed_users = [
-        'realDonaldTrump',
         'katyperry',
         'justinbieber',
         'BarackObama',
+        "rihanna",
+        "taylorswift13",
+        "ladygaga",
+        "TheEllenShow",
+        "Cristiano",
+        "jtimberlake",
+        "Twitter",
+        "KimKardashian",
+        "britneyspears",
+        "ArianaGrande",
+        "ddlovato",
+        "selenagomez",
+        "cnnbrk",
+        "jimmyfallon",
+
     ];
 
     public function run()
@@ -49,7 +63,7 @@ class DatabaseSeeder extends Seeder
         return $success->slug;
     }
 
-    protected function seed_user_tweets($twitter_username, $tweets_count=10)
+    protected function seed_user_tweets($twitter_username, $tweets_count=30)
     {
         $user = User::where('slug', $twitter_username)->firstOrFail();
 

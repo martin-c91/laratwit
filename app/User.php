@@ -28,7 +28,12 @@ class User extends Authenticatable
         'password', 'remember_token', 'email'
     ];
 
-    public function tweet()
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function tweets()
     {
         return $this->hasMany('App\Tweet');
     }
@@ -43,4 +48,12 @@ class User extends Authenticatable
         return $this->belongsToMany('App\User', 'followers', 'follower_id', 'user_id');
     }
 
+    public function checkFollowing(User $user)
+    {
+        if($this->followings()->where('user_id', $user->id)->first())
+        {
+            return true;
+        }
+        return NULL;
+    }
 }

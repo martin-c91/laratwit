@@ -5,7 +5,7 @@
              alt="avatar">
     </div>
     <div style="margin-left: -48px; margin-left: 58px; ">
-        <h6><a href="{{url('/user/'.$tweet->user->slug)}}">{{'@'.$tweet->user->slug }}</a></h6>
+        <h6><a href="{{url('/'.$tweet->user->slug)}}">{{'@'.$tweet->user->slug }}</a></h6>
         {{$tweet->content}}
     </div>
 

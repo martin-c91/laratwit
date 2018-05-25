@@ -1,4 +1,4 @@
-<form class="form-control" method="POST" action="{{ route('new-tweet') }}">
+<form class="form-control" method="POST" action="{{ route('tweet.post') }}">
     @csrf
     <div class="form-group">
         <label for="Content">Tweets</label>

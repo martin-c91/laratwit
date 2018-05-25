@@ -14001,7 +14001,7 @@ window.Vue = __webpack_require__(37);
  */
 
 Vue.component('example-component', __webpack_require__(40));
-Vue.component('tweets-component', __webpack_require__(43));
+Vue.component('new-tweet-component', __webpack_require__(43));
 
 var app = new Vue({
   el: '#app'
@@ -47391,7 +47391,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\TweetsComponent.vue"
+Component.options.__file = "resources\\assets\\js\\components\\NewTweetComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -47400,9 +47400,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-79468958", Component.options)
+    hotAPI.createRecord("data-v-4aa53236", Component.options)
   } else {
-    hotAPI.reload("data-v-79468958", Component.options)
+    hotAPI.reload("data-v-4aa53236", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -47426,31 +47426,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            tweets: [],
-            tweet: {
-                id: '',
-                content: ''
-            },
-            tweet_id: '',
-            pagination: {}
+            content: "",
+            placeholder: "What's on your mind?"
+
         };
-    },
-    created: function created() {
-        this.fetchTweets();
     },
 
 
     methods: {
-        fetchTweets: function fetchTweets() {
-            fetch('api/myTweets').then(function (res) {
-                return res.json();
-            }).then(function (res) {
-                console.log(res.data);
-            });
+        onSubmit: function onSubmit() {
+            console.log(this.content);
+            this.content = "";
         }
     }
 });
@@ -47463,14 +47457,61 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "form",
+    {
+      staticClass: "form-control",
+      attrs: { method: "POST", action: "" },
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.onSubmit($event)
+        }
+      }
+    },
+    [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", [_vm._v("Tweet")]),
+        _vm._v(" "),
+        _c("textarea", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.content,
+              expression: "content"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { placeholder: _vm.placeholder, rows: "3" },
+          domProps: { value: _vm.content },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.content = $event.target.value
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _vm._m(0)
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("h2")])
+    return _c("div", { staticClass: "form-group float-right" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-default", attrs: { name: "Submit" } },
+        [_vm._v("Submit")]
+      )
+    ])
   }
 ]
 render._withStripped = true
@@ -47478,7 +47519,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-79468958", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-4aa53236", module.exports)
   }
 }
 

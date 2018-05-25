@@ -16,7 +16,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('tweets-component', require('./components/TweetsComponent.vue'));
+Vue.component('new-tweet-component', require('./components/NewTweetComponent.vue'));
 
 const app = new Vue({
     el: '#app'

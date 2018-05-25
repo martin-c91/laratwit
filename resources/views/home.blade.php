@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container" id="app">
         <div class="row justify-content-center">
             <div class="col-md-3">
                 <div class="row">
@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <a href="{{route('user.profile', $user->slug)}}" style="color: gray;">{{'@'.$user->slug }}</a>
+{{--                    <a href="{{route('user.profile', $user->slug)}}" style="color: gray;">{{'@'.$user->slug }}</a>--}}
                 </div>
 
                 <div class="row">
@@ -51,7 +51,8 @@
 
                 @if($user->id == Auth::id())
                     <div class="card border-0 new-tweet-form">
-                        @include('partials/new-tweet-form')
+                        {{--@include('partials/new-tweet-form')--}}
+                        <new-tweet-component></new-tweet-component>
                     </div>
                 @endif
 
