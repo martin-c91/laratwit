@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container" id="app">
+    <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-md-3">
                 <div class="row">
@@ -52,7 +52,7 @@
                 @if($user->id == Auth::id())
                     <div class="card border-0 new-tweet-form">
                         {{--@include('partials/new-tweet-form')--}}
-                        <new-tweet-component></new-tweet-component>
+                        <post-tweet-component></post-tweet-component>
                     </div>
                 @endif
 

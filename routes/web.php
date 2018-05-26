@@ -16,15 +16,15 @@ use App\Tweet;
 Use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
-    if(Auth::check()) return redirect('feed');
+    if(Auth::check()) return redirect('dashboard');
     return view('welcome');
 });
 
 Auth::routes();
-Route::get('/feed', 'TweetController@index')->name('feed');
+Route::get('/dashboard', 'TweetController@index')->name('dashboard');
+Route::post('/dashboard/tweet', 'TweetController@store')->name('tweet.post');
 
 Route::get('/{user}', 'TweetController@index');
-Route::post('/{user}/tweet', 'TweetController@store')->name('tweet.post');
 
 Route::post('/{user}/follow', 'UserController@followUser')->name('user.follow');
 Route::post('/{user}/unfollow', 'UserController@unFollowUser')->name('user.unfollow');
