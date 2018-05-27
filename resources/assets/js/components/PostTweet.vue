@@ -39,7 +39,7 @@
         },
 
         mounted() {
-            this.flash({ message: 'some message', variant: 'success' });
+
         },
 
     }

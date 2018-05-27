@@ -60,9 +60,10 @@
                 <div class="panel">
                     <div class="panel-header">Timeline</div>
 
-                    @foreach ($tweets as $tweet)
-                        @include('partials.tweet-card')
-                    @endforeach
+                    <get-tweets-component></get-tweets-component>
+                    {{--@foreach ($tweets as $tweet)--}}
+                        {{--@include('partials.tweet-card')--}}
+                    {{--@endforeach--}}
 
                 </div>
             </div>
