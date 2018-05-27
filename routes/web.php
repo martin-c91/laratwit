@@ -34,4 +34,6 @@ Route::get('/{user}/followers', 'UserController@followers')->name('user.follower
 Route::get('/{user}/followings', 'UserController@followings')->name('user.followings');
 
 //test function
-//Route::get('test/{user}', 'TweetController@test');
+Route::get('test/{user}', function (User $user){
+    return $user->tweets()->with('user')->latest()->paginate();
+});

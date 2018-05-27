@@ -27,10 +27,16 @@ class TweetController extends Controller
             $user = Auth::user();
         } else {
             $tweets = $this->tweetsByUsers([$user->id], $request);
-            $is_following = Auth::User()->checkFollowing($user);
+            if(Auth::check()){
+                $is_following = Auth::User()->checkFollowing($user);
+            }
         }
 
         if (request()->wantsJson()) {
+            return $tweets;
+        }
+
+        if (!Auth::check()) {
             return $tweets;
         }
 

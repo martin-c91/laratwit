@@ -54,6 +54,6 @@ class User extends Authenticatable
         {
             return true;
         }
-        return NULL;
+        return false;
     }
 }

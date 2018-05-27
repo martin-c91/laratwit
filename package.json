@@ -28,7 +28,9 @@
   },
   "dependencies": {
     "debug": "^3.1.0",
-    "vue-flash-message": "^0.6.0"
+    "moment": "^2.22.1",
+    "vue-flash-message": "^0.6.0",
+    "vue-moment": "^4.0.0-0"
   },
   "author": "",
   "license": "ISC"
