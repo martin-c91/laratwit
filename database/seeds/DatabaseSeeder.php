@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\User;
 use App\Tweet;
+use Storage;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -14,21 +15,21 @@ class DatabaseSeeder extends Seeder
     protected $seed_users = [
         'katyperry',
         'justinbieber',
-        'BarackObama',
-        "rihanna",
-        "taylorswift13",
-        "ladygaga",
-        "TheEllenShow",
-        "Cristiano",
-        "jtimberlake",
-        "Twitter",
-        "KimKardashian",
-        "britneyspears",
-        "ArianaGrande",
-        "ddlovato",
-        "selenagomez",
-        "cnnbrk",
-        "jimmyfallon",
+        //'BarackObama',
+        //"rihanna",
+        //"taylorswift13",
+        //"ladygaga",
+        //"TheEllenShow",
+        //"Cristiano",
+        //"jtimberlake",
+        //"Twitter",
+        //"KimKardashian",
+        //"britneyspears",
+        //"ArianaGrande",
+        //"ddlovato",
+        //"selenagomez",
+        //"cnnbrk",
+        //"jimmyfallon",
 
     ];
 
@@ -81,5 +82,10 @@ class DatabaseSeeder extends Seeder
 
             Tweet::updateOrCreate(['id' => $tweet->id], $data);
         }
+    }
+
+    protected function store_avatar($username, $avatar_url)
+    {
+        
     }
 }
