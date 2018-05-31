@@ -5,52 +5,28 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Storage;
+
 use App\Users;
 
 class UserTest extends TestCase
 {
-    protected $user_slug = 'justinbieber';
-    protected $user_id = 3;
-
-    /** @test */
-    public function test_user_exist()
-    {
-        $this->assertDatabaseHas('users', [
-            'slug' => 'justinbieber'
-        ]);
-    }
-
     /** @test */
     public function user_exist()
     {
-        $user = \App\User::where('slug', $this->user_slug)->get()->first();
+        $user = \App\User::where('slug', $this->user1->slug)->get()->first();
 
-        $this->assertEquals($user->id, $this->user_id);
+        $this->assertEquals($this->user1->id, $user->id);
     }
 
     /** @test */
-    public function user_can_login()
+    public function user_can_upload_avatar_to_assets()
     {
-        $credential = [
-            'username' => 'justinbieber',
-            'password' => 'test'
-        ];
+        $this->assertTrue($success = $this->user1->get_and_store_avatar());
 
-        $response = $this->post('login',$credential);
-
-        $response->dump();
-        $response->assertSessionMissing('errors');
-    }
-
-    public function testLoginFalse()
-    {
-        $credential = [
-            'email' => 'user@ad.com',
-            'password' => 'incorrectpass'
-        ];
-
-        $response = $this->post('login',$credential);
-
-        $response->assertSessionHasErrors();
+        //dd(($this->user1->avatar));
+        $this->assertTrue($success, "Storage Failed");
+        $this->assertNotEquals($this->user1->avatar, asset('storage/images/avatars/default.png'));
+        $this->assertFileExists(public_path($this->user1->avatar), 'Avatar could not be found.');
     }
 }

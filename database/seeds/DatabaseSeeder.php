@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\User;
 use App\Tweet;
 use Storage;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -35,10 +36,8 @@ class DatabaseSeeder extends Seeder
 
     public function run()
     {
-        foreach($this->seed_users as $seed_user)
-        {
-            if($this->seed_user_info($seed_user))
-            {
+        foreach ($this->seed_users as $seed_user) {
+            if ($this->seed_user_info($seed_user)) {
                 $this->seed_user_tweets($seed_user, 10);
             }
         }
@@ -49,43 +48,54 @@ class DatabaseSeeder extends Seeder
         $seed_user_json = Twitter::getUsers(['screen_name' => $twitter_username, 'format' => 'json']);
         $seed_user = json_decode($seed_user_json);
 
-        $new_user = new User;
+        $user = new User;
         $data = [
             'name' => $seed_user->name,
             'slug' => $seed_user->screen_name,
             'email' => $faker = Faker\Factory::create()->email,
             'description' => $seed_user->description,
             'json_raw' => $seed_user_json,
-            'avatar' => $seed_user->profile_image_url,
-            'password' => Hash::make('test')
+            'avatar_origin' => $seed_user->profile_image_url,
+            'password' => Hash::make('test'),
         ];
 
-        $success = $new_user->updateOrCreate(['slug' => $twitter_username], $data);
-        return $success->slug;
+        $new_user = $user->updateOrCreate(['slug' => $twitter_username], $data);
+        if ($new_user) {
+            return $new_user->slug;
+        }
     }
 
-    protected function seed_user_tweets($twitter_username, $tweets_count=30)
+    protected function seed_user_tweets($twitter_username, $tweets_count = 30)
     {
         $user = User::where('slug', $twitter_username)->firstOrFail();
 
-        $tweets = Twitter::getUserTimeline(['screen_name' => $user->slug, 'count' => $tweets_count, 'format' => 'json']);
+        $tweets = Twitter::getUserTimeline([
+            'screen_name' => $user->slug,
+            'count' => $tweets_count,
+            'format' => 'json',
+        ]);
         $tweets = json_decode($tweets);
 
-        foreach($tweets as $tweet){
+        foreach ($tweets as $tweet) {
             $data = [
                 'id' => $tweet->id,
                 'json_raw' => json_encode($tweet),
                 'content' => $tweet->text,
                 'user_id' => $user->id,
-                'created_at' => strtotime($tweet->created_at)
+                'created_at' => strtotime($tweet->created_at),
             ];
 
             Tweet::updateOrCreate(['id' => $tweet->id], $data);
         }
     }
 
-    protected function store_avatar($username, $avatar_url)
+    public function get_and_store_avatar(User $user)
     {
-        
+        $storage = new Storage;
+        $source = $this->user1->avatar_origin;
+        $avatar_path = 'images/avatars/'.$this->user1->slug.'.png';
+        $success = storage::put($avatar_path, file_get_contents($source), 'public');
+
+        return $success;
     }
 }
