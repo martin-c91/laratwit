@@ -45,10 +45,7 @@ class DatabaseSeeder extends Seeder
 
     public function run()
     {
-
-        dd($this->get_seed_user());
-        return "";
-        foreach ($this->seed_users as $seed_user) {
+        foreach ($this->seed_users_origin as $seed_user) {
             if ($this->seed_user_info($seed_user)) {
                 $this->seed_user_tweets($seed_user, 10);
             }
