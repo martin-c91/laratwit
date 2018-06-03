@@ -17,7 +17,8 @@ Vue.use(require('vue-moment'));
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('post-tweet-component', require('./components/PostTweetComponent.vue'));
+Vue.component('post-tweet-component', require('./components/PostTweet.vue'));
+Vue.component('get-tweets-component', require('./components/GetTweets.vue'));
 
 const app = new Vue({
     el: '#app'
