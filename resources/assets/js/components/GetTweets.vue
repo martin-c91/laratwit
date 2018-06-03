@@ -30,23 +30,31 @@
             }
         },
 
+
         created() {
-            // this.fetchTweets();
+            axios.get('')
+                .then(response => {
+                    // JSON responses are automatically parsed.
+                    this.tweets = response.data.data
+                })
+                .catch(e => {
+                    this.errors.push(e)
+                })
         },
 
-        methods: {
-            fetchTweets() {
-                axios.get('http://laratwit.test/test/jimmyfallon')
-                    .then((response) => {
-                        this.tweets = response.data.data;
-                        console.log(this.tweets);
-                        }
-                    )
-            }
-        },
+        // methods: {
+        //     fetchTweets() {
+        //         axios.get('http://laratwit.test/test/jimmyfallon')
+        //             .then((response) => {
+        //                 this.tweets = response.data.data;
+        //                 console.log(this.tweets);
+        //                 }
+        //             )
+        //     }
+        // },
 
         mounted() {
-            this.fetchTweets();
+            // this.fetchTweets();
         }
     }
 </script>
