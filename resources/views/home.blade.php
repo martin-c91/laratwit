@@ -6,7 +6,7 @@
             <div class="col-md-3">
                 <div class="row">
                     <img class="profile_pic"
-                         src="{{str_replace('normal.jpg', '400x400.jpg', $user->avatar)}}">
+                         src="{{$user->avatarURL}}">
                 </div>
 
 
@@ -18,7 +18,7 @@
                         </h3>
                     </div>
                     <div class="col-fluid">
-                        @includeWhen((Auth::user()->slug !== $user->slug), 'partials.following-button')
+{{--                        @includeWhen((Auth::user()->slug !== $user->slug) and Auth::check(), 'partials.following-button')--}}
                     </div>
                 </div>
                 <div class="row">
@@ -60,9 +60,10 @@
                 <div class="panel">
                     <div class="panel-header">Timeline</div>
 
-                    @foreach ($tweets as $tweet)
-                        @include('partials.tweet-card')
-                    @endforeach
+                    <get-tweets-component></get-tweets-component>
+                        {{--@foreach ($tweets as $tweet)--}}
+                            {{--@include('partials.tweet-card')--}}
+                        {{--@endforeach--}}
 
                 </div>
             </div>

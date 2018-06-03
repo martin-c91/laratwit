@@ -12,29 +12,27 @@ use Validator;
 
 class TweetController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(User $user=null, Request $request)
+
+    public function index(Request $request)
     {
-        if (!$user) {
-            //get followings tweets + our own tweets
-            $users_id = Auth::user()->followings->pluck('id')->all();
-            array_push($users_id, Auth::id());
-            $tweets = $this->tweetsByUsers($users_id, $request);
-            $user = Auth::user();
-        } else {
-            $tweets = $this->tweetsByUsers([$user->id], $request);
-            $is_following = Auth::User()->checkFollowing($user);
-        }
+        \Debugbar::disable();
+        \DB::connection()->enableQueryLog();
+
+        //for postman since not logged in
+        $user = User::where('slug', 'taylorswift13')->first();
+        //$user = Auth::user();
 
         if (request()->wantsJson()) {
+            $tweets = $user->getTimeline();
+            logger()->debug('--------New Request JSONJSONJSON--------');
+            logger()->debug(\DB::getQueryLog());
             return $tweets;
         }
 
-        return view('home', compact('user', 'tweets', 'is_following'));
+        logger()->debug('--------New Request VIEWVIEWVIEW--------');
+        logger()->debug(\DB::getQueryLog());
+
+        return view('home', compact('user', 'tweets'));
     }
 
     /**
@@ -73,9 +71,7 @@ class TweetController extends Controller
     {
         //get single tweet by id
         $tweet = Tweet::with('user')->find($id);
-
         //return $tweet;
-        return new Tweet($tweet);
     }
 
     /**
@@ -87,22 +83,6 @@ class TweetController extends Controller
     public function destroy($id)
     {
         $tweet = Tweet::findOrFail($id);
-
-        if ($tweet->delete()) {
-            return "successfully deleted $id";
-        }
-    }
-
-    /**
-     * Get tweets from array of users
-     *
-     * @param  array $user_id
-     * @return array
-     */
-    public function tweetsByUsers(Array $users_id, Request $request)
-    {
-        $tweets = Tweet::with('user')->whereIn('user_id', $users_id)->orderBy('created_at', 'desc')->paginate();
-
-        return $tweets;
+        $tweet->delete;
     }
 }
