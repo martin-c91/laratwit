@@ -50187,8 +50187,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -50197,30 +50195,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     created: function created() {
-        var _this = this;
-
-        axios.get('').then(function (response) {
-            // JSON responses are automatically parsed.
-            _this.tweets = response.data.data;
-        }).catch(function (e) {
-            _this.errors.push(e);
-        });
+        // this.fetchTweets();
     },
 
 
-    // methods: {
-    //     fetchTweets() {
-    //         axios.get('http://laratwit.test/test/jimmyfallon')
-    //             .then((response) => {
-    //                 this.tweets = response.data.data;
-    //                 console.log(this.tweets);
-    //                 }
-    //             )
-    //     }
-    // },
+    methods: {
+        fetchTweets: function fetchTweets() {
+            var _this = this;
+
+            axios.get('').then(function (response) {
+                _this.tweets = response.data.data;
+            });
+        }
+    },
 
     mounted: function mounted() {
-        // this.fetchTweets();
+        this.fetchTweets();
     }
 });
 
@@ -50233,15 +50223,19 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "ul",
+    "div",
     _vm._l(_vm.tweets, function(tweet) {
-      return _c("li", [
-        _vm._v("\n        " + _vm._s(tweet.content) + "\n        "),
+      return _c("div", [
         _c("div", { staticClass: "panel-body mt-3 mb-3" }, [
-          _vm._m(0, true),
+          _c("div", { staticStyle: { float: "left", width: "48px" } }, [
+            _c("img", {
+              staticClass: "avatar",
+              attrs: { src: tweet.user.avatar_url, alt: "avatar" }
+            })
+          ]),
           _vm._v(" "),
           _c("div", { staticStyle: { "margin-left": "58px" } }, [
-            _vm._m(1, true),
+            _vm._m(0, true),
             _vm._v(
               "\n                " + _vm._s(tweet.content) + "\n            "
             )
@@ -50260,14 +50254,6 @@ var render = function() {
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticStyle: { float: "left", width: "48px" } }, [
-      _c("img", { staticClass: "avatar", attrs: { src: "", alt: "avatar" } })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

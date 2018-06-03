@@ -1,9 +1,11 @@
 <template>
-    <div>
-        <div v-for="tweet in tweets">
+    <ul>
+        <li v-for="tweet in tweets">
+            {{tweet.content}}
             <div class="panel-body mt-3 mb-3">
                 <div style="float: left; width: 48px;">
-                    <img :src="tweet.user.avatar_url" class="avatar"
+                    <img class="avatar"
+                         src=""
                          alt="avatar">
                 </div>
                 <div style="margin-left: -48px; margin-left: 58px; ">
@@ -16,8 +18,8 @@
                 </div>
 
             </div>
-        </div>
-    </div>
+        </li>
+    </ul>
 </template>
 
 <script>
@@ -34,9 +36,10 @@
 
         methods: {
             fetchTweets() {
-                axios.get('')
+                axios.get('http://laratwit.test/test/jimmyfallon')
                     .then((response) => {
-                        this.tweets = response.data.data;
+                            this.tweets = response.data.data;
+                            console.log(this.tweets);
                         }
                     )
             }

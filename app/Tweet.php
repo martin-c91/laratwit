@@ -10,7 +10,11 @@ class Tweet extends Model
         'id',
         'content',
         'user_id',
-        'json_raw'
+        'json_raw',
+    ];
+
+    protected $hidden = [
+        'json_raw',
     ];
 
     public function user()

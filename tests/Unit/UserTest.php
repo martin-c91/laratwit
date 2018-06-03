@@ -26,7 +26,8 @@ class UserTest extends TestCase
 
         //dd(($this->user1->avatar));
         $this->assertTrue($success, "Storage Failed");
-        $this->assertNotEquals($this->user1->avatar, asset('storage/images/avatars/default.png'));
-        $this->assertFileExists(public_path($this->user1->avatar), 'Avatar could not be found.');
+        $this->assertNotEquals($this->user1->avatarURL, Storage::disk('images')->url('images/avatars/default.png'));
+        //dd($this->user1)
+        $this->assertTrue(Storage::disk('images')->exists($this->user1->avatar), 'Avatar could not be found.');
     }
 }

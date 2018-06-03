@@ -1,7 +1,7 @@
 <div class="panel-body mt-3 mb-3">
     <div style="float: left; width: 48px;">
         <img class="avatar"
-             src="{{$tweet->user->avatar}}"
+             src="{{$tweet->user->avatar_url}}"
              alt="avatar">
     </div>
     <div style="margin-left: -48px; margin-left: 58px; ">

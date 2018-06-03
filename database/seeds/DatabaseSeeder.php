@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\User;
 use App\Tweet;
-use Storage;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,9 +13,10 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
 
-    protected $seed_users = [
-        'katyperry',
-        'justinbieber',
+    protected $seed_users_origin = [
+
+        //'katyperry',
+        //'justinbieber',
         //'BarackObama',
         //"rihanna",
         //"taylorswift13",
@@ -31,11 +32,22 @@ class DatabaseSeeder extends Seeder
         //"selenagomez",
         //"cnnbrk",
         //"jimmyfallon",
-
     ];
+
+    protected function get_seed_user()
+    {
+        $last_user = User::latest()->first();
+        $seed_user_json = Twitter::getUsers(['screen_name' => $last_user->slug, 'format' => 'json']);
+        $seed_user = json_decode($seed_user_json);
+
+        return $seed_user;
+    }
 
     public function run()
     {
+
+        dd($this->get_seed_user());
+        return "";
         foreach ($this->seed_users as $seed_user) {
             if ($this->seed_user_info($seed_user)) {
                 $this->seed_user_tweets($seed_user, 10);
@@ -55,12 +67,13 @@ class DatabaseSeeder extends Seeder
             'email' => $faker = Faker\Factory::create()->email,
             'description' => $seed_user->description,
             'json_raw' => $seed_user_json,
-            'avatar_origin' => $seed_user->profile_image_url,
+            //'avatar_origin' => $seed_user->profile_image_url,
+            'avatar_origin' => str_replace('_normal.jpg','_400x400.jpg', $seed_user->profile_image_url),
             'password' => Hash::make('test'),
         ];
 
         $new_user = $user->updateOrCreate(['slug' => $twitter_username], $data);
-        if ($new_user) {
+        if ($new_user AND $new_user->get_and_store_avatar()) {
             return $new_user->slug;
         }
     }
@@ -87,15 +100,5 @@ class DatabaseSeeder extends Seeder
 
             Tweet::updateOrCreate(['id' => $tweet->id], $data);
         }
-    }
-
-    public function get_and_store_avatar(User $user)
-    {
-        $storage = new Storage;
-        $source = $this->user1->avatar_origin;
-        $avatar_path = 'images/avatars/'.$this->user1->slug.'.png';
-        $success = storage::put($avatar_path, file_get_contents($source), 'public');
-
-        return $success;
     }
 }

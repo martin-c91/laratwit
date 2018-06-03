@@ -5,12 +5,16 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Storage;
+use Auth;
+
 
 class User extends Authenticatable
 {
     use Notifiable;
 
     protected $table = 'users';
+
+    protected $avatar_folder = 'avatars';
 
     /**
      * The attributes that are mass assignable.
@@ -34,6 +38,15 @@ class User extends Authenticatable
         'password',
         'remember_token',
         'email',
+        'json_raw',
+        'avatar_origin',
+        'updated_at',
+        'created_at',
+    ];
+
+    protected $appends = [
+        'IsFollowedByAuth',
+        'avatar_url',
     ];
 
     public function getRouteKeyName()
@@ -62,9 +75,9 @@ class User extends Authenticatable
      * @param  User $user
      * @return Model
      */
-    public function follow($user)
+    public function follow(User $user)
     {
-        if (! $this->checkFollowing($user)) {
+        if (! $this->checkFollowing($user->id)) {
             $user->followers()->attach($this->id);
         }
 
@@ -73,15 +86,9 @@ class User extends Authenticatable
         return $user;
     }
 
-    /**
-     * Add follower to current user
-     *
-     * @param  User $user
-     * @return Model
-     */
-    public function unFollow($user)
+    public function unFollow(User $user)
     {
-        if ($this->checkFollowing($user)) {
+        if ($this->checkFollowing($user->id)) {
             $user->followers()->detach($this->id);
         }
 
@@ -90,13 +97,30 @@ class User extends Authenticatable
         return $user;
     }
 
-    public function checkFollowing(User $user)
+    /**
+     * @param $userId int
+     * @return bool
+     */
+    public function checkFollowing($userId)
     {
-        if ($this->followings()->where('user_id', $user->id)->first()) {
+        if ($this->followings()->where('user_id', $userId)->first()) {
             return true;
         }
 
         return false;
+    }
+
+    public function test(User $user){
+        return $user->slug;
+    }
+
+    public function getIsFollowedByAuthAttribute()
+    {
+        if(!Auth::user()) return false;
+
+        if (Auth::user()->checkFollowing($this->id)) {
+            return true;
+        };
     }
 
     /**
@@ -107,11 +131,17 @@ class User extends Authenticatable
      */
     public function getAvatarAttribute()
     {
-        $avatar = ('images/avatars/'.$this->slug.'.png');
-        if (\Storage::exists($avatar)){
-            return ('storage/'.$avatar);
+        $avatar_file_name = ($this->slug.'.png');
+        if (Storage::disk('images')->exists($this->avatar_folder.'/'.$avatar_file_name)) {
+            return ($this->avatar_folder.'/'.$avatar_file_name);
         }
-        return ('storage/images/avatars/default.png');
+
+        return ($this->avatar_folder.'/'.'default.png');
+    }
+
+    public function getAvatarUrlAttribute()
+    {
+        return Storage::disk('images')->url($this->avatar);
     }
 
     public function get_and_store_avatar()
@@ -119,9 +149,45 @@ class User extends Authenticatable
         $storage = Storage::class;
         //return $storage;
         $source = $this->avatar_origin;
-        $avatar_path = 'images/avatars/'.$this->slug.'.png';
-        $success = storage::put($avatar_path, file_get_contents($source), 'public');
+        $avatar_file_name = $this->slug.'.png';
+        $avatar_folder = 'avatars/';
+        $success = Storage::disk('images')->put($avatar_folder.$avatar_file_name, file_get_contents($source), 'public');
 
         return $success;
     }
+
+    /**
+     * @param \App\User $user
+     * @return $tweets collection
+     */
+    public function getTimeline()
+    {
+        $followingsId = $this
+            ->followings
+            ->pluck('id')
+            ->all();
+        array_push($followingsId, $this->id);
+
+        $tweets = Tweet::with('user')
+            ->latest()
+            ->whereIn('user_id', $followingsId)
+            ->paginate();
+
+        return $tweets;
+    }
+
+    /**
+     * @param $userIds
+     * @return $tweets collection
+     */
+    public function getTweets($userIds)
+    {
+        $tweets = Tweet::with('user')
+            ->whereIn('user_id', $userIds)
+            ->latest()
+            ->paginate()
+            ;
+        return $tweets;
+    }
+
 }

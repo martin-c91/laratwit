@@ -6,7 +6,7 @@
             <div class="col-md-3">
                 <div class="row">
                     <img class="profile_pic"
-                         src="{{str_replace('normal.jpg', '400x400.jpg', $user->avatar)}}">
+                         src="{{$user->avatarURL}}">
                 </div>
 
 
@@ -61,9 +61,9 @@
                     <div class="panel-header">Timeline</div>
 
                     <get-tweets-component></get-tweets-component>
-                    {{--@foreach ($tweets as $tweet)--}}
-                        {{--@include('partials.tweet-card')--}}
-                    {{--@endforeach--}}
+                        {{--@foreach ($tweets as $tweet)--}}
+                            {{--@include('partials.tweet-card')--}}
+                        {{--@endforeach--}}
 
                 </div>
             </div>
