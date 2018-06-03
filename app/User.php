@@ -114,15 +114,6 @@ class User extends Authenticatable
         return $user->slug;
     }
 
-    public function getIsFollowedByAuthAttribute()
-    {
-        if(!Auth::user()) return false;
-
-        if (Auth::user()->checkFollowing($this->id)) {
-            return true;
-        };
-    }
-
     /**
      * Get the path to the user's avatar.
      *
