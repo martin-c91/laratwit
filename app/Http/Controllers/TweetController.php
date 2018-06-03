@@ -43,18 +43,25 @@ class TweetController extends Controller
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        // This will handle the errors, redirecting and everything,
+        // and return an array with all the validated keys, here only content
+        $validated = $request->validate([
             'content' => 'required|max:400',
         ]);
-
-        if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
-        }
-
-        $tweet = new Tweet;
-        $tweet->content = $request->input('content');
-        $tweet->user_id = Auth::id();
-        if ($tweet->save()) {
+        
+        /*
+        // This does the same and offers more flexibility (you can pass whatever data you want)
+        // but I prefer the $request->validate() one
+        $validated = $this->validate($request, [
+            'content' => 'required|max:400',
+        ]);
+        */
+        
+        // Why not letting laravel deal with the keys
+        $tweet = Auth::user()->tweets()->create($validated);
+        
+        // you could use $tweet->exists too
+        if ($tweet->wasRecentlyCreated) {
             return back()->with('message', 'Your tweet was posted.');
         }
 
