@@ -50186,15 +50186,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            tweets: []
+            tweets: [],
+            nextPageUrl: ''
         };
     },
     created: function created() {
-        // this.fetchTweets();
+        this.fetchTweets();
     },
 
 
@@ -50203,13 +50208,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.get('').then(function (response) {
+                _this.nextPageUrl = response.data.next_page_url;
                 _this.tweets = response.data.data;
+            });
+        },
+
+
+        getMoreTweets: function getMoreTweets() {
+            var _this2 = this;
+
+            axios.get(this.nextPageUrl).then(function (response) {
+                _this2.nextPageUrl = response.data.next_page_url;
+                _this2.tweets = _this2.tweets.concat(response.data.data);
             });
         }
     },
 
     mounted: function mounted() {
-        this.fetchTweets();
+        // this.fetchTweets();
     }
 });
 
@@ -50223,33 +50239,40 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    _vm._l(_vm.tweets, function(tweet) {
-      return _c("div", [
-        _c("div", { staticClass: "panel-body mt-3 mb-3" }, [
-          _c("div", { staticStyle: { float: "left", width: "48px" } }, [
-            _c("img", {
-              staticClass: "avatar",
-              attrs: { src: tweet.user.avatar_url, alt: "avatar" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticStyle: { "margin-left": "58px" } }, [
-            _vm._m(0, true),
-            _vm._v(
-              "\n                " + _vm._s(tweet.content) + "\n            "
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "float-right" }, [
-            _vm._v(
-              "\n                created: " +
-                _vm._s(_vm._f("moment")(tweet.created_at, "from", "now")) +
-                "\n            "
-            )
+    [
+      _vm._l(_vm.tweets, function(tweet) {
+        return _c("div", [
+          _c("div", { staticClass: "panel-body mt-3 mb-3" }, [
+            _c("div", { staticStyle: { float: "left", width: "48px" } }, [
+              _c("img", {
+                staticClass: "avatar",
+                attrs: { src: tweet.user.avatar_url, alt: "avatar" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticStyle: { "margin-left": "58px" } }, [
+              _vm._m(0, true),
+              _vm._v(
+                "\n                " + _vm._s(tweet.content) + "\n            "
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "float-right" }, [
+              _vm._v(
+                "\n                created: " +
+                  _vm._s(_vm._f("moment")(tweet.created_at, "from", "now")) +
+                  "\n            "
+              )
+            ]),
+            _vm._v(" "),
+            _c("br")
           ])
         ])
-      ])
-    })
+      }),
+      _vm._v(" "),
+      _c("button", { on: { click: _vm.getMoreTweets } }, [_vm._v("Add 1")])
+    ],
+    2
   )
 }
 var staticRenderFns = [

@@ -7,32 +7,54 @@ use App\User;
 use Auth;
 use App\Http\Resources\Tweet as TweetResource;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Types\Null_;
 use Validator;
 
 class TweetController extends Controller
 {
+    //public function __construct()
+    //{
+    //    $this->middleware(function ($request, $next) {
+    //        //\Debugbar::disable();
+    //
+    //        // Added json or view display
+    //        logger()->debug('--------New Request '.($request->wantsJson() ? 'JSON' : 'VIEW').'--------');
+    //
+    //        \DB::connection()->enableQueryLog();
+    //
+    //        // This line was bugged
+    //        $response = $next($request);
+    //
+    //        logger()->debug(\DB::getQueryLog());
+    //
+    //        return $response;
+    //    });
+    //}
 
-    public function index(Request $request)
+    public function index(User $user = null, Request $request)
     {
-        \Debugbar::disable();
-        \DB::connection()->enableQueryLog();
-
-        //for postman since not logged in
-        $user = User::where('slug', 'taylorswift13')->first();
-        //$user = Auth::user();
-
         if (request()->wantsJson()) {
-            $tweets = $user->getTimeline();
-            logger()->debug('--------New Request JSONJSONJSON--------');
-            logger()->debug(\DB::getQueryLog());
-            return $tweets;
+            $start = microtime(true);
+            if (! $user) {
+                $tweets = Auth::user()->getTimeline();
+            } else {
+                $cache_message = "with cache";
+                //$tweets = \Cache::remember('tweets', 10, function () use($user){
+                //    return Tweet::with('user')->where('user_id', $user->id)->latest()->paginate();
+                //});
+                $tweets = Tweet::remember(60)->with('user')->where('user_id', $user->id)->latest()->paginate();
+                //$cache_message = "WITHOUT cache";
+                //$tweets = Tweet::with('user')->where('user_id', $user->id)->latest()->paginate();
+                $duration = (microtime(true)-$start)*1000;
+                \Log::info("$cache_message $duration ms.");
+            }
+
+
+
+            return response()->json($tweets);
         }
+        if (! $user) $user = Auth::user();
 
-        logger()->debug('--------New Request VIEWVIEWVIEW--------');
-        logger()->debug(\DB::getQueryLog());
-
-        return view('home', compact('user', 'tweets'));
+        return view('home', compact('user'));
     }
 
     /**

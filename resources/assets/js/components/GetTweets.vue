@@ -1,5 +1,6 @@
 <template>
     <div>
+
         <div v-for="tweet in tweets">
             <div class="panel-body mt-3 mb-3">
                 <div style="float: left; width: 48px;">
@@ -15,8 +16,11 @@
                     created: {{ tweet.created_at | moment("from", "now")}}
                 </div>
 
+                <br>
             </div>
         </div>
+
+        <button v-on:click="getMoreTweets">Add 1</button>
     </div>
 </template>
 
@@ -24,26 +28,36 @@
     export default {
         data() {
             return {
-                tweets: []
+                tweets: [],
+                nextPageUrl: '',
             }
         },
 
         created() {
-            // this.fetchTweets();
+            this.fetchTweets();
         },
 
         methods: {
             fetchTweets() {
                 axios.get('')
                     .then((response) => {
+                        this.nextPageUrl = response.data.next_page_url;
                         this.tweets = response.data.data;
                         }
                     )
+            },
+
+            getMoreTweets: function(){
+                axios.get(this.nextPageUrl)
+                    .then(response => {
+                        this.nextPageUrl = response.data.next_page_url;
+                        this.tweets = this.tweets.concat(response.data.data);
+                    });
             }
         },
 
         mounted() {
-            this.fetchTweets();
+            // this.fetchTweets();
         }
     }
 </script>
