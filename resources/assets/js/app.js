@@ -17,6 +17,7 @@ Vue.use(require('vue-moment'));
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('follow-button-component', require('./components/FollowButton.vue'));
 Vue.component('post-tweet-component', require('./components/PostTweet.vue'));
 Vue.component('get-tweets-component', require('./components/GetTweets.vue'));
 

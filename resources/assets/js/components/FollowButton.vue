@@ -1,52 +1,39 @@
 <template>
-    <ul>
-        <li v-for="tweet in tweets">
-            {{tweet.content}}
-            <div class="panel-body mt-3 mb-3">
-                <div style="float: left; width: 48px;">
-                    <img class="avatar"
-                         src=""
-                         alt="avatar">
-                </div>
-                <div style="margin-left: -48px; margin-left: 58px; ">
-                    <h6><a href=""></a></h6>
-                    {{ tweet.content }}
-                </div>
+    <div>
+        <button v-if="this.AuthIsFollowing" class="btn btn-secondary" v-on:click="postFollow('unfollow')">UnFollow
+        </button>
+        <button v-else class="btn btn-primary" v-on:click="postFollow('follow')">Follow</button>
 
-                <div class="float-right">
-                    created: {{ tweet.created_at | moment("from", "now")}}
-                </div>
-
-            </div>
-        </li>
-    </ul>
+    </div>
 </template>
 
 <script>
     export default {
+        props: ['user'],
         data() {
             return {
-                tweets: []
+                AuthIsFollowing: this.user.AuthIsFollowing,
             }
-        },
-
-        created() {
-            // this.fetchTweets();
         },
 
         methods: {
-            fetchTweets() {
-                axios.get('http://laratwit.test/test/jimmyfallon')
+            postFollow: function (action) {
+                var url = '/' + this.user.slug + '/' + action;
+                axios.post(url)
                     .then((response) => {
-                            this.tweets = response.data.data;
-                            console.log(this.tweets);
-                        }
-                    )
-            }
+                            console.log(this.user.AuthIsFollowing);
+                        },
+                    ),
+                    (error) => {
+                        console.log(error)
+                    }
+
+                this.AuthIsFollowing = !this.AuthIsFollowing;
+
+            },
         },
 
         mounted() {
-            this.fetchTweets();
         }
     }
 </script>

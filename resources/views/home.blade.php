@@ -10,7 +10,6 @@
                 </div>
 
 
-
                 <div class="row pt-2">
                     <div class="col pl-0">
                         <h3>
@@ -18,11 +17,13 @@
                         </h3>
                     </div>
                     <div class="col-fluid">
-{{--                        @includeWhen((Auth::user()->slug !== $user->slug) and Auth::check(), 'partials.following-button')--}}
+                        @if((Auth::user()->slug !== $user->slug) and Auth::check())
+                            <follow-button-component :user="{{ $user->append('AuthIsFollowing') }}"></follow-button-component>
+                        @endif
                     </div>
                 </div>
                 <div class="row">
-{{--                    <a href="{{route('user.profile', $user->slug)}}" style="color: gray;">{{'@'.$user->slug }}</a>--}}
+                    <a href="{{route('user.profile', $user->slug)}}" style="color: gray;">{{'@'.$user->slug }}</a>
                 </div>
 
                 <div class="row">
@@ -61,9 +62,9 @@
                     <div class="panel-header">Timeline</div>
 
                     <get-tweets-component></get-tweets-component>
-                        {{--@foreach ($tweets as $tweet)--}}
-                            {{--@include('partials.tweet-card')--}}
-                        {{--@endforeach--}}
+                    {{--@foreach ($tweets as $tweet)--}}
+                    {{--@include('partials.tweet-card')--}}
+                    {{--@endforeach--}}
 
                 </div>
             </div>

@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        <button v-on:click="getMoreTweets">Add 1</button>
+        <button class="btn btn-default" v-on:click="getMoreTweets">More...</button>
     </div>
 </template>
 

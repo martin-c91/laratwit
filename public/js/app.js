@@ -17488,6 +17488,7 @@ Vue.use(__webpack_require__(162));
  */
 
 Vue.component('example-component', __webpack_require__(164));
+Vue.component('follow-button-component', __webpack_require__(178));
 Vue.component('post-tweet-component', __webpack_require__(167));
 Vue.component('get-tweets-component', __webpack_require__(170));
 
@@ -50270,7 +50271,11 @@ var render = function() {
         ])
       }),
       _vm._v(" "),
-      _c("button", { on: { click: _vm.getMoreTweets } }, [_vm._v("Add 1")])
+      _c(
+        "button",
+        { staticClass: "btn btn-default", on: { click: _vm.getMoreTweets } },
+        [_vm._v("More...")]
+      )
     ],
     2
   )
@@ -50297,6 +50302,146 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(4)
+/* script */
+var __vue_script__ = __webpack_require__(179)
+/* template */
+var __vue_template__ = __webpack_require__(180)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\FollowButton.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-289d4bba", Component.options)
+  } else {
+    hotAPI.reload("data-v-289d4bba", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 179 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['user'],
+    data: function data() {
+        return {
+            AuthIsFollowing: this.user.AuthIsFollowing
+        };
+    },
+
+
+    methods: {
+        postFollow: function postFollow(action) {
+            var _this = this;
+
+            var url = '/' + this.user.slug + '/' + action;
+            axios.post(url).then(function (response) {
+                console.log(_this.user.AuthIsFollowing);
+            }), function (error) {
+                console.log(error);
+            };
+
+            this.AuthIsFollowing = !this.AuthIsFollowing;
+        }
+    },
+
+    mounted: function mounted() {}
+});
+
+/***/ }),
+/* 180 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    this.AuthIsFollowing
+      ? _c(
+          "button",
+          {
+            staticClass: "btn btn-secondary",
+            on: {
+              click: function($event) {
+                _vm.postFollow("unfollow")
+              }
+            }
+          },
+          [_vm._v("UnFollow\n    ")]
+        )
+      : _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            on: {
+              click: function($event) {
+                _vm.postFollow("follow")
+              }
+            }
+          },
+          [_vm._v("Follow")]
+        )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-289d4bba", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
