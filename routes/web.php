@@ -30,7 +30,6 @@ Route::post('/dashboard/tweet', 'TweetController@store')->name('tweet.post');
 Route::get('/{user}', 'TweetController@index')->name('user.profile');
 
 Route::post('/{user}/follow', 'UserController@followUser')->name('user.follow');
-Route::get('/{user}/follow', 'UserController@followUser')->name('user.follow');
 Route::post('/{user}/unfollow', 'UserController@unFollowUser')->name('user.unfollow');
 
 //get user followers, followings

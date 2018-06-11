@@ -4,8 +4,9 @@
         <div v-for="tweet in tweets">
             <div class="panel-body mt-3 mb-3">
                 <div style="float: left; width: 48px;">
-                    <img :src="tweet.user.avatar_url" class="avatar"
-                         alt="avatar">
+                    <a :href="tweet.user.slug">
+                        <img :src="tweet.user.avatar_url" class="avatar" alt="avatar">
+                    </a>
                 </div>
                 <div style="margin-left: -48px; margin-left: 58px; ">
                     <h6><a href=""></a></h6>
