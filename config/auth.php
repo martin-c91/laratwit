@@ -37,7 +37,6 @@ return [
 
     'guards' => [
         'web' => [
-            \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
             'driver' => 'session',
             'provider' => 'users',
         ],
