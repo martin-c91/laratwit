@@ -18,7 +18,7 @@
 
         methods: {
             postFollow: function (action) {
-                var url = '/' + this.user.slug + '/' + action;
+                var url = '/api/' + this.user.slug + '/' + action;
                 axios.post(url)
                     .then((response) => {
                             console.log(this.user.AuthIsFollowing);

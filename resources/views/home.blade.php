@@ -61,7 +61,7 @@
                 <div class="panel">
                     <div class="panel-header">Timeline</div>
 
-                    <get-tweets-component></get-tweets-component>
+                    <get-tweets-component :user="{{$user}}"></get-tweets-component>
                     {{--@foreach ($tweets as $tweet)--}}
                     {{--@include('partials.tweet-card')--}}
                     {{--@endforeach--}}

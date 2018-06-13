@@ -27,6 +27,8 @@
 
 <script>
     export default {
+        props: ['user'],
+
         data() {
             return {
                 tweets: [],
@@ -58,6 +60,7 @@
         },
 
         mounted() {
+            console.log(this.user);
             // this.fetchTweets();
         }
     }
