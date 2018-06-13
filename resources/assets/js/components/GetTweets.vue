@@ -60,7 +60,11 @@
         },
 
         mounted() {
-            console.log(this.user);
+            // console.log(this.user);
+            axios.get('/api/user')
+                .then(response => {
+                    console.log(response.data);
+                });
             // this.fetchTweets();
         }
     }
