@@ -20,13 +20,11 @@ class UserController extends Controller
 
     public function followUser(User $user)
     {
-        $this->middleware('auth:api');
         return Auth::user()->follow($user);
     }
 
     public function unFollowUser(User $user)
     {
-        $this->middleware('auth:api');
         return Auth::user()->unFollow($user);
     }
 }

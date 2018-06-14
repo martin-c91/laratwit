@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\User;
+
 //
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/{user}/follow', 'UserController@followUser')->name('user.follow');
-Route::get('/{user}/unfollow', 'UserController@unFollowUser')->name('user.unfollow');
-
-Route::get('/test', function() {
-    return Auth::user();
+Route::middleware(['auth:api'])->group(function () {
+    Route::post('/{user}/follow', 'UserController@followUser')->name('user.follow');
+    Route::post('/{user}/unfollow', 'UserController@unFollowUser')->name('user.unfollow');
 });
+
