@@ -18,7 +18,10 @@
                     </div>
                     <div class="col-fluid">
                         @if((Auth::user()->slug !== $user->slug) and Auth::check())
-                            <follow-button-component :user="{{ $user->append('AuthIsFollowing') }}"></follow-button-component>
+                            <follow-button-component
+                                    :user="{{ $user->append('AuthIsFollowing') }}"
+                            >
+                            </follow-button-component>
                         @endif
                     </div>
                 </div>
@@ -61,7 +64,9 @@
                 <div class="panel">
                     <div class="panel-header">Timeline</div>
 
-                    <get-tweets-component :user="{{$user}}"></get-tweets-component>
+                    <get-tweets-component :user="{{$user}}"
+                                          tweets-url="{{$tweetsUrl}}"
+                    ></get-tweets-component>
                     {{--@foreach ($tweets as $tweet)--}}
                     {{--@include('partials.tweet-card')--}}
                     {{--@endforeach--}}

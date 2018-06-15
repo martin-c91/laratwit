@@ -1,7 +1,6 @@
 <template>
     <div>
-        <button v-if="this.AuthIsFollowing" class="btn btn-secondary" v-on:click="postFollow('unfollow')">UnFollow
-        </button>
+        <button v-if="this.AuthIsFollowing" class="btn btn-secondary" v-on:click="postFollow('unfollow')">UnFollow</button>
         <button v-else class="btn btn-primary" v-on:click="postFollow('follow')">Follow</button>
 
     </div>

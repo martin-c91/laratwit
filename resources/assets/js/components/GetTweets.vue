@@ -27,7 +27,7 @@
 
 <script>
     export default {
-        props: ['user'],
+        props: ['user','tweets-url'],
 
         data() {
             return {
@@ -42,7 +42,7 @@
 
         methods: {
             fetchTweets() {
-                axios.get('')
+                axios.get(this.tweetsUrl)
                     .then((response) => {
                         this.nextPageUrl = response.data.next_page_url;
                         this.tweets = response.data.data;
