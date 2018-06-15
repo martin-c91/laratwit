@@ -1,9 +1,9 @@
 <template>
     <div>
-        <tweet v-for="tweet in tweets"
-               :tweet="tweet"
-               :key="tweet.id"
-        ></tweet>
+        <!--<tweet v-for="tweet in tweets"-->
+               <!--:tweet="tweet"-->
+               <!--:key="tweet.id"-->
+        <!--&gt;</tweet>-->
 
         <button class="btn btn-default" v-on:click="getMoreTweets">More...</button>
     </div>
@@ -16,26 +16,26 @@
         data() {
             return {
                 tweets: [],
-                url: function(){
-                    if(this.current_route_name == 'sdfsdf'){
-                        return '/api/timeline'
-                    }
-                    console.log(this.current_route_name);
-                }
+                url:'',
             }
         },
 
         created() {
+            if(this.current_route_name=='timeline'){
+                this.url = '/api/timeline';
+            }else{
+                this.url = '/api/'+this.user.slug;
+            }
             console.log(this.url)
-            // this.fetchTweets();
         },
 
         methods: {
             fetchTweets() {
-                axios.get(this.tweetsUrl)
+                axios.get(this.url)
                     .then((response) => {
-                        this.nextPageUrl = response.data.next_page_url;
-                        this.tweets = response.data.data;
+                            console.log(response.data);
+                            this.nextPageUrl = response.data.next_page_url;
+                            this.tweets = response.data.data;
                         }
                     )
             },

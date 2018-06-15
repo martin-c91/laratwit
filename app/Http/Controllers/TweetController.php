@@ -35,6 +35,7 @@ class TweetController extends Controller
             'content' => 'required|max:400',
         ]);
 
+        return $request->input('content');
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }

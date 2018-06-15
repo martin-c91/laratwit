@@ -16,10 +16,10 @@ Vue.use(require('vue-moment'));
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('timeline', require('./components/Timeline.vue'));
 Vue.component('follow-button-component', require('./components/FollowButton.vue'));
-Vue.component('post-tweet-component', require('./components/PostTweet.vue'));
-Vue.component('get-tweets-component', require('./components/GetTweets.vue'));
+// Vue.component('pos   t-tweet-component', require('./components/PostTweet.vue'));
+// Vue.component('get-tweets', require('./components/GetTweets.vue'));
 
 const app = new Vue({
     el: '#app'

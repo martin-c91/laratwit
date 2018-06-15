@@ -17,16 +17,14 @@ Use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     if (Auth::check()) {
-        return redirect('dashboard');
+        return redirect('timeline');
     }
 
     return view('welcome');
 });
 
 Auth::routes();
-Route::get('/dashboard', 'TweetController@index')->name('timeline')->middleware('auth');
-Route::post('/dashboard/tweet', 'TweetController@store')->name('tweet.post');
-
+Route::get('/timeline', 'TweetController@index')->name('timeline')->middleware('auth');
 Route::get('/{user}', 'TweetController@index')->name('user.profile');
 
 //get user followers, followings

@@ -53,25 +53,16 @@
                     </div>
                 @endif
 
-                @if($user->id == Auth::id())
-                    <div class="card border-0 new-tweet-form">
-                        {{--@include('partials/new-tweet-form')--}}
-                        <post-tweet-component></post-tweet-component>
-                    </div>
+                @if($user->id == Auth::id() AND Route::currentRouteName() == 'timeline')
+                    timeline
+                    <timeline
+                            :user="{{$user}}"
+                            :current_route_name="'timeline'"
+                    ></timeline>
+                @else
+                    easdfasf
+                    {{--<user-tweets-component></user-tweets-component>--}}
                 @endif
-
-                <br>
-                <div class="panel">
-                    <div class="panel-header">Timeline</div>
-
-                    <get-tweets-component :user="{{$user}}"
-                                          tweets-url="{{$tweetsUrl}}"
-                    ></get-tweets-component>
-                    {{--@foreach ($tweets as $tweet)--}}
-                    {{--@include('partials.tweet-card')--}}
-                    {{--@endforeach--}}
-
-                </div>
             </div>
             <div class="col-md-3 well well-lg">
 

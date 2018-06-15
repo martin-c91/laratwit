@@ -21,6 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::middleware(['auth:api'])->group(function () {
     Route::get('/timeline', 'TweetController@getTimelineTweets')->name('api.timeline');
+    Route::post('/timeline/store', 'TweetController@store')->name('api.timeline.store');
 
     Route::post('/{user}/follow', 'UserController@followUser')->name('api.user.follow');
     Route::post('/{user}/unfollow', 'UserController@unFollowUser')->name('api.user.unfollow');
