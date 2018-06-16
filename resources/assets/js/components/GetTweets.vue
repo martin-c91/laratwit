@@ -1,52 +1,33 @@
 <template>
     <div>
-        <tweet v-for="tweet in tweets"
-               :tweet="tweet"
-               :key="tweet.id"
-        ></tweet>
+        <div v-for="tweet in tweets">
+            <div class="panel-body mt-3 mb-3">
+                <div style="float: left; width: 48px;">
+                    <a :href="tweet.user.slug">
+                        <img :src="tweet.user.avatar_url" class="avatar" alt="avatar">
+                    </a>
+                </div>
+                <div style="margin-left: -48px; margin-left: 58px; ">
+                    <h6><a href=""></a></h6>
+                    {{ tweet.content }}
+                </div>
 
-        <button class="btn btn-default" v-on:click="getMoreTweets">More...</button>
+                <div class="float-right">
+                    created: {{ tweet.created_at | moment("from", "now")}}
+                </div>
+
+                <br>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
     export default {
-        props: ['user','current_route_name'],
+        props: ['tweets'],
 
         data() {
-            return {
-                tweets: [],
-                url: function(){
-                    if(this.current_route_name == 'sdfsdf'){
-                        return '/api/timeline'
-                    }
-                    console.log(this.current_route_name);
-                }
-            }
-        },
-
-        created() {
-            console.log(this.url)
-            // this.fetchTweets();
-        },
-
-        methods: {
-            fetchTweets() {
-                axios.get(this.tweetsUrl)
-                    .then((response) => {
-                        this.nextPageUrl = response.data.next_page_url;
-                        this.tweets = response.data.data;
-                        }
-                    )
-            },
-
-            getMoreTweets: function(){
-                axios.get(this.nextPageUrl)
-                    .then(response => {
-                        this.nextPageUrl = response.data.next_page_url;
-                        this.tweets = this.tweets.concat(response.data.data);
-                    });
-            }
-        },
+            return {}
+        }
     }
 </script>

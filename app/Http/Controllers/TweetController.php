@@ -35,19 +35,21 @@ class TweetController extends Controller
             'content' => 'required|max:400',
         ]);
 
-        return $request->input('content');
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
 
-        $tweet = new Tweet;
-        $tweet->content = $request->input('content');
-        $tweet->user_id = Auth::id();
-        if ($tweet->save()) {
-            return back()->with('message', 'Your tweet was posted.');
+        try{
+            $tweet = new Tweet;
+            $tweet->content = $request->input('content');
+            $tweet->user_id = Auth::id();
+            if ($tweet->save()) {
+                return response()->json($tweet->load('user'));
+            }
+        }catch(\Exception $e){
+            // do task when error
+            echo $e->getMessage();
         }
-
-        return back()->with('message', 'Error');
     }
 
     /**

@@ -54,7 +54,6 @@
                 @endif
 
                 @if($user->id == Auth::id() AND Route::currentRouteName() == 'timeline')
-                    timeline
                     <timeline
                             :user="{{$user}}"
                             :current_route_name="'timeline'"

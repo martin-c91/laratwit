@@ -164,7 +164,8 @@ class User extends Authenticatable
         $followingsId = $this->followings->pluck('id')->all();
         array_push($followingsId, $this->id);
 
-        $tweets = Tweet::remember(60)->with('user')->whereIn('user_id', $followingsId)->latest()->paginate();
+        //$tweets = Tweet::remember(60)->with('user')->whereIn('user_id', $followingsId)->latest()->paginate();
+        $tweets = Tweet::with('user')->whereIn('user_id', $followingsId)->latest()->paginate();
         clock()->endEvent('getTimeline');
         return $tweets;
     }
