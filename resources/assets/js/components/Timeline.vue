@@ -4,12 +4,12 @@
             <form class="form-control" method="POST" action="" @submit.prevent="storeTweet">
                 <div class="form-group">
                     <label>Tweet</label>
-                    <textarea class="form-control" v-model="new_content" placeholder="placeholder" rows="3"></textarea>
+                    <textarea class="form-control" v-model="new_content" placeholder="What's on your mind..." rows="3"></textarea>
                 </div>
                 <div class="form-group float-right">
                     <button class="btn btn-default"
                             name="Submit"
-                            @click="storeTweet">Submit
+                            >Submit
                     </button>
                 </div>
             </form>
@@ -81,6 +81,7 @@
                     .then((response) => {
                             console.log(response.data);
                             this.tweets.unshift(response.data);
+                            this.new_content = '';
                         }
                     )
             }
