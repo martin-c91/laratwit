@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card border-0 new-tweet-form">
+        <div v-if="this.current_route_name === 'timeline'" class="card border-0 new-tweet-form">
             <form class="form-control" method="POST" action="" @submit.prevent="storeTweet">
                 <div class="form-group">
                     <label>Tweet</label>
@@ -16,19 +16,12 @@
         </div>
 
         <br>
-
-        <!--<tweet v-for="tweet in tweets"-->
-        <!--:tweet="tweet"-->
-        <!--:key="tweet.id"-->
-        <!--&gt;</tweet>-->
-        <br>
         <div class="panel">
             <div class="panel-header">Timeline</div>
             <GetTweets :tweets="tweets"></GetTweets>
         </div>
 
         <button class="btn btn-default" v-on:click="getMoreTweets">More...</button>
-        <button class="btn btn-default" v-on:click="storeTweet">Tese</button>
     </div>
 </template>
 
@@ -48,7 +41,7 @@
         },
 
         created() {
-            if (this.current_route_name == 'timeline') {
+            if (this.current_route_name === 'timeline') {
                 this.url = '/api/timeline';
             } else {
                 this.url = '/api/' + this.user.slug;
@@ -75,7 +68,10 @@
             },
 
             storeTweet: function () {
-                axios.post('api/timeline/store', {
+                if (this.current_route_name !== 'timeline') {
+                    return false;
+                }
+                    axios.post('api/timeline/store', {
                     content: this.new_content
                 })
                     .then((response) => {

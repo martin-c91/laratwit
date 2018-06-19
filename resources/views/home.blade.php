@@ -59,8 +59,9 @@
                             :current_route_name="'timeline'"
                     ></timeline>
                 @else
-                    easdfasf
-                    {{--<user-tweets-component></user-tweets-component>--}}
+                        <timeline
+                                :user="{{$user}}"
+                        ></timeline>
                 @endif
             </div>
             <div class="col-md-3 well well-lg">
