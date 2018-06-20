@@ -150,7 +150,8 @@ return [
         /*
          * Package Service Providers...
          */
-
+        //passport
+        Laravel\Passport\PassportServiceProvider::class,
         Thujohn\Twitter\TwitterServiceProvider::class,
         Clockwork\Support\Laravel\ClockworkServiceProvider::class,
 

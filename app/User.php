@@ -2,15 +2,17 @@
 
 namespace App;
 
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Storage;
 use Auth;
-
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+use Illuminate\Support\Collection;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasApiTokens;
 
     protected $table = 'users';
 
@@ -45,7 +47,7 @@ class User extends Authenticatable
     ];
 
     protected $appends = [
-        'IsFollowedByAuth',
+        //'IsFollowedByAuth',
         'avatar_url',
     ];
 
@@ -77,20 +79,16 @@ class User extends Authenticatable
      */
     public function follow(User $user)
     {
-        if (! $this->checkFollowing($user->id)) {
-            $user->followers()->attach($this->id);
-        }
+        $user->followers()->syncWithoutDetaching($this->id);
 
         //event(new UserFollowedAnotherUser($user));
 
         return $user;
     }
 
-    public function unFollow(User $user)
+    public function unfollow(User $user)
     {
-        if ($this->checkFollowing($user->id)) {
-            $user->followers()->detach($this->id);
-        }
+        $user->followers()->detach($this->id);
 
         //event(new UserUnFollowedAnotherUser($user));
 
@@ -98,29 +96,50 @@ class User extends Authenticatable
     }
 
     /**
-     * @param $userId int
+     * @param User|int $user
      * @return bool
      */
-    public function checkFollowing($userId)
+    public function checkFollowing($user)
     {
-        if ($this->followings()->where('user_id', $userId)->first()) {
-            return true;
+        if ($user instanceof self) {
+            $user = $user->getKey(); // or $user->id, doesn't matter much.
         }
 
-        return false;
+        return $this->followings()->where('user_id', $user)->exists();
     }
 
-    public function test(User $user){
-        return $user->slug;
+    /**
+     * @param mixed $users
+     * @return bool
+     */
+    public function checkFollowingAny($users)
+    {
+        // we could deal with both collection types the same way tbh, I did it for the example 
+        if ($users instanceof EloquentCollection) {
+            $users = $users->modelKeys();
+        }
+        
+        if ($users instanceof Collection) {
+            $users = $users->pluck('id'); // or $users->map->id using Higher Order Messages
+        }
+        
+        if (! is_array($users)) {
+            return $this->checkFollowing($users); // default to single value check
+        }
+
+        // whereIn allows collections
+        return $this->followings()->whereIn('user_id', $user)->exists();
     }
 
-    public function getIsFollowedByAuthAttribute()
+    public function getAuthIsFollowingAttribute()
     {
         if(!Auth::user()) return false;
 
         if (Auth::user()->checkFollowing($this->id)) {
             return true;
         };
+
+        return false;
     }
 
     /**
@@ -131,12 +150,11 @@ class User extends Authenticatable
      */
     public function getAvatarAttribute()
     {
-        $avatar_file_name = ($this->slug.'.png');
-        if (Storage::disk('images')->exists($this->avatar_folder.'/'.$avatar_file_name)) {
-            return ($this->avatar_folder.'/'.$avatar_file_name);
-        }
+        $avatar_file_path = "{$this->avatar_folder}/{$this->slug}.png";
 
-        return ($this->avatar_folder.'/'.'default.png');
+        return Storage::disk('images')->exists($avatar_file_path)?
+            $avatar_file_path:
+            "{$this->avatar_folder}/default.png";
     }
 
     public function getAvatarUrlAttribute()
@@ -146,14 +164,7 @@ class User extends Authenticatable
 
     public function get_and_store_avatar()
     {
-        $storage = Storage::class;
-        //return $storage;
-        $source = $this->avatar_origin;
-        $avatar_file_name = $this->slug.'.png';
-        $avatar_folder = 'avatars/';
-        $success = Storage::disk('images')->put($avatar_folder.$avatar_file_name, file_get_contents($source), 'public');
-
-        return $success;
+        return Storage::disk('images')->put("avatars/{$this->slug}.png", file_get_contents($this->avatar_origin), 'public');
     }
 
     /**
@@ -162,18 +173,18 @@ class User extends Authenticatable
      */
     public function getTimeline()
     {
-        $followingsId = $this
-            ->followings
-            ->pluck('id')
-            ->all();
-        array_push($followingsId, $this->id);
+        // This will do a 'Select id' instead of an uneeded 'Select *'
+        // and return a collection of ids, instead of a collection of
+        // models then map it in php, when the following relation isn't loaded yet
+        $ids = $this->relationLoaded('following')?
+             $this->followings->pluck('id'):
+             $this->followings()->pluck('id');
 
-        $tweets = Tweet::with('user')
+        return Tweet::with('user')
+            // whereIn allows collections
+            ->whereIn('user_id', $ids->push($this->id))
             ->latest()
-            ->whereIn('user_id', $followingsId)
             ->paginate();
-
-        return $tweets;
     }
 
 }

@@ -10,7 +10,6 @@
                 </div>
 
 
-
                 <div class="row pt-2">
                     <div class="col pl-0">
                         <h3>
@@ -18,11 +17,16 @@
                         </h3>
                     </div>
                     <div class="col-fluid">
-{{--                        @includeWhen((Auth::user()->slug !== $user->slug) and Auth::check(), 'partials.following-button')--}}
+                        @if((Auth::user()->slug !== $user->slug) and Auth::check())
+                            <follow-button-component
+                                    :user="{{ $user->append('AuthIsFollowing') }}"
+                            >
+                            </follow-button-component>
+                        @endif
                     </div>
                 </div>
                 <div class="row">
-{{--                    <a href="{{route('user.profile', $user->slug)}}" style="color: gray;">{{'@'.$user->slug }}</a>--}}
+                    <a href="{{route('user.profile', $user->slug)}}" style="color: gray;">{{'@'.$user->slug }}</a>
                 </div>
 
                 <div class="row">
@@ -49,37 +53,21 @@
                     </div>
                 @endif
 
-                @if($user->id == Auth::id())
-                    <div class="card border-0 new-tweet-form">
-                        {{--@include('partials/new-tweet-form')--}}
-                        <post-tweet-component></post-tweet-component>
-                    </div>
+                @if($user->id == Auth::id() AND Route::currentRouteName() == 'timeline')
+                    <timeline
+                            :user="{{$user}}"
+                            :current_route_name="'timeline'"
+                    ></timeline>
+                @else
+                    <timeline
+                            :user="{{$user}}"
+                    ></timeline>
                 @endif
-
-                <br>
-                <div class="panel">
-                    <div class="panel-header">Timeline</div>
-
-                    <get-tweets-component></get-tweets-component>
-                        {{--@foreach ($tweets as $tweet)--}}
-                            {{--@include('partials.tweet-card')--}}
-                        {{--@endforeach--}}
-
-                </div>
             </div>
             <div class="col-md-3 well well-lg">
-
-                <div class="card" style="width: 18rem;">
-                    <div class="card-header">
-                        Featured Users
-                    </div>
-
-                    <ul class="list-group list-group-flush border-0">
-                        <li class="list-group-item border-0">Cras justo odio</li>
-                        <li class="list-group-item border-0">Dapibus ac facilisis in</li>
-                        <li class="list-group-item border-0">Vestibulum at eros</li>
-                    </ul>
-                </div>
+                <featured-users
+                        :user="{{$user}}"
+                ></featured-users>
             </div>
         </div>
     </div>
