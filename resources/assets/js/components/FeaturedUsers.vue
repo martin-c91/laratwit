@@ -2,6 +2,9 @@
     <div class="card" style="width: 18rem;">
         <div class="card-header">
             Featured Users
+            <a class="float-right text-secondary" href="#" @click="refresh">
+                Refresh
+            </a>
         </div>
 
         <ul class="list-group list-group-flush border-0">
@@ -15,7 +18,9 @@
 
                     <div style="margin-left: 28px">
                         <div class="row">
-                            <a :href="user.slug" v-text="'@'+user.slug"></a>
+                            <b v-text="user.name"> </b>
+                            <!--<a style="margin-left: 5px;" class="text-secondary" :href="user.slug"-->
+                               <!--v-text="' @'+user.slug"></a>-->
                         </div>
                         <div class="row">
                             <button class="btn btn-sm btn-outline-primary">Follow</button>
@@ -25,6 +30,7 @@
 
                 </div>
             </li>
+
         </ul>
     </div>
 </template>
@@ -68,6 +74,10 @@
                             this.featuredUsers = response.data;
                         }
                     )
+            },
+
+            refresh: function(){
+                console.log('refreshed.');
             }
         },
 
