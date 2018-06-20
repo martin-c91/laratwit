@@ -128,7 +128,7 @@ class User extends Authenticatable
         }
 
         // whereIn allows collections
-        return $this->followings()->whereIn('user_id', $user)->exists();
+        return $this->followings()->whereIn('user_id', $users)->exists();
     }
 
     public function getAuthIsFollowingAttribute()
