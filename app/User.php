@@ -186,5 +186,4 @@ class User extends Authenticatable
             ->latest()
             ->paginate();
     }
-
 }

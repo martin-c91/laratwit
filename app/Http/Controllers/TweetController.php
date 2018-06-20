@@ -11,12 +11,12 @@ use Validator;
 
 class TweetController extends Controller
 {
-    public function index(User $user = null, Request $request)
+    public function index(User $user = null)
     {
-        if (! $user){
+        if (! $user) {
             $user = Auth::user();
             $tweetsUrl = route('api.timeline');
-        }else{
+        } else {
             $tweetsUrl = route('api.user.tweets', $user->slug);
         }
 
@@ -31,30 +31,19 @@ class TweetController extends Controller
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $validated = $request->validate([
             'content' => 'required|max:400',
         ]);
+        $tweet = Auth::user()->tweets()->create($validated);
 
-        if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
-        }
-
-        try{
-            $tweet = new Tweet;
-            $tweet->content = $request->input('content');
-            $tweet->user_id = Auth::id();
-            if ($tweet->save()) {
-                return response()->json($tweet->load('user'));
-            }
-        }catch(\Exception $e){
-            // do task when error
-            echo $e->getMessage();
+        if ($tweet->wasRecentlyCreated) {
+            return response()->json($tweet->load('user'));
         }
     }
 
     /**
      * Display the specified resource.
-     *
+         *
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
