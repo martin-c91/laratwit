@@ -7,6 +7,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Storage;
 use Auth;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+use Illuminate\Support\Collection;
 
 class User extends Authenticatable
 {
@@ -77,20 +79,16 @@ class User extends Authenticatable
      */
     public function follow(User $user)
     {
-        if (! $this->checkFollowing($user->id)) {
-            $user->followers()->attach($this->id);
-        }
+        $user->followers()->syncWithoutDetaching($this->id);
 
         //event(new UserFollowedAnotherUser($user));
 
         return $user;
     }
 
-    public function unFollow(User $user)
+    public function unfollow(User $user)
     {
-        if ($this->checkFollowing($user->id)) {
-            $user->followers()->detach($this->id);
-        }
+        $user->followers()->detach($this->id);
 
         //event(new UserUnFollowedAnotherUser($user));
 
@@ -98,16 +96,39 @@ class User extends Authenticatable
     }
 
     /**
-     * @param $userId int
+     * @param User|int $user
      * @return bool
      */
-    public function checkFollowing($userId)
+    public function checkFollowing($user)
     {
-        if ($this->followings()->where('user_id', $userId)->first()) {
-            return true;
+        if ($user instanceof self) {
+            $user = $user->getKey(); // or $user->id, doesn't matter much.
         }
 
-        return false;
+        return $this->followings()->where('user_id', $user)->exists();
+    }
+
+    /**
+     * @param mixed $users
+     * @return bool
+     */
+    public function checkFollowingAny($users)
+    {
+        // we could deal with both collection types the same way tbh, I did it for the example 
+        if ($users instanceof EloquentCollection) {
+            $users = $users->modelKeys();
+        }
+        
+        if ($users instanceof Collection) {
+            $users = $users->pluck('id'); // or $users->map->id using Higher Order Messages
+        }
+        
+        if (! is_array($users)) {
+            return $this->checkFollowing($users); // default to single value check
+        }
+
+        // whereIn allows collections
+        return $this->followings()->whereIn('user_id', $user)->exists();
     }
 
     public function getAuthIsFollowingAttribute()
