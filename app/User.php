@@ -173,15 +173,17 @@ class User extends Authenticatable
      */
     public function getTimeline()
     {
-        $followingsId = $this
-            ->followings
-            ->pluck('id')
-            ->all();
-        array_push($followingsId, $this->id);
+        // This will do a 'Select id' instead of an uneeded 'Select *'
+        // and return a collection of ids, instead of a collection of
+        // models then map it in php, when the following relation isn't loaded yet
+        $ids = $this->relationLoaded('following')?
+             $this->followings->pluck('id'):
+             $this->followings()->pluck('id');
 
         return Tweet::with('user')
+            // whereIn allows collections
+            ->whereIn('user_id', $ids->push($this->id))
             ->latest()
-            ->whereIn('user_id', $followingsId)
             ->paginate();
     }
 
