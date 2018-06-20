@@ -129,12 +129,11 @@ class User extends Authenticatable
      */
     public function getAvatarAttribute()
     {
-        $avatar_file_name = ($this->slug.'.png');
-        if (Storage::disk('images')->exists($this->avatar_folder.'/'.$avatar_file_name)) {
-            return ($this->avatar_folder.'/'.$avatar_file_name);
-        }
+        $avatar_file_path = "{$this->avatar_folder}/{$this->slug}.png";
 
-        return ($this->avatar_folder.'/'.'default.png');
+        return Storage::disk('images')->exists($avatar_file_path)?
+            $avatar_file_path:
+            "{$this->avatar_folder}/default.png";
     }
 
     public function getAvatarUrlAttribute()
@@ -144,13 +143,7 @@ class User extends Authenticatable
 
     public function get_and_store_avatar()
     {
-        $storage = Storage::class;
-        //return $storage;
-        $source = $this->avatar_origin;
-        $avatar_file_name = $this->slug.'.png';
-        $success = Storage::disk('images')->put($this->avatar_folder.'/'.$avatar_file_name, file_get_contents($source), 'public');
-
-        return $success;
+        return Storage::disk('images')->put("avatars/{$this->slug}.png", file_get_contents($this->avatar_origin), 'public');
     }
 
     /**
@@ -159,14 +152,27 @@ class User extends Authenticatable
      */
     public function getTimeline()
     {
-        clock()->startEvent('getTimeline', "getTimeline method query");
-
-        $followingsId = $this->followings->pluck('id')->all();
+        $followingsId = $this
+            ->followings
+            ->pluck('id')
+            ->all();
         array_push($followingsId, $this->id);
 
-        //$tweets = Tweet::remember(60)->with('user')->whereIn('user_id', $followingsId)->latest()->paginate();
-        $tweets = Tweet::with('user')->whereIn('user_id', $followingsId)->latest()->paginate();
-        clock()->endEvent('getTimeline');
-        return $tweets;
+        return Tweet::with('user')
+            ->latest()
+            ->whereIn('user_id', $followingsId)
+            ->paginate();
+    }
+
+    /**
+     * @param $userIds
+     * @return $tweets collection
+     */
+    public function getTweets($userIds)
+    {
+        return Tweet::with('user')
+            ->whereIn('user_id', $userIds)
+            ->latest()
+            ->paginate();
     }
 }
