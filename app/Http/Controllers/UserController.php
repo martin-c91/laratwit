@@ -37,6 +37,6 @@ class UserController extends Controller
 
         if(request()->input(['exceptUsers'])) $followingsIds = $followingsIds->concat(request()->input(['exceptUsers']));
 
-        return User::whereNotIn('id', $followingsIds)->limit($limit)->get();
+        return User::whereNotIn('id', $followingsIds)->inRandomOrder()->limit($limit)->get();
     }
 }
