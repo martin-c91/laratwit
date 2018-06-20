@@ -58,32 +58,33 @@
                     .then((response) => {
                             this.featuredUsers.splice(index, 1);
                             this.getFeaturedUsers(this.user.slug, 1);
-                        },
-                    ),
-                    (error) => {
-                        console.log(error)
-                    }
+                        }
+                    )
             },
 
-            getFeaturedUsers: function (slug, limit = 10) {
-                let featuredUsers = [];
+            getFeaturedUsers: function (slug, limit = 10, refresh = false) {
                 let url = 'api/' + slug + '/getFeaturedUsers/' + limit;
                 axios.post(url, {
                     'exceptUsers': this.exceptUsers
                 })
                     .then((response) => {
-                            this.exceptUsers = this.exceptUsers.concat(response.data.map(a => a.id));
-                            this.featuredUsers = this.featuredUsers.concat(response.data);
+                            if (!refresh) {
+                                console.log('refresh false');
+                                this.exceptUsers = this.exceptUsers.concat(response.data.map(a => a.id));
+                                this.featuredUsers = this.featuredUsers.concat(response.data);
+                            }else{
+                                console.log('refresh true');
+                                this.exceptUsers = response.data.map(a => a.id);
+                                this.exceptUsers.push(this.user.id);
+                                this.featuredUsers = response.data;
+                            }
                         }
                     )
             },
 
             refresh: function () {
-                console.log('refreshed.');
+                this.getFeaturedUsers(this.user.slug, 10, true);
             }
         },
-
-        mounted() {
-        }
     }
 </script>
