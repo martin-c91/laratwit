@@ -2,18 +2,17 @@
 
 namespace App;
 
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Storage;
 use Auth;
-
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Collection;
 
-
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasApiTokens;
 
     protected $table = 'users';
 
@@ -48,7 +47,7 @@ class User extends Authenticatable
     ];
 
     protected $appends = [
-        'IsFollowedByAuth',
+        //'IsFollowedByAuth',
         'avatar_url',
     ];
 
@@ -80,20 +79,16 @@ class User extends Authenticatable
      */
     public function follow(User $user)
     {
-        if (! $this->checkFollowing($user->id)) {
-            $user->followers()->attach($this->id);
-        }
+        $user->followers()->syncWithoutDetaching($this->id);
 
         //event(new UserFollowedAnotherUser($user));
 
         return $user;
     }
 
-    public function unFollow(User $user)
+    public function unfollow(User $user)
     {
-        if ($this->checkFollowing($user->id)) {
-            $user->followers()->detach($this->id);
-        }
+        $user->followers()->detach($this->id);
 
         //event(new UserUnFollowedAnotherUser($user));
 
@@ -136,17 +131,15 @@ class User extends Authenticatable
         return $this->followings()->whereIn('user_id', $user)->exists();
     }
 
-    public function test(User $user){
-        return $user->slug;
-    }
-
-    public function getIsFollowedByAuthAttribute()
+    public function getAuthIsFollowingAttribute()
     {
         if(!Auth::user()) return false;
 
         if (Auth::user()->checkFollowing($this->id)) {
             return true;
         };
+
+        return false;
     }
 
     /**
@@ -176,8 +169,7 @@ class User extends Authenticatable
         //return $storage;
         $source = $this->avatar_origin;
         $avatar_file_name = $this->slug.'.png';
-        $avatar_folder = 'avatars/';
-        $success = Storage::disk('images')->put($avatar_folder.$avatar_file_name, file_get_contents($source), 'public');
+        $success = Storage::disk('images')->put($this->avatar_folder.'/'.$avatar_file_name, file_get_contents($source), 'public');
 
         return $success;
     }
@@ -188,32 +180,14 @@ class User extends Authenticatable
      */
     public function getTimeline()
     {
-        $followingsId = $this
-            ->followings
-            ->pluck('id')
-            ->all();
+        clock()->startEvent('getTimeline', "getTimeline method query");
+
+        $followingsId = $this->followings->pluck('id')->all();
         array_push($followingsId, $this->id);
 
-        $tweets = Tweet::with('user')
-            ->latest()
-            ->whereIn('user_id', $followingsId)
-            ->paginate();
-
+        //$tweets = Tweet::remember(60)->with('user')->whereIn('user_id', $followingsId)->latest()->paginate();
+        $tweets = Tweet::with('user')->whereIn('user_id', $followingsId)->latest()->paginate();
+        clock()->endEvent('getTimeline');
         return $tweets;
     }
-
-    /**
-     * @param $userIds
-     * @return $tweets collection
-     */
-    public function getTweets($userIds)
-    {
-        $tweets = Tweet::with('user')
-            ->whereIn('user_id', $userIds)
-            ->latest()
-            ->paginate()
-            ;
-        return $tweets;
-    }
-
 }

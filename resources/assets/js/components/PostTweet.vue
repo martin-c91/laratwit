@@ -1,15 +1,17 @@
 <template>
-    <form class="form-control" method="POST" action="" @submit.prevent="addTweet">
-        <div class="form-group">
-            <label>Tweet</label>
-            <textarea class="form-control" v-model="content" :placeholder="placeholder" rows="3"></textarea>
-        </div>
-        <div class="form-group float-right">
-            <button class="btn btn-default"
-                    name="Submit"
-                    @click="addTweet">Submit</button>
-        </div>
-    </form>
+    <div class="card border-0 new-tweet-form">
+        <form class="form-control" @submit.prevent="postTweet">
+            <div class="form-group">
+                <label>Tweet</label>
+                <textarea class="form-control" v-model="content" :placeholder="placeholder" rows="3"></textarea>
+            </div>
+            <div class="form-group float-right">
+                <button class="btn btn-default"
+                        name="Submit">Submit
+                </button>
+            </div>
+        </form>
+    </div>
 </template>
 
 <script>
@@ -17,30 +19,25 @@
         data() {
             return {
                 content: "",
+                completed: false,
                 placeholder: "What's on your mind?",
 
             };
         },
 
         methods: {
-            addTweet(){
-                axios.post(location.pathname + '/replies', { body: this.body })
+            postTweet() {
+                axios.post('/api/timeline/store', {
+                    content: this.content
+                })
                     .catch(error => {
-                        flash(error.response.data, 'danger');
+                        console.log(error.response);
                     })
                     .then(({data}) => {
-                        this.body = '';
+                        this.content = '';
                         this.completed = true;
-
-                        flash('Your reply has been posted.');
                     });
-                console.log((location.pathname)+'/tweet');
             }
         },
-
-        mounted() {
-
-        },
-
     }
 </script>

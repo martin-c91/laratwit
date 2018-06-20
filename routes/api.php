@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
-//todo: move this and delete this
 use App\User;
+
 //
 /*
 |--------------------------------------------------------------------------
@@ -18,25 +18,21 @@ use App\User;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-////get most recent tweets
-//Route::get('/tweets', 'TweetsController@index');
-//
-////individual tweet action
-//Route::get('/tweet/{id}', 'TweetsController@show');
-//Route::post('/tweet', 'TweetsController@store');
-//Route::put('/tweet', 'TweetsController@store');
-//Route::delete('/tweet/{id}', 'TweetsController@destroy');
-//
-////tweet by individual user
-////Route::get('/{user_slug}', 'TweetsController@index');
-//
-////logged in user tweets
-//Route::get('/myTweets', 'TweetsController@tweets_dashboard');
-//
-////user function
-//Route::get('/{user_slug}/followers','UserController@followers');
-//Route::get('/{user_slug}/followings','UserController@followings');
-//
-////user following actions
-//Route::get('/{target_user_slug}/follow', 'UserController@followUser')->name('user.follow');
-//Route::get('/{target_user_slug}/unfollow', 'UserController@unFollowUser')->name('user.unfollow');
+
+Route::middleware(['auth:api'])->group(function () {
+    Route::get('/timeline', 'TweetController@getTimelineTweets')->name('api.timeline');
+    Route::post('/timeline/store', 'TweetController@store')->name('api.timeline.store');
+
+    Route::post('/{user}/follow', 'UserController@followUser')->name('api.user.follow');
+    Route::post('/{user}/unfollow', 'UserController@unFollowUser')->name('api.user.unfollow');
+});
+
+Route::get('/{user}', 'TweetController@getUserTweets')->name('api.user.tweets');
+
+Route::post('{user}/getFeaturedUsers/{limit?}', 'UserController@getNotFollowingUsers');
+
+//test function
+Route::post('test/{user}/{limit?}', 'UserController@getNotFollowingUsers');
+//Route::post('test/{user}', function(){
+//    return 'sdfds';
+//});

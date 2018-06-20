@@ -7,32 +7,20 @@ use App\User;
 use Auth;
 use App\Http\Resources\Tweet as TweetResource;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Types\Null_;
 use Validator;
 
 class TweetController extends Controller
 {
-
-    public function index(Request $request)
+    public function index(User $user = null, Request $request)
     {
-        \Debugbar::disable();
-        \DB::connection()->enableQueryLog();
-
-        //for postman since not logged in
-        $user = User::where('slug', 'taylorswift13')->first();
-        //$user = Auth::user();
-
-        if (request()->wantsJson()) {
-            $tweets = $user->getTimeline();
-            logger()->debug('--------New Request JSONJSONJSON--------');
-            logger()->debug(\DB::getQueryLog());
-            return $tweets;
+        if (! $user){
+            $user = Auth::user();
+            $tweetsUrl = route('api.timeline');
+        }else{
+            $tweetsUrl = route('api.user.tweets', $user->slug);
         }
 
-        logger()->debug('--------New Request VIEWVIEWVIEW--------');
-        logger()->debug(\DB::getQueryLog());
-
-        return view('home', compact('user', 'tweets'));
+        return view('home', compact('user', 'tweetsUrl'));
     }
 
     /**
@@ -51,14 +39,17 @@ class TweetController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        $tweet = new Tweet;
-        $tweet->content = $request->input('content');
-        $tweet->user_id = Auth::id();
-        if ($tweet->save()) {
-            return back()->with('message', 'Your tweet was posted.');
+        try{
+            $tweet = new Tweet;
+            $tweet->content = $request->input('content');
+            $tweet->user_id = Auth::id();
+            if ($tweet->save()) {
+                return response()->json($tweet->load('user'));
+            }
+        }catch(\Exception $e){
+            // do task when error
+            echo $e->getMessage();
         }
-
-        return back()->with('message', 'Error');
     }
 
     /**
@@ -84,5 +75,27 @@ class TweetController extends Controller
     {
         $tweet = Tweet::findOrFail($id);
         $tweet->delete;
+    }
+
+    public static function getTimelineTweets()
+    {
+        $tweets = Auth::user()->getTimeline();
+
+        if (request()->wantsJson()) {
+            return response()->json($tweets);
+        }
+
+        return $tweets;
+    }
+
+    public static function getUserTweets(User $user)
+    {
+        $tweets = Tweet::remember(60)->with('user')->where('user_id', $user->id)->latest()->paginate();
+
+        if (request()->wantsJson()) {
+            return response()->json($tweets);
+        }
+
+        return $tweets;
     }
 }
