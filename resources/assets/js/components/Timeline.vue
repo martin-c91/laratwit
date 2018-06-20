@@ -85,6 +85,18 @@
 
         mounted() {
             this.fetchFirstTweets();
+            axios.post('api/test/katyperry', {
+                'exceptUsers': [
+                    1,
+                    2,
+                    4,
+                    55,
+                ]
+            })
+                .then((response) => {
+                        console.log(response.data)
+                    }
+                )
         }
     }
 </script>

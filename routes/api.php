@@ -28,3 +28,9 @@ Route::middleware(['auth:api'])->group(function () {
 });
 
 Route::get('/{user}', 'TweetController@getUserTweets')->name('api.user.tweets');
+
+//test function
+Route::post('test/{user}', 'UserController@getNotFollowingUsers');
+//Route::post('test/{user}', function(){
+//    return 'sdfds';
+//});

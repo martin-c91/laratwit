@@ -27,4 +27,16 @@ class UserController extends Controller
     {
         return Auth::user()->unFollow($user);
     }
+
+    public function getNotFollowingUsers(User $user = null, $limit = 20)
+    {
+        if (! $user) {
+            $user = Auth::user();
+        }
+        $followingsIds = $user->followings()->pluck('id');
+
+        if(request()->input(['exceptUsers'])) $followingsIds = $followingsIds->concat(request()->input(['exceptUsers']));
+
+        return User::whereNotIn('id', $followingsIds)->limit($limit)->get();
+    }
 }
