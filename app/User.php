@@ -187,15 +187,4 @@ class User extends Authenticatable
             ->paginate();
     }
 
-    /**
-     * @param $userIds
-     * @return $tweets collection
-     */
-    public function getTweets($userIds)
-    {
-        return Tweet::with('user')
-            ->whereIn('user_id', $userIds)
-            ->latest()
-            ->paginate();
-    }
 }
