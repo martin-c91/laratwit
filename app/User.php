@@ -77,20 +77,16 @@ class User extends Authenticatable
      */
     public function follow(User $user)
     {
-        if (! $this->checkFollowing($user->id)) {
-            $user->followers()->attach($this->id);
-        }
+        $user->followers()->syncWithoutDetaching($this->id);
 
         //event(new UserFollowedAnotherUser($user));
 
         return $user;
     }
 
-    public function unFollow(User $user)
+    public function unfollow(User $user)
     {
-        if ($this->checkFollowing($user->id)) {
-            $user->followers()->detach($this->id);
-        }
+        $user->followers()->detach($this->id);
 
         //event(new UserUnFollowedAnotherUser($user));
 
