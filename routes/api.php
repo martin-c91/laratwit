@@ -29,6 +29,8 @@ Route::middleware(['auth:api'])->group(function () {
 
 Route::get('/{user}', 'TweetController@getUserTweets')->name('api.user.tweets');
 
+Route::post('{user}/getFeaturedUsers/{limit?}', 'UserController@getNotFollowingUsers');
+
 //test function
 Route::post('test/{user}/{limit?}', 'UserController@getNotFollowingUsers');
 //Route::post('test/{user}', function(){

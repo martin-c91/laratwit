@@ -8,7 +8,7 @@
         </div>
 
         <ul class="list-group list-group-flush border-0">
-            <li v-for="user in featuredUsers" class="list-group-item border-0">
+            <li v-for="(user, index) in featuredUsers" :key="user.id" class="list-group-item border-0">
                 <div class="row">
                     <div style="float: left; margin-left: 8px ;width: 48px;">
                         <a :href="user.slug">
@@ -20,10 +20,12 @@
                         <div class="row">
                             <b v-text="user.name"> </b>
                             <!--<a style="margin-left: 5px;" class="text-secondary" :href="user.slug"-->
-                               <!--v-text="' @'+user.slug"></a>-->
+                            <!--v-text="' @'+user.slug"></a>-->
                         </div>
                         <div class="row">
-                            <button class="btn btn-sm btn-outline-primary">Follow</button>
+                            <button class="btn btn-sm btn-outline-primary"
+                                    @click="postFollow('follow', user.slug, index)">Follow
+                            </button>
                         </div>
                     </div>
 
@@ -40,49 +42,48 @@
         props: ['user'],
         data() {
             return {
-                featuredUsers: []
+                featuredUsers: [],
+                exceptUsers: [this.user.id],
             }
         },
 
+        created() {
+            this.getFeaturedUsers(this.user.slug);
+        },
+
         methods: {
-            postFollow: function (action) {
-                var url = '/api/' + this.user.slug + '/' + action;
-                // console.log(url);
+            postFollow: function (action, user_slug, index) {
+                let url = '/api/' + user_slug + '/' + action;
                 axios.post(url)
                     .then((response) => {
-                            // console.log(this.user.AuthIsFollowing);
+                            this.featuredUsers.splice(index, 1);
+                            this.getFeaturedUsers(this.user.slug, 1);
                         },
                     ),
                     (error) => {
                         console.log(error)
                     }
-
-                this.AuthIsFollowing = !this.AuthIsFollowing;
-
             },
 
-            getFeaturedUsers: function () {
-                axios.post('api/test/katyperry/5', {
-                    'exceptUsers': [
-                        1,
-                        2,
-                        4,
-                        55,
-                    ]
+            getFeaturedUsers: function (slug, limit = 10) {
+                let featuredUsers = [];
+                let url = 'api/' + slug + '/getFeaturedUsers/' + limit;
+                axios.post(url, {
+                    'exceptUsers': this.exceptUsers
                 })
                     .then((response) => {
-                            this.featuredUsers = response.data;
+                            this.exceptUsers = this.exceptUsers.concat(response.data.map(a => a.id));
+                            this.featuredUsers = this.featuredUsers.concat(response.data);
                         }
                     )
             },
 
-            refresh: function(){
+            refresh: function () {
                 console.log('refreshed.');
             }
         },
 
         mounted() {
-            this.getFeaturedUsers();
         }
     }
 </script>

@@ -59,13 +59,15 @@
                             :current_route_name="'timeline'"
                     ></timeline>
                 @else
-                        <timeline
-                                :user="{{$user}}"
-                        ></timeline>
+                    <timeline
+                            :user="{{$user}}"
+                    ></timeline>
                 @endif
             </div>
             <div class="col-md-3 well well-lg">
-                <featured-users></featured-users>
+                <featured-users
+                        :user="{{$user}}"
+                ></featured-users>
             </div>
         </div>
     </div>
