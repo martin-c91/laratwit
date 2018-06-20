@@ -20,7 +20,7 @@ Route::get('/', function () {
         return redirect('timeline');
     }
 
-    return view('welcome');
+    return redirect('login');
 });
 
 Auth::routes();
