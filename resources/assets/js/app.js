@@ -18,7 +18,7 @@ Vue.use(require('vue-moment'));
 
 Vue.component('timeline', require('./components/Timeline.vue'));
 Vue.component('follow-button-component', require('./components/FollowButton.vue'));
-// Vue.component('pos   t-tweet-component', require('./components/PostTweet.vue'));
+Vue.component('featured-users', require('./components/FeaturedUsers.vue'));
 // Vue.component('get-tweets', require('./components/GetTweets.vue'));
 
 const app = new Vue({

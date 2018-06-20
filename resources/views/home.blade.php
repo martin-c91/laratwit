@@ -65,18 +65,7 @@
                 @endif
             </div>
             <div class="col-md-3 well well-lg">
-
-                <div class="card" style="width: 18rem;">
-                    <div class="card-header">
-                        Featured Users
-                    </div>
-
-                    <ul class="list-group list-group-flush border-0">
-                        <li class="list-group-item border-0">Cras justo odio</li>
-                        <li class="list-group-item border-0">Dapibus ac facilisis in</li>
-                        <li class="list-group-item border-0">Vestibulum at eros</li>
-                    </ul>
-                </div>
+                <featured-users></featured-users>
             </div>
         </div>
     </div>
