@@ -17,11 +17,13 @@
                         </h3>
                     </div>
                     <div class="col-fluid">
-                        @if((Auth::user()->slug !== $user->slug) and Auth::check())
-                            <follow-button-component
-                                    :user="{{ $user->append('AuthIsFollowing') }}"
-                            >
-                            </follow-button-component>
+                        @if(Auth::check())
+                            @if((Auth::user()->slug !== $user->slug))
+                                <follow-button-component
+                                        :user="{{ $user->append('AuthIsFollowing') }}"
+                                >
+                                </follow-button-component>
+                            @endif
                         @endif
                     </div>
                 </div>
