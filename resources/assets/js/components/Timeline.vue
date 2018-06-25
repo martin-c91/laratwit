@@ -4,12 +4,13 @@
             <form class="form-control" method="POST" action="" @submit.prevent="storeTweet">
                 <div class="form-group">
                     <label>Tweet</label>
-                    <textarea class="form-control" v-model="new_content" placeholder="What's on your mind..." rows="3"></textarea>
+                    <textarea class="form-control" v-model="new_content" placeholder="What's on your mind..."
+                              rows="3"></textarea>
                 </div>
                 <div class="form-group float-right">
                     <button class="btn btn-default"
                             name="Submit"
-                            >Submit
+                    >Submit
                     </button>
                 </div>
             </form>
@@ -27,6 +28,7 @@
 
 <script>
     import GetTweets from "./GetTweets";
+
     export default {
         components: {GetTweets},
         props: ['user', 'current_route_name'],
@@ -71,7 +73,7 @@
                 if (this.current_route_name !== 'timeline') {
                     return false;
                 }
-                    axios.post('api/timeline/store', {
+                axios.post('api/timeline/store', {
                     content: this.new_content
                 })
                     .then((response) => {
@@ -85,6 +87,14 @@
 
         mounted() {
             this.fetchFirstTweets();
+            axios.delete('api/following/33')
+                .then((response) => {
+                        console.log(response.data);
+                    },
+                ),
+                (error) => {
+                    console.log(error)
+                }
         }
     }
 </script>

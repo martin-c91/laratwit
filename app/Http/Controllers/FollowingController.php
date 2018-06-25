@@ -20,9 +20,9 @@ class FollowingController extends Controller
         return Auth::user()->followings;
     }
 
-    public function destroy()
+    public function destroy($id)
     {
-        Auth::user()->followings()->detach($this->user->id);
+        Auth::user()->followings()->detach($id);
         return Auth::user()->followings;
     }
 }

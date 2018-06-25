@@ -23,11 +23,13 @@ Route::middleware(['auth:api'])->group(function () {
     Route::get('/timeline', 'TweetController@getTimelineTweets')->name('api.timeline');
     Route::post('/timeline/store', 'TweetController@store')->name('api.timeline.store');
 
-    Route::post('/{user}/follow', 'UserController@followUser')->name('api.user.follow');
-    Route::post('/{user}/unfollow', 'UserController@unFollowUser')->name('api.user.unfollow');
+    Route::post('/following', 'FollowingController@store')->name('api.user.follow');
+    Route::delete('/following/{id}', 'FollowingController@destroy')->name('api.user.unfollow');
 });
 
 Route::get('/{user}', 'TweetController@getUserTweets')->name('api.user.tweets');
+Route::get('/{user}/followings', 'UserController@followings')->name('api.user.followings');
+Route::get('/{user}/followers', 'UserController@followers')->name('api.user.followers');
 
 Route::post('{user}/getFeaturedUsers/{limit?}', 'UserController@getNotFollowingUsers');
 
