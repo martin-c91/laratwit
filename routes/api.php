@@ -23,7 +23,7 @@ Route::middleware(['auth:api'])->group(function () {
     Route::get('/timeline', 'TweetController@getTimelineTweets')->name('api.timeline');
     Route::post('/timeline/store', 'TweetController@store')->name('api.timeline.store');
 
-    Route::post('/following', 'FollowingController@store')->name('api.user.follow');
+    Route::post('/following/{id}', 'FollowingController@store')->name('api.user.follow');
     Route::delete('/following/{id}', 'FollowingController@destroy')->name('api.user.unfollow');
 });
 

@@ -9,14 +9,9 @@ use Auth;
 
 class FollowingController extends Controller
 {
-    public function __construct()
+    public function store($id)
     {
-        $this->user = User::find(request('user_id'));
-    }
-
-    public function store()
-    {
-        Auth::user()->followings()->syncWithoutDetaching($this->user->id);
+        Auth::user()->followings()->syncWithoutDetaching($id);
         return Auth::user()->followings;
     }
 
