@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+
+    <get-data
+            :current_user="{{$currentUser}}"
+            :user="{{ $user }}"
+    ></get-data>
     <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-md-3">
@@ -19,10 +24,7 @@
                     <div class="col-fluid">
                         @if(Auth::check())
                             @if((Auth::user()->slug !== $user->slug))
-                                <follow-button-component
-                                        :user="{{ $user->append('AuthIsFollowing') }}"
-                                >
-                                </follow-button-component>
+                                <follow-button></follow-button>
                             @endif
                         @endif
                     </div>

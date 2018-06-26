@@ -20,7 +20,9 @@ class TweetController extends Controller
             $tweetsUrl = route('api.user.tweets', $user->slug);
         }
 
-        return view('home', compact('user', 'tweetsUrl'));
+        $user = $user->append('isFollowing');
+        $currentUser = Auth::user();
+        return view('home', compact('user','tweetsUrl', 'currentUser'));
     }
 
     /**

@@ -33,6 +33,6 @@ Route::get('/{user}/followings', 'UserController@followings')->name('user.follow
 
 //test function
 Route::get('test/{user}', function (User $user) {
-    return $user->append('AuthIsFollowing')->toJson();
+    return $user->append('isFollowing')->toJson();
     return Auth::user()->toJson();
 });

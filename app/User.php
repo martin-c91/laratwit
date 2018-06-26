@@ -131,7 +131,7 @@ class User extends Authenticatable
         return $this->followings()->whereIn('user_id', $users)->exists();
     }
 
-    public function getAuthIsFollowingAttribute()
+    public function getIsFollowingAttribute()
     {
         if(!Auth::user()) return false;
 

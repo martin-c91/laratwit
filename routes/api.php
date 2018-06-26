@@ -16,11 +16,11 @@ use App\User;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user()->append('AuthIsFollowing');
+    return $request->user()->append('isFollowing');
 });
 Route::get('/test', function(Request $request){
     //return Auth::user()->followings;
-    return User::find(6)->append('AuthIsFollowing');
+    return User::find(6)->append('isFollowing');
 })->middleware('auth:api');
 Route::middleware(['auth:api'])->group(function () {
     Route::get('/timeline', 'TweetController@getTimelineTweets')->name('api.timeline');

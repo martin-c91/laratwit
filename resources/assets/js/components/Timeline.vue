@@ -29,6 +29,7 @@
 
 <script>
     import GetTweets from "./GetTweets";
+    import {mapGetters} from 'vuex';
 
     export default {
         components: {GetTweets},
@@ -99,9 +100,7 @@
         },
 
         computed: {
-            user(){
-                return this.$store.getters.user;
-            },
+            ...mapGetters(['user'])
         }
     }
 </script>
