@@ -6,10 +6,12 @@
  */
 
 require('./bootstrap');
-
 window.Vue = require('vue');
-Vue.use(require('vue-moment'));
+import Vuex from 'vuex';
+import StoreData from './Store';
 
+Vue.use(require('vue-moment'));
+Vue.use(Vuex);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -21,6 +23,9 @@ Vue.component('follow-button-component', require('./components/FollowButton.vue'
 Vue.component('featured-users', require('./components/FeaturedUsers.vue'));
 // Vue.component('get-tweets', require('./components/GetTweets.vue'));
 
+const store = new Vuex.Store(StoreData);
+
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    store
 });

@@ -18,6 +18,7 @@
 
         <br>
         <div class="panel">
+            <a>Timeline for {{user.slug}}</a>
             <div class="panel-header">Timeline</div>
             <GetTweets :tweets="tweets"></GetTweets>
         </div>
@@ -31,7 +32,7 @@
 
     export default {
         components: {GetTweets},
-        props: ['user', 'current_route_name'],
+        props: ['current_route_name'],
 
         data() {
             return {
@@ -87,14 +88,20 @@
 
         mounted() {
             this.fetchFirstTweets();
-            axios.delete('api/following/33')
-                .then((response) => {
-                        console.log(response.data);
-                    },
-                ),
-                (error) => {
-                    console.log(error)
-                }
+            // axios.delete('api/following/33')
+            //     .then((response) => {
+            //             console.log(response.data);
+            //         },
+            //     ),
+            //     (error) => {
+            //         console.log(error)
+            //     }
+        },
+
+        computed: {
+            user(){
+                return this.$store.getters.user;
+            },
         }
     }
 </script>

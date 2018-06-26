@@ -1,39 +1,22 @@
 <template>
     <div>
-        <button v-if="this.AuthIsFollowing" class="btn btn-secondary" v-on:click="postFollow('unfollow')">UnFollow</button>
-        <button v-else class="btn btn-primary" v-on:click="postFollow('follow')">Follow</button>
-
+        {{user.isFollowing}}
+        <button v-if="user.isFollowing" class="btn btn-secondary" v-on:click="postFollow(user)">UnFollow</button>
+        <button v-else class="btn btn-primary" v-on:click="postFollow(user)">Follow</button>
     </div>
 </template>
 
 <script>
+    import { mapActions } from 'vuex'
+
     export default {
-        props: ['user'],
-        data() {
-            return {
-                AuthIsFollowing: this.user.AuthIsFollowing,
-            }
-        },
-
-        methods: {
-            postFollow: function (action) {
-                let url = '/api/' + this.user.slug + '/' + action;
-                // console.log(url);
-                axios.post(url)
-                    .then((response) => {
-                            // console.log(this.user.AuthIsFollowing);
-                        },
-                    ),
-                    (error) => {
-                        console.log(error)
-                    }
-
-                this.AuthIsFollowing = !this.AuthIsFollowing;
-
+        computed: {
+            user(){
+                return this.$store.getters.user;
             },
         },
-
-        mounted() {
+        methods: {
+            ...mapActions(['postFollow']),
         }
     }
 </script>
