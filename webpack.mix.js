@@ -12,12 +12,13 @@ let mix = require('laravel-mix');
  */
 mix.js('resources/assets/js/app.js', 'public/js')
     .sass('resources/assets/sass/app.scss', 'public/css')
-    .sourceMaps()
-    .webpackConfig({
-        devtool: 'source-map'
-    })
-    .options({
-        processCssUrls: false
-    });
+    // .sourceMaps()
+    // .webpackConfig({
+    //     devtool: 'source-map'
+    // })
+    // .options({
+    //     processCssUrls: false
+    // })
+;
 
-mix.browserSync('laratwit.test');
+// mix.browserSync('laratwit.test');
