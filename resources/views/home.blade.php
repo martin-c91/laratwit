@@ -2,7 +2,10 @@
 
 @section('content')
 
+
+
     <get-data
+            :current_route="'{{\Request::route()->getName()}}'"
             :current_user="{{$currentUser}}"
             :user="{{ $user }}"
     ></get-data>

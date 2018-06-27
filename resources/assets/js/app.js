@@ -6,7 +6,7 @@
  */
 
 require('./bootstrap');
-window.Vue = require('vue');
+import Vue from 'vue';
 import Vuex from 'vuex';
 import StoreData from './Store';
 // import Timeline from './components/Timeline';

@@ -1,22 +1,19 @@
 export default {
     state: {
+        currentRoute: '',
         currentUser: {},
         user: {},
         tweets: [],
     },
     getters: {
-        user(state) {
-            return state.user;
-        },
-        currentUser(state) {
-            return state.currentUser;
-        },
-        tweets(state) {
-            return state.tweets;
-        },
+        user: (state) => state.user,
+        currentUser: (state) => state.currentUser,
+        tweets: (state) => state.tweets,
+        currentRoute: (state) => state.currentRoute,
     },
     mutations: {
         setData(state, data) {
+            state.currentRoute = data.currentRoute;
             state.currentUser = data.currentUser;
             state.user = data.user;
         },

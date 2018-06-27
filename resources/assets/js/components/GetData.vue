@@ -4,10 +4,11 @@
 
     export default {
         name: "GetData",
-        props: ['current_user', 'user'],
+        props: ['current_user', 'user', 'current_route'],
 
-        mounted(){
+        created(){
             this.setData({
+                'currentRoute': this.current_route,
                 'currentUser': this.current_user,
                 'user': this.user,
             });

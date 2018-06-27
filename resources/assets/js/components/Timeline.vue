@@ -1,10 +1,10 @@
 <template>
     <div>
-        <div v-if="this.current_route_name === 'timeline'" class="card border-0 new-tweet-form">
+        <div v-if="this.currentRoute === 'timeline'" class="card border-0 new-tweet-form">
             <form class="form-control" method="POST" action="" @submit.prevent="storeTweet">
                 <div class="form-group">
                     <label>Tweet</label>
-                    <textarea class="form-control" v-model="new_content" placeholder="What's on your mind..."
+                    <textarea class="form-control" v-model="newContent" placeholder="What's on your mind..."
                               rows="3"></textarea>
                 </div>
                 <div class="form-group float-right">
@@ -23,7 +23,10 @@
             <GetTweets :tweets="tweets"></GetTweets>
         </div>
 
-        <button class="btn btn-default" v-on:click="getMoreTweets">More...</button>
+        <div v-if="loading.fetchTweets">
+            Loading....
+        </div>
+        <button v-if="!loading.fetchTweets" class="btn btn-default" v-on:click="fetchTweets">More...</button>
     </div>
 </template>
 
@@ -33,74 +36,63 @@
 
     export default {
         components: {GetTweets},
-        props: ['current_route_name'],
-
         data() {
             return {
+                newContent: '',
                 tweets: [],
-                url: '',
-                nextPageUrl: '',
-                new_content: ''
+                tweetsPagination: {
+                    current_page: null,
+                    next_page_url: null,
+                    path: null,
+                },
+                loading: {
+                    fetchTweets: false,
+                }
             }
         },
-
-        created() {
-            if (this.current_route_name === 'timeline') {
-                this.url = '/api/timeline';
-            } else {
-                this.url = '/api/' + this.user.slug;
-            }
-        },
-
         methods: {
-            fetchFirstTweets() {
-                axios.get(this.url)
+            fetchTweets() {
+                let url;
+                this.loading.fetchTweets = true;
+                if (!this.tweetsPagination.next_page_url) {
+                    if (this.currentRoute === 'timeline') {
+                        url = 'api/timeline';
+                    }
+                    else {
+                        url = 'api/' + this.user.slug;
+                    }
+                } else {
+                    url = this.tweetsPagination.next_page_url;
+                }
+                // console.log(url);
+                axios.get(url)
                     .then((response) => {
-                            this.nextPageUrl = response.data.next_page_url;
-                            this.tweets = response.data.data;
-                        }
-                    )
-            },
-
-            getMoreTweets: function () {
-                axios.get(this.nextPageUrl)
-                    .then((response) => {
-                            this.nextPageUrl = response.data.next_page_url;
+                            this.tweetsPagination.next_page_url = response.data.next_page_url;
                             this.tweets = this.tweets.concat(response.data.data);
+                            this.loading.fetchTweets = false;
                         }
                     )
             },
 
             storeTweet: function () {
-                if (this.current_route_name !== 'timeline') {
-                    return false;
-                }
                 axios.post('api/timeline/store', {
-                    content: this.new_content
+                    content: this.newContent
                 })
                     .then((response) => {
-                            console.log(response.data);
+                            // console.log(response.data);
                             this.tweets.unshift(response.data);
-                            this.new_content = '';
+                            this.newContent = '';
                         }
                     )
             }
         },
 
         mounted() {
-            this.fetchFirstTweets();
-            // axios.delete('api/following/33')
-            //     .then((response) => {
-            //             console.log(response.data);
-            //         },
-            //     ),
-            //     (error) => {
-            //         console.log(error)
-            //     }
+            this.fetchTweets();
         },
 
         computed: {
-            ...mapGetters(['user'])
+            ...mapGetters(['currentRoute', 'currentUser', 'user'])
         }
     }
 </script>
