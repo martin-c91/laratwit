@@ -16,8 +16,9 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .webpackConfig({
         devtool: 'source-map'
     })
-    .options({
-        processCssUrls: false
-    });
+    // .options({
+    //     processCssUrls: false
+    // })
+;
 
-mix.browserSync('laratwit.test');
+// mix.browserSync('laratwit.test');
