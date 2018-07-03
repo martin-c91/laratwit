@@ -18,7 +18,6 @@ export default {
         tweets: (state) => state.tweets,
         currentRoute: (state) => state.currentRoute,
         newContent: (state) => state.newContent,
-        // tweets: (state) => state.tweets,
         loading: (state) => state.loading,
     },
     mutations: {
@@ -27,11 +26,19 @@ export default {
             state.currentUser = data.currentUser;
             state.user = data.user;
         },
+        setNewContent(state, payload) {
+            state.newContent = payload;
+        },
         changeUserIsFollowing(state) {
             state.user.isFollowing = !state.user.isFollowing;
         },
         changeLoading(state, payload) {
             state.loading = Object.assign({}, payload);
+        },
+        postNewContent(state, tweet) {
+            state.newContent = '';
+            this.state.tweets.unshift(tweet);
+            this.state.newContent = '';
         }
         // updateTimeline: state (timeline) =>
     },
@@ -70,5 +77,17 @@ export default {
                     }
                 )
         },
+
+        postNewTweet({commit, state}, newContent) {
+            axios.post('api/timeline/store', {
+                content: newContent
+            })
+                .then((response) => {
+                        this.commit('postNewContent', response.data);
+                        // this.commit('resetNewContent');
+                        // console.log(response.data);
+                    }
+                )
+        }
     }
 }
