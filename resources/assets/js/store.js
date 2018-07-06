@@ -1,15 +1,14 @@
+import { make } from 'vuex-pathify';
+
 export default {
+    strict: true,
     state: {
         currentRoute: '',
         currentUser: {},
         user: {},
         newContent: '',
         tweets: [],
-        tweetsPagination: {
-            current_page: null,
-            next_page_url: null,
-            path: null,
-        },
+        tweetsPagination: {},
         loading: {}
     },
     getters: {
@@ -20,28 +19,30 @@ export default {
         newContent: (state) => state.newContent,
         loading: (state) => state.loading,
     },
-    mutations: {
-        setData(state, data) {
-            state.currentRoute = data.currentRoute;
-            state.currentUser = data.currentUser;
-            state.user = data.user;
-        },
-        setNewContent(state, payload) {
-            state.newContent = payload;
-        },
-        changeUserIsFollowing(state) {
-            state.user.isFollowing = !state.user.isFollowing;
-        },
-        changeLoading(state, payload) {
-            state.loading = Object.assign({}, payload);
-        },
-        postNewContent(state, tweet) {
-            state.newContent = '';
-            this.state.tweets.unshift(tweet);
-            this.state.newContent = '';
-        }
-        // updateTimeline: state (timeline) =>
-    },
+    mutations: make.mutations(this.state),
+    //     {
+    //     setData(state, data) {
+    //         // state.objec
+    //         state.currentRoute = data.currentRoute;
+    //         state.currentUser = data.currentUser;
+    //         state.user = data.user;
+    //     },
+    //     setNewContent(state, payload) {
+    //         state.newContent = payload;
+    //     },
+    //     changeUserIsFollowing(state) {
+    //         state.user.isFollowing = !state.user.isFollowing;
+    //     },
+    //     changeLoading(state, payload) {
+    //         state.loading = Object.assign({}, payload);
+    //     },
+    //     postNewContent(state, tweet) {
+    //         state.newContent = '';
+    //         this.state.tweets.unshift(tweet);
+    //         this.state.newContent = '';
+    //     }
+    //     // updateTimeline: state (timeline) =>
+    // },
     actions: {
         postFollow({commit, state}, user) {
             let url = 'api/following/' + user.id;
@@ -71,8 +72,9 @@ export default {
             }
             axios.get(url)
                 .then((response) => {
-                        state.tweetsPagination.next_page_url = response.data.next_page_url;
-                        state.tweets = state.tweets.concat(response.data.data);
+                        // commit('setData', {'tweetsPagination':{ }});
+                        // state.tweetsPagination.next_page_url = response.data.next_page_url;
+                        // state.tweets = state.tweets.concat(response.data.data);
                         commit('changeLoading', {'fetchTweets': false});
                     }
                 )

@@ -4,7 +4,7 @@
             <div class="form-group">
                 <label>Tweet</label>
                 <textarea class="form-control"
-                          :value="newContent"
+                          v-model="newContent"
                           placeholder="What's on your mind..."
                           rows="3"></textarea>
             </div>
@@ -36,10 +36,10 @@
         computed: {
             newContent: {
                 get() {
-                    return this.$store.state.newContent
+                    return this.$store.getters.newContent
                 },
                 set(value) {
-                    this.$store.commit('updateNewContent', value)
+                    this.$store.commit('setNewContent', value)
                 }
             }
         },
