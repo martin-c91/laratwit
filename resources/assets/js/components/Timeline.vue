@@ -3,7 +3,6 @@
         <NewTweetForm v-if="this.currentRoute === 'timeline'"></NewTweetForm>
         <br>
         <div class="panel">
-            <a>Timeline for {{user.slug}}</a>
             <div class="panel-header">Timeline</div>
             <GetTweets :tweets="tweets"></GetTweets>
         </div>
@@ -18,7 +17,8 @@
 <script>
     import GetTweets from "./GetTweets";
     import NewTweetForm from "./NewTweetForm";
-    import {mapGetters, mapActions} from 'vuex';
+    import {mapActions} from 'vuex';
+    import {sync} from 'vuex-pathify';
 
     export default {
         components: {GetTweets, NewTweetForm},
@@ -31,7 +31,7 @@
         },
 
         computed: {
-            ...mapGetters(['currentRoute', 'currentUser', 'user', 'tweets', 'loading'])
+            ...sync(['currentRoute', 'currentUser', 'user', 'tweets', 'loading'])
         }
     }
 </script>

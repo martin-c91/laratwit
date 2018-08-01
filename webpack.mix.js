@@ -21,4 +21,4 @@ mix.js('resources/assets/js/app.js', 'public/js')
     // })
 ;
 
-// mix.browserSync('laratwit.test');
+mix.browserSync('laratwit.test');

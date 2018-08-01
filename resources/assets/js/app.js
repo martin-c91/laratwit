@@ -8,6 +8,7 @@ require('./bootstrap');
 import Vue from 'vue';
 import Vuex from 'vuex';
 import StoreData from './Store';
+
 // import Timeline from './components/Timeline';
 // import FollowButton from './components/FollowButton';
 // import FeaturedUsers from './components/FeaturedUsers';

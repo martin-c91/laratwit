@@ -20,6 +20,7 @@
 
 <script>
     import {mapActions} from 'vuex';
+    import {sync} from 'vuex-pathify';
 
     export default {
         // data(){
@@ -34,14 +35,7 @@
         // },
         methods: {...mapActions(['postNewTweet'])},
         computed: {
-            newContent: {
-                get() {
-                    return this.$store.getters.newContent
-                },
-                set(value) {
-                    this.$store.commit('setNewContent', value)
-                }
-            }
+            ...sync(['newContent'])
         },
     }
 </script>

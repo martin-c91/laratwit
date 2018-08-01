@@ -1,11 +1,11 @@
 <?php
 //heroku
-$url = parse_url(getenv("DATABASE_URL"));
-
-$host = $url["host"];
-$username = $url["user"];
-$password = $url["pass"];
-$database = substr($url["path"], 1);
+//$url = parse_url(getenv("DATABASE_URL"));
+//
+//$host = $url["host"];
+//$username = $url["user"];
+//$password = $url["pass"];
+//$database = substr($url["path"], 1);
 
 return [
 
@@ -20,7 +20,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'pgsql'),
+    'default' => env('DB_CONNECTION', 'sqlite'),
 
     /*
     |--------------------------------------------------------------------------
@@ -61,18 +61,18 @@ return [
             'engine' => null,
         ],
 
-        'pgsql' => [
-            'driver'   => 'pgsql',
-            'host'     => $host,
-            'database' => $database,
-            'username' => $username,
-            'password' => $password,
-            'charset'  => 'utf8',
-            'prefix'   => '',
-            'schema'   => 'public',
-
-            'sslmode' => 'prefer',
-        ],
+        //'pgsql' => [
+        //    'driver'   => 'pgsql',
+        //    'host'     => $host,
+        //    'database' => $database,
+        //    'username' => $username,
+        //    'password' => $password,
+        //    'charset'  => 'utf8',
+        //    'prefix'   => '',
+        //    'schema'   => 'public',
+        //
+        //    'sslmode' => 'prefer',
+        //],
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
