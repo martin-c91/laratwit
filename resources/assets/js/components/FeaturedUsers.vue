@@ -57,8 +57,8 @@
             ...mapActions(['postFollow']),
 
             followUser: function (user, index) {
-                console.log(user);
-                this.postFollow(user);
+                // console.log(user);
+                this.postFollow({user, isFeaturedUser: true});
                 this.featuredUsers.splice(index, 1);
                 this.getFeaturedUsers(this.user.slug, 1);
             },

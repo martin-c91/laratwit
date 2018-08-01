@@ -53,10 +53,12 @@ export default {
     state,
     mutations,
     actions: {
-        postFollow({commit, state}, user) {
+        postFollow({commit, state}, {user, isFeaturedUser = false}) {
             let url = 'api/following/' + user.id;
-            axios.post(url).then((response) => {
-                commit('TOGGLE_USER_IS_FOLLOWING')
+            axios.post(url).then(() => {
+                if(!isFeaturedUser){
+                    commit('TOGGLE_USER_IS_FOLLOWING');
+                }
             })
         },
         postUnFollow({commit, state}, user) {
@@ -67,7 +69,7 @@ export default {
         },
 
         fetchTweets({commit, state}) {
-            let url;
+            let url = '';
             commit('SET_LOADING', {'fetchTweets': true});
             if (!state.tweetsPagination.next_page_url) {
                 if (state.currentRoute === 'timeline') {
