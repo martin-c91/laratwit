@@ -24,7 +24,7 @@
                         </div>
                         <div class="row">
                             <button class="btn btn-sm btn-outline-primary"
-                                    @click="postFollow('follow', user.slug, index)">Follow
+                                    @click="followUser(user, index)">Follow
                             </button>
                         </div>
                     </div>
@@ -38,6 +38,8 @@
 </template>
 
 <script>
+    import {mapActions} from 'vuex';
+
     export default {
         props: ['user'],
         data() {
@@ -52,14 +54,13 @@
         },
 
         methods: {
-            postFollow: function (action, user_slug, index) {
-                let url = '/api/' + user_slug + '/' + action;
-                axios.post(url)
-                    .then((response) => {
-                            this.featuredUsers.splice(index, 1);
-                            this.getFeaturedUsers(this.user.slug, 1);
-                        }
-                    )
+            ...mapActions(['postFollow']),
+
+            followUser: function (user, index) {
+                // console.log(user);
+                this.postFollow({user, isFeaturedUser: true});
+                this.featuredUsers.splice(index, 1);
+                this.getFeaturedUsers(this.user.slug, 1);
             },
 
             getFeaturedUsers: function (slug, limit = 10, refresh = false) {
@@ -69,11 +70,11 @@
                 })
                     .then((response) => {
                             if (!refresh) {
-                                console.log('refresh false');
+                                // console.log('refresh false');
                                 this.exceptUsers = this.exceptUsers.concat(response.data.map(a => a.id));
                                 this.featuredUsers = this.featuredUsers.concat(response.data);
                             }else{
-                                console.log('refresh true');
+                                // console.log('refresh true');
                                 this.exceptUsers = response.data.map(a => a.id);
                                 this.exceptUsers.push(this.user.id);
                                 this.featuredUsers = response.data;

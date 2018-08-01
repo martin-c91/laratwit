@@ -10,16 +10,15 @@
   "require": {
     "php": "^7.1.3",
     "fideloper/proxy": "^4.0",
+    "itsgoingd/clockwork": "^2.2",
     "laravel/framework": "5.6.*",
     "laravel/passport": "^6.0",
+    "laravel/tinker": "^1.0",
     "league/flysystem-aws-s3-v3": "^1.0",
-    "percymamedy/laravel-dev-booter": "^0.2.2",
+    "thujohn/twitter": "^2.2",
     "watson/rememberable": "^2.0"
   },
   "require-dev": {
-    "thujohn/twitter": "^2.2",
-    "laravel/tinker": "^1.0",
-    "itsgoingd/clockwork": "^2.2",
     "barryvdh/laravel-debugbar": "^3.1",
     "barryvdh/laravel-ide-helper": "^2.4",
     "filp/whoops": "^2.0",
@@ -58,6 +57,17 @@
     "post-autoload-dump": [
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
       "@php artisan package:discover"
+    ],
+    "post-update-cmd": [
+      "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+      "php artisan ide-helper:generate",
+      "php artisan ide-helper:meta"
+    ],
+    "post-install-cmd": [
+      "php artisan clear-compiled",
+      "php artisan optimize",
+      "chmod -R 755 public/",
+      "php artisan passport:keys"
     ]
   },
   "config": {
@@ -66,11 +76,5 @@
     "optimize-autoloader": true
   },
   "minimum-stability": "dev",
-  "prefer-stable": true,
-  "post-install-cmd": [
-    "php artisan clear-compiled",
-    "php artisan optimize",
-    "chmod -R 755 public/",
-    "php artisan passport:keys"
-  ]
+  "prefer-stable": true
 }

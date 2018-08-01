@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -9,6 +8,7 @@ require('./bootstrap');
 import Vue from 'vue';
 import Vuex from 'vuex';
 import StoreData from './Store';
+
 // import Timeline from './components/Timeline';
 // import FollowButton from './components/FollowButton';
 // import FeaturedUsers from './components/FeaturedUsers';
