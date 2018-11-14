@@ -61,7 +61,7 @@ export default {
                 }
             })
         },
-        postUnFollow({commit, state}, user) {
+        postUnFollow({commit, state}, {user}) {
             let url = 'api/following/' + user.id;
             axios.delete(url).then((response) => {
                 commit('TOGGLE_USER_IS_FOLLOWING')
