@@ -4,7 +4,7 @@
         <br>
         <div class="panel-group">
             <div class="panel-header">Timeline</div>
-            <GetTweets :tweets="tweets"></GetTweets>
+            <GetTweets></GetTweets>
         </div>
 
         <div v-if="loading.fetchTweets">
@@ -31,7 +31,7 @@
         },
 
         computed: {
-            ...sync(['currentRoute', 'currentUser', 'user', 'tweets', 'loading'])
+            ...sync(['currentRoute', 'currentUser', 'user', 'loading'])
         }
     }
 </script>

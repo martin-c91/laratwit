@@ -15,7 +15,7 @@
             <div class="panel-footer">
                 <div class="row float-right">
                     <div>
-                        Delete | ReTweet
+                        Delete {{tweet.id}}
                     </div>
                     <div class="ml-2">
                         created: {{ tweet.created_at | moment("from", "now")}}
@@ -28,11 +28,12 @@
 </template>
 
 <script>
-    export default {
-        props: ['tweets'],
+    import {mapActions} from 'vuex';
+    import {sync} from 'vuex-pathify';
 
-        data() {
-            return {}
+    export default {
+        computed: {
+            ...sync(['tweets'])
         }
     }
 </script>

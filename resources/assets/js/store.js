@@ -1,5 +1,6 @@
 import {make} from 'vuex-pathify';
 // import {} from 'vuex-pathify';
+var JSONbig = require('json-bigint');
 
 const state = {
     currentRoute: '',
@@ -81,7 +82,7 @@ export default {
             } else {
                 url = state.tweetsPagination.next_page_url;
             }
-            axios.get(url)
+            axios.get(url, {transformResponse: data => JSONbig.parse(data)})
                 .then((response) => {
                         commit('APPEND_TWEETS', response.data.data);
                         delete response.data.data;
@@ -101,6 +102,8 @@ export default {
                         //     this.commit('SET_NEW_CONTENT', response.data.data.content);
                     }
                 )
-        }
+        },
+
+
     }
 }

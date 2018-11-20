@@ -53,19 +53,14 @@ class TweetController extends Controller
     {
         //get single tweet by id
         $tweet = Tweet::with('user')->find($id);
-        //return $tweet;
+        return $tweet;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        $tweet = Tweet::findOrFail($id);
-        $tweet->delete;
+        $tweet = Auth::user()->tweets()->findOrFail($id);
+
+        $tweet->delete();
     }
 
     public static function getTimelineTweets()
@@ -81,8 +76,8 @@ class TweetController extends Controller
 
     public static function getUserTweets(User $user)
     {
-        $tweets = Tweet::remember(60)->with('user')->where('user_id', $user->id)->latest()->paginate();
-        //$tweets = Tweet::with('user')->where('user_id', $user->id)->latest()->paginate();
+        //$tweets = Tweet::remember(60)->with('user')->where('user_id', $user->id)->latest()->paginate();
+        $tweets = Tweet::with('user')->where('user_id', $user->id)->latest()->paginate();
 
         if (request()->wantsJson()) {
             return response()->json($tweets);
