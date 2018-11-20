@@ -2,7 +2,7 @@
     <div>
         <NewTweetForm v-if="this.currentRoute === 'timeline'"></NewTweetForm>
         <br>
-        <div class="panel">
+        <div class="panel-group">
             <div class="panel-header">Timeline</div>
             <GetTweets :tweets="tweets"></GetTweets>
         </div>
