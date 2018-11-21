@@ -15,6 +15,7 @@
             <div class="panel-footer">
                 <div class="row">
                     <div class="col text-right float-right " style="padding-right: 0">
+
                         <a v-if="deleteConfirmation==tweet.id">Are you sure:
                             <a href="#" @click="deleteConfirmation=null;
                             postDeleteTweet({index: index, id: tweet.id})">Yes</a>
