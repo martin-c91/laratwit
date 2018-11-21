@@ -21,8 +21,11 @@ const mutations = {
         state.tweets.unshift(tweet);
         state.newContent = '';
     },
-    APPEND_TWEETS(state, additional_tweets){
+    APPEND_TWEETS(state, additional_tweets) {
         state.tweets = state.tweets.concat(additional_tweets);
+    },
+    REMOVE_TWEET(state, index){
+        state.tweets.splice(index, 1);
     }
 };
 //     {
@@ -57,7 +60,7 @@ export default {
         postFollow({commit, state}, {user, isFeaturedUser = false}) {
             let url = 'api/following/' + user.id;
             axios.post(url).then(() => {
-                if(!isFeaturedUser){
+                if (!isFeaturedUser) {
                     commit('TOGGLE_USER_IS_FOLLOWING');
                 }
             })
@@ -75,8 +78,7 @@ export default {
             if (!state.tweetsPagination.next_page_url) {
                 if (state.currentRoute === 'timeline') {
                     url = 'api/timeline';
-                }
-                else {
+                } else {
                     url = 'api/' + state.user.slug;
                 }
             } else {
@@ -95,7 +97,9 @@ export default {
         postNewTweet({commit, state}, newContent) {
             axios.post('api/timeline/store', {
                 content: newContent
-            })
+            },
+                {transformResponse: data => JSONbig.parse(data)}
+            )
                 .then((response) => {
                         // console.log(response.data);
                         commit('POST_AND_RESET_NEW_CONTENT', response.data);
@@ -104,6 +108,15 @@ export default {
                 )
         },
 
+        postDeleteTweet({commit, state}, {index, id}) {
+            console.log('api/tweet/'+id);
+            axios.delete('api/tweet/' + id)
+                .then((response) => {
+                        console.log(index);
+                        commit('REMOVE_TWEET', index);
+                    }
+                )
+        }
 
     }
 }
