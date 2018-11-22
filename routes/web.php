@@ -32,7 +32,5 @@ Route::get('/{user}/followers', 'UserController@followers')->name('user.follower
 Route::get('/{user}/followings', 'UserController@followings')->name('user.followings');
 
 //test function
-Route::get('test/{user}', function (User $user) {
-    return $user->append('isFollowing')->toJson();
-    return Auth::user()->toJson();
-});
+Route::get('test/{tweet_id}', 'LikeController@store');
+Route::get('test1/{tweet_id}', 'LikeController@destroy');

@@ -71,6 +71,11 @@ class User extends Authenticatable
         return $this->belongsToMany('App\User', 'followers', 'follower_id', 'user_id');
     }
 
+    public function likes()
+    {
+        return $this->belongsToMany('App\Tweet', 'likes', 'user_id', 'tweet_id')->withTimestamps();
+    }
+
     /**
      * Add follower to current user
      *
@@ -114,15 +119,15 @@ class User extends Authenticatable
      */
     public function checkFollowingAny($users)
     {
-        // we could deal with both collection types the same way tbh, I did it for the example 
+        // we could deal with both collection types the same way tbh, I did it for the example
         if ($users instanceof EloquentCollection) {
             $users = $users->modelKeys();
         }
-        
+
         if ($users instanceof Collection) {
             $users = $users->pluck('id'); // or $users->map->id using Higher Order Messages
         }
-        
+
         if (! is_array($users)) {
             return $this->checkFollowing($users); // default to single value check
         }

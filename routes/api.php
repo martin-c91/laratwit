@@ -31,6 +31,10 @@ Route::middleware(['auth:api'])->group(function () {
     //following action
     Route::post('/following/{id}', 'FollowingController@store')->name('api.user.follow');
     Route::delete('/following/{id}', 'FollowingController@destroy')->name('api.user.unfollow');
+
+    //tweet likes action
+    Route::post('like/{id}', 'LikeController@store');
+    Route::delete('like/{id}', 'LikeController@destroy');
 });
 
 
