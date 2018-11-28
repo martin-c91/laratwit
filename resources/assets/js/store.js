@@ -116,7 +116,10 @@ export default {
                         commit('REMOVE_TWEET', index);
                     }
                 )
-        }
+        },
 
+        postLikeTweet({commit, state}, tweet){
+            console.log(tweet)
+        }
     }
 }

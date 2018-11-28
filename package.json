@@ -11,6 +11,7 @@
     "postinstall": "npm run prod"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.5.0",
     "axios": "^0.18",
     "bootstrap": "4.1.1",
     "browser-sync": "^2.26.3",
@@ -32,6 +33,7 @@
   "dependencies": {
     "ajv": "^6.5.5",
     "debug": "^3.2.6",
+    "font-awesome": "^4.7.0",
     "json-bigint": "^0.3.0",
     "moment": "^2.22.2",
     "pg": "^7.6.1",
