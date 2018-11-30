@@ -190,6 +190,7 @@ class User extends Authenticatable
              $this->followings()->pluck('id');
 
         return Tweet::with('user')
+            ->with('likedByAuth')
             // whereIn allows collections
             ->whereIn('user_id', $ids->push($this->id))
             ->latest()

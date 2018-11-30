@@ -23,6 +23,20 @@ Route::get('/', function () {
     return redirect('login');
 });
 
+//test function
+Route::get('test/{userid}', function($userId){
+    $tweets = Tweet::with('user')
+        ->with('likes')
+        // whereIn allows collections
+        ->where('user_id', $userId)
+        ->latest()
+->get();
+    //$tweets = $tweets->append('liked_by_auth');
+    return $tweets;
+});
+
+Route::get('test1/{tweet_id}', 'LikeController@destroy');
+
 Auth::routes();
 Route::get('/timeline', 'TweetController@index')->name('timeline')->middleware('auth');
 Route::get('/{user}', 'TweetController@index')->name('user.profile');
@@ -30,7 +44,3 @@ Route::get('/{user}', 'TweetController@index')->name('user.profile');
 //get user followers, followings
 Route::get('/{user}/followers', 'UserController@followers')->name('user.followers');
 Route::get('/{user}/followings', 'UserController@followings')->name('user.followings');
-
-//test function
-Route::get('test/{tweet_id}', 'LikeController@store');
-Route::get('test1/{tweet_id}', 'LikeController@destroy');
