@@ -26,8 +26,8 @@
                     </div>
 
                     <div class="col-1 float-right text-right" style="padding-right: 0px; padding-left:0px">
-                        <a href="#" @click="postLikeTweet(tweet)">
-                            {{tweet.likes}}
+                        <a href="#" @click.prevent="postLikeTweet({index: index, id: tweet.id})">
+                            <a v-if="tweet.likes>0">{{tweet.likes}}</a>
                             <i style="color: red;" class="far fa-heart"></i>
                         </a>
                     </div>

@@ -26,6 +26,9 @@ const mutations = {
     },
     REMOVE_TWEET(state, index){
         state.tweets.splice(index, 1);
+    },
+    CHANGE_LIKES(state, {index}){
+        state.tweets[index].likes ++;
     }
 };
 //     {
@@ -109,17 +112,19 @@ export default {
         },
 
         postDeleteTweet({commit, state}, {index, id}) {
-            console.log('api/tweet/'+id);
             axios.delete('api/tweet/' + id)
                 .then((response) => {
-                        console.log(index);
                         commit('REMOVE_TWEET', index);
                     }
                 )
         },
 
-        postLikeTweet({commit, state}, tweet){
-            console.log(tweet)
+        postLikeTweet({commit, state}, {index, id}){
+            axios.post('api/like/' + id)
+                .then((response)=>{
+                    console.log('liked');
+                    commit('CHANGE_LIKES', {index: index, increment: 1});
+                })
         }
     }
 }
