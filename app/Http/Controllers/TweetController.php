@@ -77,7 +77,11 @@ class TweetController extends Controller
     public static function getUserTweets(User $user)
     {
         //$tweets = Tweet::remember(60)->with('user')->where('user_id', $user->id)->latest()->paginate();
-        $tweets = Tweet::with('user')->where('user_id', $user->id)->latest()->paginate();
+        $tweets = Tweet::with('user')
+            ->with('likedByAuth')
+            ->where('user_id', $user->id)
+            ->latest()->paginate()
+        ;
 
         if (request()->wantsJson()) {
             return response()->json($tweets);

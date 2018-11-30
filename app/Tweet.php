@@ -30,6 +30,6 @@ class Tweet extends Model
 
     public function likedByAuth()
     {
-        return $this->hasOne('App\Like')->where('user_id', Auth::id());
+        return $this->hasOne('App\Like')->where('user_id', auth()->guard('api')->id());
     }
 }

@@ -8,7 +8,7 @@
                     </a>
                 </div>
                 <div style="margin-left: -48px; margin-left: 58px;">
-                    <h5><a href="">{{tweet.user.slug}}</a></h5>
+                    <h5><a :href="tweet.user.slug">{{tweet.user.slug}}</a></h5>
                     <a>{{ tweet.content }}</a>
                 </div>
             </div>
@@ -26,9 +26,10 @@
                     </div>
 
                     <div class="col-1 float-right text-right" style="padding-right: 0px; padding-left:0px">
-                        <a href="#" @click.prevent="postLikeTweet({index: index, id: tweet.id})">
+                        <a href="#" @click.prevent="postLikeOrDislikeTweet({index: index, id: tweet.id})">
                             <a v-if="tweet.likes>0">{{tweet.likes}}</a>
-                            <i style="color: red;" class="far fa-heart"></i>
+                            <i v-if="!tweet.liked_by_auth" style="color: red;" class="far fa-heart"></i>
+                            <i v-if="tweet.liked_by_auth" style="color: red;" class="fas fa-heart"></i>
                         </a>
                     </div>
 
@@ -53,7 +54,7 @@
             }
         },
         methods: {
-            ...mapActions(['postDeleteTweet', 'postLikeTweet']),
+            ...mapActions(['postDeleteTweet', 'postLikeOrDislikeTweet']),
             deleteTweet(id) {
                 this.deleteConfirmation = id;
             }

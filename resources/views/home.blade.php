@@ -5,9 +5,11 @@
 
 
     <get-data
-            :prop_current_route="'{{\Request::route()->getName()}}'"
-            :prop_current_user="{{$currentUser}}"
-            :prop_user="{{ $user }}"
+            :prop_current_route="{{json_encode(\Request::route()->getName())}}"
+            :prop_current_user="{{
+                ($currentUser) ? json_encode($currentUser): '{}'
+            }}"
+            :prop_user="{{json_encode($user)}}"
     ></get-data>
     <div class="container py-4">
         <div class="row justify-content-center">

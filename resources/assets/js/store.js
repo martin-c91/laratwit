@@ -27,8 +27,15 @@ const mutations = {
     REMOVE_TWEET(state, index){
         state.tweets.splice(index, 1);
     },
-    CHANGE_LIKES(state, {index}){
-        state.tweets[index].likes ++;
+    TOGGLE_LIKE(state, {index}){
+        if(state.tweets[index].liked_by_auth)
+        {
+            state.tweets[index].likes --;
+            state.tweets[index].liked_by_auth = null;
+        }else{
+            state.tweets[index].likes ++;
+            state.tweets[index].liked_by_auth = true;
+        }
     }
 };
 //     {
@@ -119,12 +126,20 @@ export default {
                 )
         },
 
-        postLikeTweet({commit, state}, {index, id}){
-            axios.post('api/like/' + id)
-                .then((response)=>{
-                    console.log('liked');
-                    commit('CHANGE_LIKES', {index: index, increment: 1});
-                })
+        postLikeOrDislikeTweet({commit, state}, {index, id}){
+            if(state.tweets[index].liked_by_auth){
+                axios.delete('api/like/' + id)
+                    .then(()=>{
+                        commit('TOGGLE_LIKE', {index: index});
+                    })
+
+            }else{
+                axios.post('api/like/' + id)
+                    .then(()=>{
+                        commit('TOGGLE_LIKE', {index: index});
+                    })
+
+            }
         }
     }
 }
