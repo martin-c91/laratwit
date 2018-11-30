@@ -56,6 +56,10 @@ class User extends Authenticatable
         return 'slug';
     }
 
+    public function findForPassport($slug) {
+        return $this->where('slug', $slug)->first();
+    }
+
     public function tweets()
     {
         return $this->hasMany('App\Tweet');
