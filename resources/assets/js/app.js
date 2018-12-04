@@ -7,7 +7,7 @@
 require('./bootstrap');
 import Vue from 'vue';
 import Vuex from 'vuex';
-import StoreData from './Store';
+import StoreData from './store.js';
 
 // import Timeline from './components/Timeline';
 // import FollowButton from './components/FollowButton';
