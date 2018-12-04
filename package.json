@@ -20,23 +20,26 @@
     "jquery": "^3.2",
     "laravel-mix": "^2.1.14",
     "lodash": "^4.17.11",
-    "popper.js": "^1.14.5",
+    "popper.js": "^1.14.6",
     "vue": "^2.5.17"
   },
   "name": "laratwit",
   "description": "<p align=\"center\"><img src=\"https://laravel.com/assets/img/components/logo-laravel.svg\"></p>",
   "version": "1.0.0",
+  "engines": {
+    "node": "11.3.0"
+  },
   "main": "webpack.mix.js",
   "directories": {
     "test": "tests"
   },
   "dependencies": {
-    "ajv": "^6.5.5",
+    "ajv": "^6.6.1",
     "debug": "^3.2.6",
     "font-awesome": "^4.7.0",
     "json-bigint": "^0.3.0",
     "moment": "^2.22.2",
-    "pg": "^7.6.1",
+    "pg": "^7.7.1",
     "psql": "0.0.1",
     "require": "^2.4.20",
     "vue-flash-message": "^0.6.2",
