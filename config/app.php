@@ -154,7 +154,7 @@ return [
         Laravel\Passport\PassportServiceProvider::class,
         Thujohn\Twitter\TwitterServiceProvider::class,
         //Clockwork\Support\Laravel\ClockworkServiceProvider::class,
-        //Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         /*
          * Application Service Providers...
          */
