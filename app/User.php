@@ -160,6 +160,7 @@ class User extends Authenticatable
     public function getAvatarAttribute()
     {
         $avatar_file_path = "{$this->avatar_folder}/{$this->slug}.png";
+        
         return $avatar_file_path;
     }
 
