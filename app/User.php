@@ -161,14 +161,14 @@ class User extends Authenticatable
     {
         $avatar_file_path = "{$this->avatar_folder}/{$this->slug}.png";
 
-        return Storage::disk('images')->exists($avatar_file_path)?
+        return Storage::exists($avatar_file_path)?
             $avatar_file_path:
             "{$this->avatar_folder}/default.png";
     }
 
     public function getAvatarUrlAttribute()
     {
-        return Storage::disk('public')->url('images/'. $this->avatar);
+        return Storage::url('images/'. $this->avatar);
     }
 
     public function get_and_store_avatar()
