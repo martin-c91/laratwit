@@ -15,11 +15,11 @@
     "laravel/tinker": "^1.0",
     "league/flysystem-aws-s3-v3": "^1.0",
     "league/flysystem-cached-adapter": "^1.0",
+    "thujohn/twitter": "^2.2",
     "watson/rememberable": "^2.0"
   },
   "require-dev": {
     "itsgoingd/clockwork": "^2.2",
-    "thujohn/twitter": "^2.2",
     "barryvdh/laravel-debugbar": "^3.1",
     "barryvdh/laravel-ide-helper": "^2.4",
     "filp/whoops": "^2.0",
@@ -60,7 +60,7 @@
       "@php artisan package:discover --ansi",
       "chmod -R 755 public/",
       "php artisan passport:keys",
-      "php artisan storage:link"
+      "mv database/database.sqlite.EXAMPLE database/database.sqlite"
     ],
     "post-root-package-install": [
       "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
