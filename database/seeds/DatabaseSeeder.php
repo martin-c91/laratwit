@@ -129,7 +129,7 @@ class DatabaseSeeder extends Seeder
     {
         foreach ($this->seed_users_origin as $seed_user) {
             if ($this->seed_user_info($seed_user)) {
-                $this->seed_user_tweets($seed_user, 100);
+                $this->seed_user_tweets($seed_user, 30);
             }
         }
     }
@@ -140,30 +140,38 @@ class DatabaseSeeder extends Seeder
         $seed_user = json_decode($seed_user_json);
 
         $user = new User;
+
+        $avatar_origin_url = str_replace('_normal.jpg','_400x400.jpg', $seed_user->profile_image_url);
+        if(!storage::exists('images/avatars/'.$seed_user->screen_name.'.jpg')){
+           Storage::put("images/avatars/$seed_user->screen_name.jpg", $avatar_origin_url);
+           echo "$seed_user->screen_name avatar not in storage, put new one in. \n";
+        }
+
         $data = [
             'name' => $seed_user->name,
             'slug' => $seed_user->screen_name,
             'email' => $faker = Faker\Factory::create()->email,
             'description' => $seed_user->description,
-            'json_raw' => $seed_user_json,
-            //'avatar_origin' => $seed_user->profile_image_url,
-            'avatar_origin' => str_replace('_normal.jpg','_400x400.jpg', $seed_user->profile_image_url),
+            //'json_raw' => $seed_user_json,
+            'avatar_file_name' => $seed_user->screen_name.".jpg",
+            //'avatar_origin_url' => str_replace('_normal.jpg','_400x400.jpg', $seed_user->profile_image_url),
             'password' => Hash::make('test'),
         ];
 
         $new_user = $user->updateOrCreate(['slug' => $twitter_username], $data);
-        if ($new_user AND $new_user->get_and_store_avatar()) {
+        if ($new_user AND $new_user->get_and_store_avatar($avatar_origin_url)) {
             return $new_user->slug;
         }
     }
 
-    protected function seed_user_tweets($twitter_username, $tweets_count = 30)
+    protected function seed_user_tweets($twitter_username, $tweets_count = 10)
     {
         $user = User::where('slug', $twitter_username)->firstOrFail();
 
         $tweets = Twitter::getUserTimeline([
             'screen_name' => $user->slug,
             'count' => $tweets_count,
+            //'include_rts' => 0,
             'format' => 'json',
         ]);
         $tweets = json_decode($tweets);
@@ -171,7 +179,7 @@ class DatabaseSeeder extends Seeder
         foreach ($tweets as $tweet) {
             $data = [
                 'id' => $tweet->id,
-                'json_raw' => json_encode($tweet),
+                //'json_raw' => json_encode($tweet),
                 'content' => $tweet->text,
                 'user_id' => $user->id,
                 'created_at' => strtotime($tweet->created_at),

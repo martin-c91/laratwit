@@ -152,7 +152,7 @@ return [
          */
         //passport
         Laravel\Passport\PassportServiceProvider::class,
-        //Thujohn\Twitter\TwitterServiceProvider::class,
+        Thujohn\Twitter\TwitterServiceProvider::class,
         //Clockwork\Support\Laravel\ClockworkServiceProvider::class,
         //Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         /*
@@ -180,7 +180,7 @@ return [
     'aliases' => [
 
         //own custom alias
-        //'Twitter' => Thujohn\Twitter\Facades\Twitter::class,
+        'Twitter' => Thujohn\Twitter\Facades\Twitter::class,
 
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,

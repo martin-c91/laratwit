@@ -28,7 +28,6 @@ class User extends Authenticatable
         'email',
         'password',
         'slug',
-        'json_raw',
     ];
 
     /**
@@ -40,8 +39,6 @@ class User extends Authenticatable
         'password',
         'remember_token',
         'email',
-        'json_raw',
-        'avatar_origin',
         'updated_at',
         'created_at',
     ];
@@ -159,19 +156,19 @@ class User extends Authenticatable
      */
     public function getAvatarAttribute()
     {
-        $avatar_file_path = "{$this->avatar_folder}/{$this->slug}.png";
-        
+        $avatar_file_path = "{$this->avatar_folder}/$this->avatar_file_name";
+
         return $avatar_file_path;
     }
 
     public function getAvatarUrlAttribute()
     {
-        return Storage::url('images/'. $this->avatar);
+        return Storage::url($this->avatar_folder.'/'.$this->avatar_file_name);
     }
 
-    public function get_and_store_avatar()
+    public function get_and_store_avatar($avatar_origin_url)
     {
-        return Storage::disk('images')->put("avatars/{$this->slug}.png", file_get_contents($this->avatar_origin), 'public');
+        return Storage::put($this->avatar_folder.'/'.$this->avatar_file_name, file_get_contents($avatar_origin_url), 'public');
     }
 
     /**

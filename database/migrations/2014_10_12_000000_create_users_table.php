@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('slug', 50)->unique();
             $table->string('description', 250)->nullable();
             $table->string('password');
-            $table->string('json_raw')->nullable();
+            $table->string('avatar_file_name')->nullable()->default('default.png');
 
             $table->rememberToken();
             $table->timestamps();
