@@ -60,7 +60,7 @@
       "@php artisan package:discover --ansi",
       "chmod -R 755 public/",
       "php artisan passport:keys",
-      "php artisan storage:link"
+      "mv database/database.sqlite.EXAMPLE database/database.sqlite"
     ],
     "post-root-package-install": [
       "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
