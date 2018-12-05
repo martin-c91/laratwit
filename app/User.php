@@ -168,7 +168,7 @@ class User extends Authenticatable
 
     public function getAvatarUrlAttribute()
     {
-        return Storage::disk('public')->url('images/'. $this->avatar);
+        return Storage::disk('images')->url($this->avatar);
     }
 
     public function get_and_store_avatar()
