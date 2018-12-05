@@ -1,11 +1,17 @@
 <?php
 //heroku
-if (getenv("DATABASE_URL")) {
+if (getenv("DB_CONNECTION") == 'pgsql') {
     $url = parse_url(getenv("DATABASE_URL"));
     $host = $url["host"];
     $username = $url["user"];
     $password = $url["pass"];
     $database = substr($url["path"], 1);
+}else{
+    $url = null;
+    $host = null;
+    $username = null;
+    $password = null;
+    $database = null;
 }
 
 return [
