@@ -12,8 +12,8 @@ let mix = require('laravel-mix');
  */
 mix.js('resources/assets/js/app.js', 'public/js')
     .sass('resources/assets/sass/app.scss', 'public/css')
-    .sourceMaps()
+    // .sourceMaps()
     .webpackConfig({
         devtool: 'source-map'
     });
-mix.browserSync('laratwit.test');
+// mix.browserSync('laratwit.test');
