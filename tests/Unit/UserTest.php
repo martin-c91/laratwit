@@ -19,15 +19,15 @@ class UserTest extends TestCase
         $this->assertEquals($this->user1->id, $user->id);
     }
 
-    /** @test */
-    public function user_can_upload_avatar_to_assets()
-    {
-        $this->assertTrue($success = $this->user1->get_and_store_avatar());
-
-        //dd(($this->user1->avatar));
-        $this->assertTrue($success, "Storage Failed");
-        $this->assertNotEquals($this->user1->avatarURL, Storage::disk('images')->url('images/avatars/default.png'));
-        //dd($this->user1)
-        $this->assertTrue(Storage::disk('images')->exists($this->user1->avatar), 'Avatar could not be found.');
-    }
+    ///** @test */
+    //public function user_can_upload_avatar_to_assets()
+    //{
+    //    $this->assertTrue($success = $this->user1->get_and_store_avatar());
+    //
+    //    //dd(($this->user1->avatar));
+    //    $this->assertTrue($success, "Storage Failed");
+    //    $this->assertNotEquals($this->user1->avatarURL, Storage::disk('images')->url('images/avatars/default.png'));
+    //    //dd($this->user1)
+    //    $this->assertTrue(Storage::disk('images')->exists($this->user1->avatar), 'Avatar could not be found.');
+    //}
 }
