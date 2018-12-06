@@ -1,11 +1,6 @@
 version: 0.2
-env:
-  variables:
-    APP_NAME=LaraTwit
-    APP_ENV=production
-    APP_DEBUG=false
-    APP_KEY=
-    APP_URL=http://laratwit.martinchea.com
+#env:
+#  variables:
 #parameter-store:
 # key: "value"
 # key: "value"
