@@ -9,3 +9,5 @@ http://laratwit.martinchea.com
 
 Username: chrisbrown
 Pass: test
+
+Author: Martin C
