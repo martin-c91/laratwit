@@ -1,0 +1,41 @@
+version: 0.2
+
+  env:
+  variables:
+    APP_NAME=LaraTwit
+    APP_ENV=production
+    APP_DEBUG=false
+    APP_KEY=
+    APP_URL=http://laratwit.martinchea.com
+  #parameter-store:
+  # key: "value"
+# key: "value"
+
+phases:
+  install:
+  commands:
+    - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+  # Expose apache.
+  #  EXPOSE 80
+  pre_build:
+  commands:
+    - composer install
+  # - command
+  # - command
+  build:
+  #    commands:
+  #post_build:
+  #commands:
+  # - command
+  # - command
+  #artifacts:
+  #files:
+  # - location
+  # - location
+  #name: $(date +%Y-%m-%d)
+  #discard-paths: yes
+  #base-directory: location
+  #cache:
+  #paths:
+  # - paths
