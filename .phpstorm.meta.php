@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2018-12-05 10:38:24.
+    * Generated on 2018-12-07 02:28:18.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -53,6 +53,7 @@ namespace PHPSTORM_META {
         'clockwork' => \Clockwork\Clockwork::class,
         'League\OAuth2\Server\AuthorizationServer' => \League\OAuth2\Server\AuthorizationServer::class,
         'League\OAuth2\Server\ResourceServer' => \League\OAuth2\Server\ResourceServer::class,
+        'Thujohn\Twitter\Twitter' => \Thujohn\Twitter\Twitter::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Illuminate\Console\Scheduling\Schedule' => \Illuminate\Console\Scheduling\Schedule::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
@@ -202,6 +203,7 @@ namespace PHPSTORM_META {
         'clockwork' => \Clockwork\Clockwork::class,
         'League\OAuth2\Server\AuthorizationServer' => \League\OAuth2\Server\AuthorizationServer::class,
         'League\OAuth2\Server\ResourceServer' => \League\OAuth2\Server\ResourceServer::class,
+        'Thujohn\Twitter\Twitter' => \Thujohn\Twitter\Twitter::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Illuminate\Console\Scheduling\Schedule' => \Illuminate\Console\Scheduling\Schedule::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
@@ -351,6 +353,7 @@ namespace PHPSTORM_META {
         'clockwork' => \Clockwork\Clockwork::class,
         'League\OAuth2\Server\AuthorizationServer' => \League\OAuth2\Server\AuthorizationServer::class,
         'League\OAuth2\Server\ResourceServer' => \League\OAuth2\Server\ResourceServer::class,
+        'Thujohn\Twitter\Twitter' => \Thujohn\Twitter\Twitter::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Illuminate\Console\Scheduling\Schedule' => \Illuminate\Console\Scheduling\Schedule::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
@@ -500,6 +503,7 @@ namespace PHPSTORM_META {
         'clockwork' => \Clockwork\Clockwork::class,
         'League\OAuth2\Server\AuthorizationServer' => \League\OAuth2\Server\AuthorizationServer::class,
         'League\OAuth2\Server\ResourceServer' => \League\OAuth2\Server\ResourceServer::class,
+        'Thujohn\Twitter\Twitter' => \Thujohn\Twitter\Twitter::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Illuminate\Console\Scheduling\Schedule' => \Illuminate\Console\Scheduling\Schedule::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
@@ -649,6 +653,7 @@ namespace PHPSTORM_META {
         'clockwork' => \Clockwork\Clockwork::class,
         'League\OAuth2\Server\AuthorizationServer' => \League\OAuth2\Server\AuthorizationServer::class,
         'League\OAuth2\Server\ResourceServer' => \League\OAuth2\Server\ResourceServer::class,
+        'Thujohn\Twitter\Twitter' => \Thujohn\Twitter\Twitter::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Illuminate\Console\Scheduling\Schedule' => \Illuminate\Console\Scheduling\Schedule::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
@@ -798,6 +803,7 @@ namespace PHPSTORM_META {
         'clockwork' => \Clockwork\Clockwork::class,
         'League\OAuth2\Server\AuthorizationServer' => \League\OAuth2\Server\AuthorizationServer::class,
         'League\OAuth2\Server\ResourceServer' => \League\OAuth2\Server\ResourceServer::class,
+        'Thujohn\Twitter\Twitter' => \Thujohn\Twitter\Twitter::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Illuminate\Console\Scheduling\Schedule' => \Illuminate\Console\Scheduling\Schedule::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
@@ -947,6 +953,7 @@ namespace PHPSTORM_META {
         'clockwork' => \Clockwork\Clockwork::class,
         'League\OAuth2\Server\AuthorizationServer' => \League\OAuth2\Server\AuthorizationServer::class,
         'League\OAuth2\Server\ResourceServer' => \League\OAuth2\Server\ResourceServer::class,
+        'Thujohn\Twitter\Twitter' => \Thujohn\Twitter\Twitter::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Illuminate\Console\Scheduling\Schedule' => \Illuminate\Console\Scheduling\Schedule::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
