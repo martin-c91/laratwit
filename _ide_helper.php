@@ -1,7 +1,9 @@
 <?php
+// @formatter:off
+
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.26 on 2018-12-07 02:28:17.
+ * Generated for Laravel 5.6.39 on 2018-12-07 02:36:18.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -9,1802 +11,24 @@
  * @see https://github.com/barryvdh/laravel-ide-helper
  */
 
-namespace Thujohn\Twitter\Facades { 
-
-    class Twitter {
-        
-        /**
-         * Set new config values for the OAuth class like different tokens.
-         *
-         * @param Array $config An array containing the values that should be overwritten.
-         * @return void 
-         * @static 
-         */ 
-        public static function reconfig($config)
-        {
-            \Thujohn\Twitter\Twitter::reconfig($config);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function logs()
-        {
-            return \Thujohn\Twitter\Twitter::logs();
-        }
-        
-        /**
-         * Get a request_token from Twitter
-         *
-         * @param String $oauth_callback [Optional] The callback provided for Twitter's API. The user will be redirected there after authorizing your app on Twitter.
-         * @returns Array|Bool a key/value array containing oauth_token and oauth_token_secret in case of success
-         * @static 
-         */ 
-        public static function getRequestToken($oauth_callback = null)
-        {
-            return \Thujohn\Twitter\Twitter::getRequestToken($oauth_callback);
-        }
-        
-        /**
-         * Get an access token for a logged in user
-         *
-         * @returns Array|Bool key/value array containing the token in case of success
-         * @static 
-         */ 
-        public static function getAccessToken($oauth_verifier = null)
-        {
-            return \Thujohn\Twitter\Twitter::getAccessToken($oauth_verifier);
-        }
-        
-        /**
-         * Get the authorize URL
-         *
-         * @returns string
-         * @static 
-         */ 
-        public static function getAuthorizeURL($token, $sign_in_with_twitter = true, $force_login = false)
-        {
-            return \Thujohn\Twitter\Twitter::getAuthorizeURL($token, $sign_in_with_twitter, $force_login);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function query($name, $requestMethod = 'GET', $parameters = array(), $multipart = false, $extension = 'json')
-        {
-            return \Thujohn\Twitter\Twitter::query($name, $requestMethod, $parameters, $multipart, $extension);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function get($name, $parameters = array(), $multipart = false, $extension = 'json')
-        {
-            return \Thujohn\Twitter\Twitter::get($name, $parameters, $multipart, $extension);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function post($name, $parameters = array(), $multipart = false)
-        {
-            return \Thujohn\Twitter\Twitter::post($name, $parameters, $multipart);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function linkify($tweet)
-        {
-            return \Thujohn\Twitter\Twitter::linkify($tweet);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function ago($timestamp)
-        {
-            return \Thujohn\Twitter\Twitter::ago($timestamp);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function linkUser($user)
-        {
-            return \Thujohn\Twitter\Twitter::linkUser($user);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function linkTweet($tweet)
-        {
-            return \Thujohn\Twitter\Twitter::linkTweet($tweet);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function linkRetweet($tweet)
-        {
-            return \Thujohn\Twitter\Twitter::linkRetweet($tweet);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function linkAddTweetToFavorites($tweet)
-        {
-            return \Thujohn\Twitter\Twitter::linkAddTweetToFavorites($tweet);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function linkReply($tweet)
-        {
-            return \Thujohn\Twitter\Twitter::linkReply($tweet);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function error()
-        {
-            return \Thujohn\Twitter\Twitter::error();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function setError($code, $message)
-        {
-            return \Thujohn\Twitter\Twitter::setError($code, $message);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function reconfigure($config = array())
-        {
-            //Method inherited from \tmhOAuth            
-            return \Thujohn\Twitter\Twitter::reconfigure($config);
-        }
-        
-        /**
-         * Extracts and decodes OAuth parameters from the passed string
-         *
-         * @param string $body the response body from an OAuth flow method
-         * @return array the response body safely decoded to an array of key => values
-         * @static 
-         */ 
-        public static function extract_params($body)
-        {
-            //Method inherited from \tmhOAuth            
-            return \Thujohn\Twitter\Twitter::extract_params($body);
-        }
-        
-        /**
-         * Create the bearer token for OAuth2 requests from the consumer_key and consumer_secret.
-         *
-         * @return string the bearer token
-         * @static 
-         */ 
-        public static function bearer_token_credentials()
-        {
-            //Method inherited from \tmhOAuth            
-            return \Thujohn\Twitter\Twitter::bearer_token_credentials();
-        }
-        
-        /**
-         * Make an HTTP request using this library. This method doesn't return anything.
-         * 
-         * Instead the response should be inspected directly.
-         *
-         * @param string $method the HTTP method being used. e.g. POST, GET, HEAD etc
-         * @param string $url the request URL without query string parameters
-         * @param array $params the request parameters as an array of key=value pairs. Default empty array
-         * @param string $useauth whether to use authentication when making the request. Default true
-         * @param string $multipart whether this request contains multipart data. Default false
-         * @param array $headers any custom headers to send with the request. Default empty array
-         * @return int the http response code for the request. 0 is returned if a connection could not be made
-         * @static 
-         */ 
-        public static function request($method, $url, $params = array(), $useauth = true, $multipart = false, $headers = array())
-        {
-            //Method inherited from \tmhOAuth            
-            return \Thujohn\Twitter\Twitter::request($method, $url, $params, $useauth, $multipart, $headers);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function apponly_request($options = array())
-        {
-            //Method inherited from \tmhOAuth            
-            return \Thujohn\Twitter\Twitter::apponly_request($options);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function user_request($options = array())
-        {
-            //Method inherited from \tmhOAuth            
-            return \Thujohn\Twitter\Twitter::user_request($options);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function unauthenticated_request($options = array())
-        {
-            //Method inherited from \tmhOAuth            
-            return \Thujohn\Twitter\Twitter::unauthenticated_request($options);
-        }
-        
-        /**
-         * Make a long poll HTTP request using this library. This method is
-         * different to the other request methods as it isn't supposed to disconnect
-         * 
-         * Using this method expects a callback which will receive the streaming
-         * responses.
-         *
-         * @param string $method the HTTP method being used. e.g. POST, GET, HEAD etc
-         * @param string $url the request URL without query string parameters
-         * @param array $params the request parameters as an array of key=value pairs
-         * @param string $callback the callback function to stream the buffer to.
-         * @return void 
-         * @static 
-         */ 
-        public static function streaming_request($method, $url, $params = array(), $callback = '')
-        {
-            //Method inherited from \tmhOAuth            
-            \Thujohn\Twitter\Twitter::streaming_request($method, $url, $params, $callback);
-        }
-        
-        /**
-         * Utility function to create the request URL in the requested format.
-         * 
-         * If a fully-qualified URI is provided, it will be returned.
-         * Any multi-slashes (except for the protocol) will be replaced with a single slash.
-         *
-         * @param string $request the API method without extension
-         * @param string $extension the format of the response. Default json. Set to an empty string to exclude the format
-         * @return string the concatenation of the host, API version, API method and format, or $request if it begins with http
-         * @static 
-         */ 
-        public static function url($request, $extension = 'json')
-        {
-            //Method inherited from \tmhOAuth            
-            return \Thujohn\Twitter\Twitter::url($request, $extension);
-        }
-        
-        /**
-         * Public access to the private safe decode/encode methods
-         *
-         * @param string $text the text to transform
-         * @param string $mode the transformation mode. either encode or decode
-         * @return string $text transformed by the given $mode
-         * @static 
-         */ 
-        public static function transformText($text, $mode = 'encode')
-        {
-            //Method inherited from \tmhOAuth            
-            return \Thujohn\Twitter\Twitter::transformText($text, $mode);
-        }
-        
-        /**
-         * Returns settings (including current trend, geo and sleep time information) for the authenticating user.
-         *
-         * @static 
-         */ 
-        public static function getSettings($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getSettings($parameters);
-        }
-        
-        /**
-         * Returns an HTTP 200 OK response code and a representation of the requesting user if authentication was successful; returns a 401 status code and an error message if not. Use this method to test if supplied user credentials are valid.
-         * 
-         * Parameters :
-         * - include_entities (0|1)
-         * - skip_status (0|1)
-         *
-         * @static 
-         */ 
-        public static function getCredentials($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getCredentials($parameters);
-        }
-        
-        /**
-         * Updates the authenticating user’s settings.
-         * 
-         * Parameters :
-         * - trend_location_woeid
-         * - sleep_time_enabled (0|1)
-         * - start_sleep_time
-         * - end_sleep_time
-         * - time_zone
-         * - lang
-         *
-         * @static 
-         */ 
-        public static function postSettings($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::postSettings($parameters);
-        }
-        
-        /**
-         * Sets which device Twitter delivers updates to for the authenticating user. Sending none as the device parameter will disable SMS updates.
-         * 
-         * Parameters :
-         * - device (sms|none)
-         * - include_entities (0|1)
-         *
-         * @static 
-         */ 
-        public static function postSettingsDevice($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::postSettingsDevice($parameters);
-        }
-        
-        /**
-         * Sets some values that users are able to set under the “Account” tab of their settings page. Only the parameters specified will be updated.
-         * 
-         * Parameters :
-         * - name
-         * - url
-         * - location
-         * - description (0-160)
-         * - include_entities (0|1)
-         * - skip_status (0|1)
-         *
-         * @static 
-         */ 
-        public static function postProfile($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::postProfile($parameters);
-        }
-        
-        /**
-         * Updates the authenticating user’s profile background image. This method can also be used to enable or disable the profile background image.
-         * 
-         * Parameters :
-         * - image
-         * - tile
-         * - include_entities (0|1)
-         * - skip_status (0|1)
-         * - use (0|1)
-         *
-         * @static 
-         */ 
-        public static function postBackground($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::postBackground($parameters);
-        }
-        
-        /**
-         * Updates the authenticating user’s profile image. Note that this method expects raw multipart data, not a URL to an image.
-         * 
-         * Parameters :
-         * - image
-         * - include_entities (0|1)
-         * - skip_status (0|1)
-         *
-         * @static 
-         */ 
-        public static function postProfileImage($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::postProfileImage($parameters);
-        }
-        
-        /**
-         * Removes the uploaded profile banner for the authenticating user. Returns HTTP 200 upon success.
-         *
-         * @static 
-         */ 
-        public static function destroyUserBanner($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::destroyUserBanner($parameters);
-        }
-        
-        /**
-         * Uploads a profile banner on behalf of the authenticating user. For best results, upload an profile_banner_url node in their Users objects. More information about sizing variations can be found in User Profile Images and Banners and GET users / profile_banner.
-         * 
-         * Parameters :
-         * - banner
-         * - width
-         * - height
-         * - offset_left
-         * - offset_top
-         *
-         * @static 
-         */ 
-        public static function postUserBanner($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::postUserBanner($parameters);
-        }
-        
-        /**
-         * Returns a collection of user objects that the authenticating user is blocking.
-         * 
-         * Parameters :
-         * - include_entities (0|1)
-         * - skip_status (0|1)
-         * - cursor
-         *
-         * @static 
-         */ 
-        public static function getBlocks($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getBlocks($parameters);
-        }
-        
-        /**
-         * Returns an array of numeric user ids the authenticating user is blocking.
-         * 
-         * Parameters :
-         * - stringify_ids (0|1)
-         * - cursor
-         *
-         * @static 
-         */ 
-        public static function getBlocksIds($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getBlocksIds($parameters);
-        }
-        
-        /**
-         * Blocks the specified user from following the authenticating user. In addition the blocked user will not show in the authenticating users mentions or timeline (unless retweeted by another user). If a follow or friend relationship exists it is destroyed.
-         * 
-         * Parameters :
-         * - screen_name
-         * - user_id
-         * - include_entities (0|1)
-         * - skip_status (0|1)
-         *
-         * @static 
-         */ 
-        public static function postBlock($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::postBlock($parameters);
-        }
-        
-        /**
-         * Un-blocks the user specified in the ID parameter for the authenticating user. Returns the un-blocked user in the requested format when successful. If relationships existed before the block was instated, they will not be restored.
-         * 
-         * Parameters :
-         * - screen_name
-         * - user_id
-         * - include_entities (0|1)
-         * - skip_status (0|1)
-         *
-         * @static 
-         */ 
-        public static function destroyBlock($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::destroyBlock($parameters);
-        }
-        
-        /**
-         * Returns the 20 most recent direct messages sent by the authenticating user. Includes detailed information about the sender and recipient user. You can request up to 200 direct messages per call, up to a maximum of 800 outgoing DMs.
-         * 
-         * Parameters :
-         * - since_id
-         * - max_id
-         * - count (1-200)
-         * - page
-         * - include_entities (0|1)
-         *
-         * @static 
-         */ 
-        public static function getDmsOut($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getDmsOut($parameters);
-        }
-        
-        /**
-         * Returns a single direct message, specified by an id parameter. Like the /1.1/direct_messages.format request, this method will include the user objects of the sender and recipient.
-         * 
-         * Parameters :
-         * - id
-         *
-         * @static 
-         */ 
-        public static function getDm($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getDm($parameters);
-        }
-        
-        /**
-         * Returns the 20 most recent direct messages sent to the authenticating user. Includes detailed information about the sender and recipient user. You can request up to 200 direct messages per call, and only the most recent 200 DMs will be available using this endpoint.
-         * 
-         * Parameters :
-         * - since_id
-         * - max_id
-         * - count (1-200)
-         * - include_entities (0|1)
-         * - skip_status (0|1)
-         *
-         * @static 
-         */ 
-        public static function getDmsIn($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getDmsIn($parameters);
-        }
-        
-        /**
-         * Destroys the direct message specified in the required ID parameter. The authenticating user must be the recipient of the specified direct message.
-         * 
-         * Parameters :
-         * - id
-         * - include_entities
-         *
-         * @static 
-         */ 
-        public static function destroyDm($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::destroyDm($parameters);
-        }
-        
-        /**
-         * Sends a new direct message to the specified user from the authenticating user. Requires both the user and text parameters and must be a POST. Returns the sent message in the requested format if successful.
-         * 
-         * Parameters :
-         * - user_id
-         * - screen_name
-         * - text
-         *
-         * @static 
-         */ 
-        public static function postDm($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::postDm($parameters);
-        }
-        
-        /**
-         * Returns the 20 most recent Tweets favorited by the authenticating or specified user.
-         * 
-         * Parameters :
-         * - user_id
-         * - screen_name
-         * - count (1-200)
-         * - since_id
-         * - max_id
-         * - include_entities (0|1)
-         *
-         * @static 
-         */ 
-        public static function getFavorites($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getFavorites($parameters);
-        }
-        
-        /**
-         * Un-favorites the status specified in the ID parameter as the authenticating user. Returns the un-favorited status in the requested format when successful.
-         * 
-         * Parameters :
-         * - id
-         * - include_entities (0|1)
-         *
-         * @static 
-         */ 
-        public static function destroyFavorite($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::destroyFavorite($parameters);
-        }
-        
-        /**
-         * Favorites the status specified in the ID parameter as the authenticating user. Returns the favorite status when successful.
-         * 
-         * Parameters :
-         * - id
-         * - include_entities (0|1)
-         *
-         * @static 
-         */ 
-        public static function postFavorite($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::postFavorite($parameters);
-        }
-        
-        /**
-         * Returns a collection of user_ids that the currently authenticated user does not want to receive retweets from.
-         * 
-         * Parameters :
-         * - stringify_ids (0|1)
-         *
-         * @static 
-         */ 
-        public static function getNoRters($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getNoRters($parameters);
-        }
-        
-        /**
-         * Returns a cursored collection of user IDs for every user following the specified user.
-         * 
-         * Parameters :
-         * - user_id
-         * - screen_name
-         * - cursor
-         * - stringify_ids (0|1)
-         * - count (1-5000)
-         *
-         * @static 
-         */ 
-        public static function getFriendsIds($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getFriendsIds($parameters);
-        }
-        
-        /**
-         * Returns a cursored collection of user IDs for every user following the specified user.
-         * 
-         * Parameters :
-         * - user_id
-         * - screen_name
-         * - cursor
-         * - stringify_ids (0|1)
-         * - count (1-5000)
-         *
-         * @static 
-         */ 
-        public static function getFollowersIds($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getFollowersIds($parameters);
-        }
-        
-        /**
-         * Returns a collection of numeric IDs for every user who has a pending request to follow the authenticating user.
-         * 
-         * Parameters :
-         * - cursor
-         * - stringify_ids (0|1)
-         *
-         * @static 
-         */ 
-        public static function getFriendshipsIn($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getFriendshipsIn($parameters);
-        }
-        
-        /**
-         * Returns a collection of numeric IDs for every protected user for whom the authenticating user has a pending follow request.
-         * 
-         * Parameters :
-         * - cursor
-         * - stringify_ids (0|1)
-         *
-         * @static 
-         */ 
-        public static function getFriendshipsOut($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getFriendshipsOut($parameters);
-        }
-        
-        /**
-         * Allows the authenticating users to follow the user specified in the ID parameter.
-         * 
-         * Parameters :
-         * - screen_name
-         * - user_id
-         * - follow (0|1)
-         *
-         * @static 
-         */ 
-        public static function postFollow($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::postFollow($parameters);
-        }
-        
-        /**
-         * Allows the authenticating user to unfollow the user specified in the ID parameter.
-         * 
-         * Parameters :
-         * - screen_name
-         * - user_id
-         *
-         * @static 
-         */ 
-        public static function postUnfollow($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::postUnfollow($parameters);
-        }
-        
-        /**
-         * Allows one to enable or disable retweets and device notifications from the specified user.
-         * 
-         * Parameters :
-         * - screen_name
-         * - user_id
-         * - device (0|1)
-         * - retweets (0|1)
-         *
-         * @static 
-         */ 
-        public static function postFollowUpdate($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::postFollowUpdate($parameters);
-        }
-        
-        /**
-         * Returns detailed information about the relationship between two arbitrary users.
-         * 
-         * Parameters :
-         * - source_id
-         * - source_screen_name
-         * - target_id
-         * - target_screen_name
-         *
-         * @static 
-         */ 
-        public static function getFriendships($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getFriendships($parameters);
-        }
-        
-        /**
-         * Returns a cursored collection of user objects for every user the specified user is following (otherwise known as their “friends”).
-         * 
-         * Parameters :
-         * - user_id
-         * - screen_name
-         * - cursor
-         * - skip_status (0|1)
-         * - include_user_entities (0|1)
-         *
-         * @static 
-         */ 
-        public static function getFriends($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getFriends($parameters);
-        }
-        
-        /**
-         * Returns a cursored collection of user objects for users following the specified user.
-         * 
-         * Parameters :
-         * - user_id
-         * - screen_name
-         * - cursor
-         * - skip_status (0|1)
-         * - include_user_entities (0|1)
-         *
-         * @static 
-         */ 
-        public static function getFollowers($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getFollowers($parameters);
-        }
-        
-        /**
-         * Returns the relationships of the authenticating user to the comma-separated list of up to 100 screen_names or user_ids provided. Values for connections can be: following, following_requested, followed_by, none, blocking, muting.
-         * 
-         * Parameters :
-         * - screen_name
-         * - user_id
-         *
-         * @static 
-         */ 
-        public static function getFriendshipsLookup($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getFriendshipsLookup($parameters);
-        }
-        
-        /**
-         * Returns all the information about a known place.
-         *
-         * @static 
-         */ 
-        public static function getGeo($id)
-        {
-            return \Thujohn\Twitter\Twitter::getGeo($id);
-        }
-        
-        /**
-         * Given a latitude and a longitude, searches for up to 20 places that can be used as a place_id when updating a status.
-         * 
-         * Parameters :
-         * - lat
-         * - long
-         * - accuracy
-         * - granularity (poi|neighborhood|city|admin|country)
-         * - max_results
-         * - callback
-         *
-         * @static 
-         */ 
-        public static function getGeoReverse($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getGeoReverse($parameters);
-        }
-        
-        /**
-         * Search for places that can be attached to a statuses/update. Given a latitude and a longitude pair, an IP address, or a name, this request will return a list of all the valid places that can be used as the place_id when updating a status.
-         * 
-         * Parameters :
-         * - lat
-         * - long
-         * - query
-         * - ip
-         * - granularity (poi|neighborhood|city|admin|country)
-         * - accuracy
-         * - max_results
-         * - contained_within
-         * - attribute:street_address
-         * - callback
-         *
-         * @static 
-         */ 
-        public static function getGeoSearch($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getGeoSearch($parameters);
-        }
-        
-        /**
-         * Locates places near the given coordinates which are similar in name. Conceptually you would use this method to get a list of known places to choose from first. Then, if the desired place doesn't exist, make a request to POST geo/place to create a new one. The token contained in the response is the token needed to be able to create a new place.
-         * 
-         * Parameters :
-         * - lat
-         * - long
-         * - name
-         * - contained_within
-         * - attribute:street_address
-         * - callback
-         *
-         * @static 
-         */ 
-        public static function getGeoSimilar($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getGeoSimilar($parameters);
-        }
-        
-        /**
-         * Report the specified user as a spam account to Twitter. Additionally performs the equivalent of POST blocks / create on behalf of the authenticated user.
-         * 
-         * Parameters :
-         * - screen_name
-         * - user_id
-         *
-         * @static 
-         */ 
-        public static function postSpam($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::postSpam($parameters);
-        }
-        
-        /**
-         * Returns the current configuration used by Twitter including twitter.com slugs which are not usernames, maximum photo resolutions, and t.co URL lengths.
-         *
-         * @static 
-         */ 
-        public static function getHelpConfiguration($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getHelpConfiguration($parameters);
-        }
-        
-        /**
-         * Returns the list of languages supported by Twitter along with the language code supported by Twitter.
-         *
-         * @static 
-         */ 
-        public static function getHelpLanguages($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getHelpLanguages($parameters);
-        }
-        
-        /**
-         * Returns Twitter’s Privacy Policy.
-         *
-         * @static 
-         */ 
-        public static function getHelpPrivacy($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getHelpPrivacy($parameters);
-        }
-        
-        /**
-         * Returns the Twitter Terms of Service. Note: these are not the same as the Developer Policy.
-         *
-         * @static 
-         */ 
-        public static function getHelpTos($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getHelpTos($parameters);
-        }
-        
-        /**
-         * Returns the current rate limits for methods belonging to the specified resource families.
-         *
-         * @static 
-         */ 
-        public static function getAppRateLimit($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getAppRateLimit($parameters);
-        }
-        
-        /**
-         * Returns all lists the authenticating or specified user subscribes to, including their own. The user is specified using the user_id or screen_name parameters. If no user is given, the authenticating user is used.
-         * 
-         * Parameters :
-         * - user_id
-         * - screen_name
-         * - reverse (0|1)
-         *
-         * @static 
-         */ 
-        public static function getLists($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getLists($parameters);
-        }
-        
-        /**
-         * Returns a timeline of tweets authored by members of the specified list. Retweets are included by default. Use the include_rts=false parameter to omit retweets.
-         * 
-         * Parameters :
-         * - list_id
-         * - slug
-         * - owner_screen_name
-         * - owner_id
-         * - since_id
-         * - max_id
-         * - count
-         * - include_entities (0|1)
-         * - include_rts (0|1)
-         *
-         * @static 
-         */ 
-        public static function getListStatuses($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getListStatuses($parameters);
-        }
-        
-        /**
-         * Removes the specified member from the list. The authenticated user must be the list’s owner to remove members from the list.
-         * 
-         * Parameters :
-         * - list_id
-         * - slug
-         * - user_id
-         * - screen_name
-         * - owner_screen_name
-         * - owner_id
-         *
-         * @static 
-         */ 
-        public static function destroyListMember($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::destroyListMember($parameters);
-        }
-        
-        /**
-         * Returns the lists the specified user has been added to. If user_id or screen_name are not provided the memberships for the authenticating user are returned.
-         * 
-         * Parameters :
-         * - user_id
-         * - screen_name
-         * - count
-         * - cursor
-         * - filter_to_owned_lists
-         *
-         * @static 
-         */ 
-        public static function getListsMemberships($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getListsMemberships($parameters);
-        }
-        
-        /**
-         * Returns the subscribers of the specified list. Private list subscribers will only be shown if the authenticated user owns the specified list.
-         * 
-         * Parameters :
-         * - list_id
-         * - slug
-         * - owner_screen_name
-         * - owner_id
-         * - cursor
-         * - include_entities (0|1)
-         * - skip_status (0|1)
-         *
-         * @static 
-         */ 
-        public static function getListsSubscribers($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getListsSubscribers($parameters);
-        }
-        
-        /**
-         * Subscribes the authenticated user to the specified list.
-         * 
-         * Parameters :
-         * - list_id
-         * - slug
-         * - owner_screen_name
-         * - owner_id
-         *
-         * @static 
-         */ 
-        public static function postListSubscriber($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::postListSubscriber($parameters);
-        }
-        
-        /**
-         * Returns the subscribers of the specified list. Private list subscribers will only be shown if the authenticated user owns the specified list.
-         * 
-         * Parameters :
-         * - list_id
-         * - slug
-         * - owner_screen_name
-         * - owner_id
-         * - user_id
-         * - screen_name
-         * - include_entities (0|1)
-         * - skip_status (0|1)
-         *
-         * @static 
-         */ 
-        public static function getListSubscriber($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getListSubscriber($parameters);
-        }
-        
-        /**
-         * Unsubscribes the authenticated user from the specified list.
-         * 
-         * Parameters :
-         * - list_id
-         * - slug
-         * - owner_screen_name
-         * - owner_id
-         *
-         * @static 
-         */ 
-        public static function destroyListSubscriber($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::destroyListSubscriber($parameters);
-        }
-        
-        /**
-         * Adds multiple members to a list, by specifying a comma-separated list of member ids or screen names. The authenticated user must own the list to be able to add members to it. Note that lists can’t have more than 5,000 members, and you are limited to adding up to 100 members to a list at a time with this method.
-         * 
-         * Parameters :
-         * - list_id
-         * - slug
-         * - user_id
-         * - screen_name
-         * - owner_screen_name
-         * - owner_id
-         *
-         * @static 
-         */ 
-        public static function postListCreateAll($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::postListCreateAll($parameters);
-        }
-        
-        /**
-         * Check if the specified user is a member of the specified list.
-         * 
-         * Parameters :
-         * - list_id
-         * - slug
-         * - user_id
-         * - screen_name
-         * - owner_screen_name
-         * - owner_id
-         * - include_entities (0|1)
-         * - skip_status (0|1)
-         *
-         * @static 
-         */ 
-        public static function getListMember($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getListMember($parameters);
-        }
-        
-        /**
-         * Returns the members of the specified list. Private list members will only be shown if the authenticated user owns the specified list.
-         * 
-         * Parameters :
-         * - list_id
-         * - slug
-         * - owner_screen_name
-         * - owner_id
-         * - cursor
-         * - include_entities (0|1)
-         * - skip_status (0|1)
-         *
-         * @static 
-         */ 
-        public static function getListMembers($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getListMembers($parameters);
-        }
-        
-        /**
-         * Add a member to a list. The authenticated user must own the list to be able to add members to it. Note that lists cannot have more than 5,000 members.
-         * 
-         * Parameters :
-         * - list_id
-         * - slug
-         * - owner_screen_name
-         * - owner_id
-         * - user_id
-         * - screen_name
-         *
-         * @static 
-         */ 
-        public static function postListMember($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::postListMember($parameters);
-        }
-        
-        /**
-         * Deletes the specified list. The authenticated user must own the list to be able to destroy it.
-         * 
-         * Parameters :
-         * - list_id
-         * - slug
-         * - owner_screen_name
-         * - owner_id
-         *
-         * @static 
-         */ 
-        public static function destroyList($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::destroyList($parameters);
-        }
-        
-        /**
-         * Updates the specified list. The authenticated user must own the list to be able to update it.
-         * 
-         * Parameters :
-         * - list_id
-         * - slug
-         * - owner_screen_name
-         * - owner_id
-         * - name (1-25)
-         * - mode (public|private)
-         * - description
-         *
-         * @static 
-         */ 
-        public static function postListUpdate($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::postListUpdate($parameters);
-        }
-        
-        /**
-         * Creates a new list for the authenticated user. Note that you can’t create more than 20 lists per account.
-         * 
-         * Parameters :
-         * - name (1-25)
-         * - mode (public|private)
-         * - description
-         *
-         * @static 
-         */ 
-        public static function postList($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::postList($parameters);
-        }
-        
-        /**
-         * Returns the specified list. Private lists will only be shown if the authenticated user owns the specified list.
-         * 
-         * Parameters :
-         * - list_id
-         * - slug
-         * - owner_screen_name
-         * - owner_id
-         *
-         * @static 
-         */ 
-        public static function getList($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getList($parameters);
-        }
-        
-        /**
-         * Obtain a collection of the lists the specified user is subscribed to, 20 lists per page by default. Does not include the user’s own lists.
-         * 
-         * Parameters :
-         * - user_id
-         * - screen_name
-         * - count (1-1000)
-         * - cursor
-         *
-         * @static 
-         */ 
-        public static function getListSubscriptions($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getListSubscriptions($parameters);
-        }
-        
-        /**
-         * Removes multiple members from a list, by specifying a comma-separated list of member ids or screen names. The authenticated user must own the list to be able to remove members from it. Note that lists can’t have more than 500 members, and you are limited to removing up to 100 members to a list at a time with this method.
-         * 
-         * Parameters :
-         * - list_id
-         * - slug
-         * - owner_screen_name
-         * - owner_id
-         * - user_id
-         * - screen_name
-         *
-         * @static 
-         */ 
-        public static function destroyListMembers($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::destroyListMembers($parameters);
-        }
-        
-        /**
-         * Returns the lists owned by the specified Twitter user. Private lists will only be shown if the authenticated user is also the owner of the lists.
-         * 
-         * Parameters :
-         * - user_id
-         * - screen_name
-         * - count (1-1000)
-         * - cursor
-         *
-         * @static 
-         */ 
-        public static function getListOwnerships($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getListOwnerships($parameters);
-        }
-        
-        /**
-         * Upload media (images) to Twitter, to use in a Tweet or Twitter-hosted Card.
-         * 
-         * Parameters :
-         * - media
-         * - media_data
-         *
-         * @static 
-         */ 
-        public static function uploadMedia($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::uploadMedia($parameters);
-        }
-        
-        /**
-         * Returns a collection of relevant Tweets matching a specified query.
-         * 
-         * Parameters :
-         * - q
-         * - geocode
-         * - lang
-         * - locale
-         * - result_type (mixed|recent|popular)
-         * - count (1-100)
-         * - until (YYYY-MM-DD)
-         * - since_id
-         * - max_id
-         * - include_entities (0|1)
-         * - callback
-         *
-         * @static 
-         */ 
-        public static function getSearch($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getSearch($parameters);
-        }
-        
-        /**
-         * Returns the authenticated user’s saved search queries.
-         *
-         * @static 
-         */ 
-        public static function getSavedSearches()
-        {
-            return \Thujohn\Twitter\Twitter::getSavedSearches();
-        }
-        
-        /**
-         * Retrieve the information for the saved search represented by the given id. The authenticating user must be the owner of saved search ID being requested.
-         *
-         * @static 
-         */ 
-        public static function getSavedSearch($id)
-        {
-            return \Thujohn\Twitter\Twitter::getSavedSearch($id);
-        }
-        
-        /**
-         * Create a new saved search for the authenticated user. A user may only have 25 saved searches.
-         * 
-         * Parameters :
-         * - query
-         *
-         * @static 
-         */ 
-        public static function postSavedSearch($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::postSavedSearch($parameters);
-        }
-        
-        /**
-         * Destroys a saved search for the authenticating user. The authenticating user must be the owner of saved search id being destroyed.
-         *
-         * @static 
-         */ 
-        public static function destroySavedSearch($id, $parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::destroySavedSearch($id, $parameters);
-        }
-        
-        /**
-         * Returns the 20 most recent mentions (tweets containing a users’s @screen_name) for the authenticating user.
-         * 
-         * Parameters :
-         * - count (1-200)
-         * - include_rts (0|1)
-         * - since_id
-         * - max_id
-         * - trim_user (0|1)
-         * - contributor_details (0|1)
-         * - include_entities (0|1)
-         * - tweet_mode ('extended' returns a collection of Tweets, which are not truncated)
-         *
-         * @static 
-         */ 
-        public static function getMentionsTimeline($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getMentionsTimeline($parameters);
-        }
-        
-        /**
-         * Returns a collection of the most recent Tweets (truncated by default) posted by the user indicated by the screen_name or user_id parameters.
-         * 
-         * Parameters :
-         * - user_id
-         * - screen_name
-         * - since_id
-         * - count (1-200)
-         * - include_rts (0|1)
-         * - max_id
-         * - trim_user (0|1)
-         * - exclude_replies (0|1)
-         * - contributor_details (0|1)
-         * - include_entities (0|1)
-         * - tweet_mode ('extended' returns a collection of Tweets, which are not truncated)
-         *
-         * @static 
-         */ 
-        public static function getUserTimeline($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getUserTimeline($parameters);
-        }
-        
-        /**
-         * Returns a collection of the most recent Tweets (truncated by default) and retweets posted by the authenticating user and the users they follow. The home timeline is central to how most users interact with the Twitter service.
-         * 
-         * Parameters :
-         * - count (1-200)
-         * - since_id
-         * - max_id
-         * - trim_user (0|1)
-         * - exclude_replies (0|1)
-         * - contributor_details (0|1)
-         * - include_entities (0|1)
-         * - tweet_mode ('extended' returns a collection of Tweets, which are not truncated)
-         *
-         * @static 
-         */ 
-        public static function getHomeTimeline($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getHomeTimeline($parameters);
-        }
-        
-        /**
-         * Returns the most recent tweets authored by the authenticating user that have been retweeted by others.
-         * 
-         * Parameters :
-         * - count (1-200)
-         * - since_id
-         * - max_id
-         * - trim_user (0|1)
-         * - include_entities (0|1)
-         * - include_user_entities (0|1)
-         * - tweet_mode ('extended' returns a collection of Tweets, which are not truncated)
-         *
-         * @static 
-         */ 
-        public static function getRtsTimeline($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getRtsTimeline($parameters);
-        }
-        
-        /**
-         * Returns a collection of the 100 most recent retweets of the tweet specified by the id parameter.
-         * 
-         * Parameters :
-         * - count (1-200)
-         * - trim_user (0|1)
-         *
-         * @static 
-         */ 
-        public static function getRts($id, $parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getRts($id, $parameters);
-        }
-        
-        /**
-         * Returns a single Tweet, specified by the id parameter. The Tweet’s author will also be embedded within the tweet.
-         * 
-         * Parameters :
-         * - count (1-200)
-         * - trim_user (0|1)
-         * - include_my_retweet (0|1)
-         * - include_entities (0|1)
-         * - tweet_mode ('extended' returns a collection of Tweets, which are not truncated)
-         *
-         * @static 
-         */ 
-        public static function getTweet($id, $parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getTweet($id, $parameters);
-        }
-        
-        /**
-         * Destroys the status specified by the required ID parameter. The authenticating user must be the author of the specified status. Returns the destroyed status if successful.
-         * 
-         * Parameters :
-         * - trim_user (0|1)
-         *
-         * @static 
-         */ 
-        public static function destroyTweet($id, $parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::destroyTweet($id, $parameters);
-        }
-        
-        /**
-         * Updates the authenticating user’s current status, also known as tweeting.
-         * 
-         * Parameters :
-         * - status
-         * - in_reply_to_status_id
-         * - lat
-         * - long
-         * - place_id
-         * - display_coordinates (0|1)
-         * - trim_user (0|1)
-         * - media_ids
-         *
-         * @static 
-         */ 
-        public static function postTweet($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::postTweet($parameters);
-        }
-        
-        /**
-         * Retweets a tweet. Returns the original tweet with retweet details embedded.
-         * 
-         * Parameters :
-         * - trim_user (0|1)
-         *
-         * @static 
-         */ 
-        public static function postRt($id, $parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::postRt($id, $parameters);
-        }
-        
-        /**
-         * Updates the authenticating user’s current status and attaches media for upload. In other words, it creates a Tweet with a picture attached.
-         * 
-         * DEPRECATED
-         * 
-         * Parameters :
-         * - status
-         * - media[]
-         * - possibly_sensitive
-         * - in_reply_to_status_id
-         * - lat
-         * - long
-         * - place_id
-         * - display_coordinates (0|1)
-         *
-         * @static 
-         */ 
-        public static function postTweetMedia($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::postTweetMedia($parameters);
-        }
-        
-        /**
-         * Returns a single Tweet, specified by a Tweet web URL, in an oEmbed-compatible format. The returned HTML snippet will be automatically recognized as an Embedded Tweet when Twitter’s widget JavaScript is included on the page.
-         * 
-         * Parameters :
-         * - url
-         * - maxwidth (250-550)
-         * - hide_thread (0|1)
-         * - omit_script (0|1)
-         * - align (left|right|center|none)
-         * - related (twitterapi|twittermedia|twitter)
-         * - lang
-         * - theme (dark|light)
-         * - link_color (hex value)
-         * - widget_type (video)
-         *
-         * @static 
-         */ 
-        public static function getOembed($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getOembed($parameters);
-        }
-        
-        /**
-         * Returns a collection of up to 100 user IDs belonging to users who have retweeted the tweet specified by the id parameter.
-         * 
-         * Parameters :
-         * - id
-         * - cursor
-         * - stringify_ids (0|1)
-         *
-         * @static 
-         */ 
-        public static function getRters($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getRters($parameters);
-        }
-        
-        /**
-         * Returns fully-hydrated tweet objects for up to 100 tweets per request, as specified by comma-separated values passed to the id parameter.
-         * 
-         * Parameters :
-         * - id
-         * - include_entities (0|1)
-         * - trim_user (0|1)
-         * - map (0|1)
-         * - tweet_mode ('extended' returns a collection of Tweets, which are not truncated)
-         *
-         * @static 
-         */ 
-        public static function getStatusesLookup($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getStatusesLookup($parameters);
-        }
-        
-        /**
-         * Returns the top 10 trending topics for a specific WOEID, if trending information is available for it.
-         * 
-         * Parameters :
-         * - id
-         * - exclude
-         *
-         * @static 
-         */ 
-        public static function getTrendsPlace($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getTrendsPlace($parameters);
-        }
-        
-        /**
-         * Returns the locations that Twitter has trending topic information for.
-         *
-         * @static 
-         */ 
-        public static function getTrendsAvailable($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getTrendsAvailable($parameters);
-        }
-        
-        /**
-         * Returns the locations that Twitter has trending topic information for, closest to a specified location.
-         * 
-         * Parameters :
-         * - lat
-         * - long
-         *
-         * @static 
-         */ 
-        public static function getTrendsClosest($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getTrendsClosest($parameters);
-        }
-        
-        /**
-         * Returns fully-hydrated user objects for up to 100 users per request, as specified by comma-separated values passed to the user_id and/or screen_name parameters.
-         * 
-         * Parameters :
-         * - user_id
-         * - screen_name
-         * - include_entities (0|1)
-         *
-         * @static 
-         */ 
-        public static function getUsersLookup($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getUsersLookup($parameters);
-        }
-        
-        /**
-         * Returns a variety of information about the user specified by the required user_id or screen_name parameter. The author’s most recent Tweet will be returned inline when possible.
-         * 
-         * Parameters :
-         * - user_id
-         * - screen_name
-         * - include_entities (0|1)
-         *
-         * @static 
-         */ 
-        public static function getUsers($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getUsers($parameters);
-        }
-        
-        /**
-         * Provides a simple, relevance-based search interface to public user accounts on Twitter. Try querying by topical interest, full name, company name, location, or other criteria. Exact match searches are not supported.
-         * 
-         * Parameters :
-         * - q
-         * - page
-         * - count
-         * - include_entities (0|1)
-         *
-         * @static 
-         */ 
-        public static function getUsersSearch($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getUsersSearch($parameters);
-        }
-        
-        /**
-         * Returns a map of the available size variations of the specified user’s profile banner. If the user has not uploaded a profile banner, a HTTP 404 will be served instead. This method can be used instead of string manipulation on the profile_banner_url returned in user objects as described in Profile Images and Banners.
-         * 
-         * Parameters :
-         * - user_id
-         * - screen_name
-         *
-         * @static 
-         */ 
-        public static function getUserBanner($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getUserBanner($parameters);
-        }
-        
-        /**
-         * Mutes the user specified in the ID parameter for the authenticating user.
-         * 
-         * Parameters :
-         * - screen_name
-         * - user_id
-         *
-         * @static 
-         */ 
-        public static function muteUser($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::muteUser($parameters);
-        }
-        
-        /**
-         * Un-mutes the user specified in the ID parameter for the authenticating user.
-         * 
-         * Parameters :
-         * - screen_name
-         * - user_id
-         *
-         * @static 
-         */ 
-        public static function unmuteUser($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::unmuteUser($parameters);
-        }
-        
-        /**
-         * Returns an array of numeric user ids the authenticating user has muted.
-         * 
-         * Parameters :
-         * - cursor
-         *
-         * @static 
-         */ 
-        public static function mutedUserIds($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::mutedUserIds($parameters);
-        }
-        
-        /**
-         * Returns an array of user objects the authenticating user has muted.
-         * 
-         * Parameters :
-         * - cursor
-         * - include_entities
-         * - skip_status
-         *
-         * @static 
-         */ 
-        public static function mutedUsers($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::mutedUsers($parameters);
-        }
-        
-        /**
-         * Access the users in a given category of the Twitter suggested user list.
-         * 
-         * Parameters :
-         * - lang
-         *
-         * @static 
-         */ 
-        public static function getSuggesteds($slug, $parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getSuggesteds($slug, $parameters);
-        }
-        
-        /**
-         * Access to Twitter’s suggested user list. This returns the list of suggested user categories. The category can be used in GET users / suggestions / :slug to get the users in that category.
-         * 
-         * Parameters :
-         * - lang
-         *
-         * @static 
-         */ 
-        public static function getSuggestions($parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getSuggestions($parameters);
-        }
-        
-        /**
-         * Access the users in a given category of the Twitter suggested user list and return their most recent status if they are not a protected user.
-         *
-         * @static 
-         */ 
-        public static function getSuggestedsMembers($slug, $parameters = array())
-        {
-            return \Thujohn\Twitter\Twitter::getSuggestedsMembers($slug, $parameters);
-        }
-         
-    }
- 
-}
-
 namespace Illuminate\Support\Facades { 
 
+    /**
+     * 
+     *
+     * @method static string version()
+     * @method static string basePath()
+     * @method static string environment()
+     * @method static bool isDownForMaintenance()
+     * @method static void registerConfiguredProviders()
+     * @method static \Illuminate\Support\ServiceProvider register(\Illuminate\Support\ServiceProvider|string $provider, array $options = [], bool $force = false)
+     * @method static void registerDeferredProvider(string $provider, string $service = null)
+     * @method static void boot()
+     * @method static void booting(mixed $callback)
+     * @method static void booted(mixed $callback)
+     * @method static string getCachedServicesPath()
+     * @see \Illuminate\Foundation\Application
+     */ 
     class App {
         
         /**
@@ -3106,6 +1330,16 @@ namespace Illuminate\Support\Facades {
          
     }
 
+    /**
+     * 
+     *
+     * @method static int handle(\Symfony\Component\Console\Input\InputInterface $input, \Symfony\Component\Console\Output\OutputInterface $output = null)
+     * @method static int call(string $command, array $parameters = [], $outputBuffer = null)
+     * @method static int queue(string $command, array $parameters = [])
+     * @method static array all()
+     * @method static string output()
+     * @see \Illuminate\Contracts\Console\Kernel
+     */ 
     class Artisan {
         
         /**
@@ -3243,6 +1477,34 @@ namespace Illuminate\Support\Facades {
          
     }
 
+    /**
+     * 
+     *
+     * @method static mixed guard(string|null $name = null)
+     * @method static void shouldUse(string $name);
+     * @method static bool check()
+     * @method static bool guest()
+     * @method static \Illuminate\Contracts\Auth\Authenticatable|null user()
+     * @method static int|null id()
+     * @method static bool validate(array $credentials = [])
+     * @method static void setUser(\Illuminate\Contracts\Auth\Authenticatable $user)
+     * @method static bool attempt(array $credentials = [], bool $remember = false)
+     * @method static bool once(array $credentials = [])
+     * @method static void login(\Illuminate\Contracts\Auth\Authenticatable $user, bool $remember = false)
+     * @method static \Illuminate\Contracts\Auth\Authenticatable loginUsingId(mixed $id, bool $remember = false)
+     * @method static bool onceUsingId(mixed $id)
+     * @method static bool viaRemember()
+     * @method static void logout()
+     * @method static \Symfony\Component\HttpFoundation\Response|null onceBasic(string $field = 'email',array $extraConditions = [])
+     * @method static null|bool logoutOtherDevices(string $password, string $attribute = 'password')
+     * @method static \Illuminate\Contracts\Auth\UserProvider|null createUserProvider(string $provider = null)
+     * @method static \Illuminate\Auth\AuthManager extend(string $driver, \Closure $callback)
+     * @method static \Illuminate\Auth\AuthManager provider(string $name, \Closure $callback)
+     * @see \Illuminate\Auth\AuthManager
+     * @see \Illuminate\Contracts\Auth\Factory
+     * @see \Illuminate\Contracts\Auth\Guard
+     * @see \Illuminate\Contracts\Auth\StatefulGuard
+     */ 
     class Auth {
         
         /**
@@ -3545,7 +1807,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $password
          * @param string $attribute
-         * @return null|bool 
+         * @return bool|null 
          * @static 
          */ 
         public static function logoutOtherDevices($password, $attribute = 'password')
@@ -3821,6 +2083,27 @@ namespace Illuminate\Support\Facades {
          
     }
 
+    /**
+     * 
+     *
+     * @method static void compile($path = null)
+     * @method static string getPath()
+     * @method static void setPath($path)
+     * @method static string compileString($value)
+     * @method static string stripParentheses($expression)
+     * @method static void extend(callable $compiler)
+     * @method static array getExtensions()
+     * @method static void if($name, callable $callback)
+     * @method static bool check($name, ...$parameters)
+     * @method static void component($path, $alias = null)
+     * @method static void include($path, $alias = null)
+     * @method static void directive($name, callable $handler)
+     * @method static array getCustomDirectives()
+     * @method static void setEchoFormat($format)
+     * @method static void withDoubleEncoding()
+     * @method static void withoutDoubleEncoding()
+     * @see \Illuminate\View\Compilers\BladeCompiler
+     */ 
     class Blade {
         
         /**
@@ -4055,6 +2338,14 @@ namespace Illuminate\Support\Facades {
          
     }
 
+    /**
+     * 
+     *
+     * @method static void connection($name = null);
+     * @method static \Illuminate\Broadcasting\Broadcasters\Broadcaster channel(string $channel, callable|string  $callback)
+     * @method static mixed auth(\Illuminate\Http\Request $request)
+     * @see \Illuminate\Contracts\Broadcasting\Factory
+     */ 
     class Broadcast {
         
         /**
@@ -4167,6 +2458,17 @@ namespace Illuminate\Support\Facades {
          
     }
 
+    /**
+     * 
+     *
+     * @method static mixed dispatch($command)
+     * @method static mixed dispatchNow($command, $handler = null)
+     * @method static bool hasCommandHandler($command)
+     * @method static bool|mixed getCommandHandler($command)
+     * @method static \Illuminate\Contracts\Bus\Dispatcher pipeThrough(array $pipes)
+     * @method static \Illuminate\Contracts\Bus\Dispatcher map(array $map)
+     * @see \Illuminate\Contracts\Bus\Dispatcher
+     */ 
     class Bus {
         
         /**
@@ -4254,9 +2556,80 @@ namespace Illuminate\Support\Facades {
         {
             return \Illuminate\Bus\Dispatcher::map($map);
         }
+        
+        /**
+         * Assert if a job was dispatched based on a truth-test callback.
+         *
+         * @param string $command
+         * @param callable|int|null $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function assertDispatched($command, $callback = null)
+        {
+            \Illuminate\Support\Testing\Fakes\BusFake::assertDispatched($command, $callback);
+        }
+        
+        /**
+         * Determine if a job was dispatched based on a truth-test callback.
+         *
+         * @param string $command
+         * @param callable|null $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function assertNotDispatched($command, $callback = null)
+        {
+            \Illuminate\Support\Testing\Fakes\BusFake::assertNotDispatched($command, $callback);
+        }
+        
+        /**
+         * Get all of the jobs matching a truth-test callback.
+         *
+         * @param string $command
+         * @param callable|null $callback
+         * @return \Illuminate\Support\Collection 
+         * @static 
+         */ 
+        public static function dispatched($command, $callback = null)
+        {
+            return \Illuminate\Support\Testing\Fakes\BusFake::dispatched($command, $callback);
+        }
+        
+        /**
+         * Determine if there are any stored commands for a given class.
+         *
+         * @param string $command
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasDispatched($command)
+        {
+            return \Illuminate\Support\Testing\Fakes\BusFake::hasDispatched($command);
+        }
          
     }
 
+    /**
+     * 
+     *
+     * @method static \Illuminate\Contracts\Cache\Repository  store(string|null $name = null)
+     * @method static bool has(string $key)
+     * @method static mixed get(string $key, mixed $default = null)
+     * @method static mixed pull(string $key, mixed $default = null)
+     * @method static void put(string $key, $value, \DateTimeInterface|\DateInterval|float|int $minutes)
+     * @method static bool add(string $key, $value, \DateTimeInterface|\DateInterval|float|int $minutes)
+     * @method static int|bool increment(string $key, $value = 1)
+     * @method static int|bool decrement(string $key, $value = 1)
+     * @method static void forever(string $key, $value)
+     * @method static mixed remember(string $key, \DateTimeInterface|\DateInterval|float|int $minutes, \Closure $callback)
+     * @method static mixed sear(string $key, \Closure $callback)
+     * @method static mixed rememberForever(string $key, \Closure $callback)
+     * @method static bool forget(string $key)
+     * @method static \Illuminate\Contracts\Cache\Store getStore()
+     * @see \Illuminate\Cache\CacheManager
+     * @see \Illuminate\Cache\Repository
+     */ 
     class Cache {
         
         /**
@@ -4813,6 +3186,17 @@ namespace Illuminate\Support\Facades {
          
     }
 
+    /**
+     * 
+     *
+     * @method static bool has($key)
+     * @method static mixed get($key, $default = null)
+     * @method static array all()
+     * @method static void set($key, $value = null)
+     * @method static void prepend($key, $value)
+     * @method static void push($key, $value)
+     * @see \Illuminate\Config\Repository
+     */ 
     class Config {
         
         /**
@@ -4953,6 +3337,14 @@ namespace Illuminate\Support\Facades {
          
     }
 
+    /**
+     * 
+     *
+     * @method static void queue(...$parameters)
+     * @method static unqueue($name)
+     * @method static array getQueuedCookies()
+     * @see \Illuminate\Cookie\CookieJar
+     */ 
     class Cookie {
         
         /**
@@ -5085,6 +3477,13 @@ namespace Illuminate\Support\Facades {
          
     }
 
+    /**
+     * 
+     *
+     * @method static string encrypt(string $value, bool $serialize = true)
+     * @method static string decrypt(string $payload, bool $unserialize = true)
+     * @see \Illuminate\Encryption\Encrypter
+     */ 
     class Crypt {
         
         /**
@@ -5177,6 +3576,32 @@ namespace Illuminate\Support\Facades {
          
     }
 
+    /**
+     * 
+     *
+     * @method static \Illuminate\Database\ConnectionInterface connection(string $name = null)
+     * @method static string getDefaultConnection()
+     * @method static void setDefaultConnection(string $name)
+     * @method static \Illuminate\Database\Query\Builder table(string $table)
+     * @method static \Illuminate\Database\Query\Expression raw($value)
+     * @method static mixed selectOne(string $query, array $bindings = [])
+     * @method static array select(string $query, array $bindings = [])
+     * @method static bool insert(string $query, array $bindings = [])
+     * @method static int update(string $query, array $bindings = [])
+     * @method static int delete(string $query, array $bindings = [])
+     * @method static bool statement(string $query, array $bindings = [])
+     * @method static int affectingStatement(string $query, array $bindings = [])
+     * @method static bool unprepared(string $query)
+     * @method static array prepareBindings(array $bindings)
+     * @method static mixed transaction(\Closure $callback, int $attempts = 1)
+     * @method static void beginTransaction()
+     * @method static void commit()
+     * @method static void rollBack()
+     * @method static int transactionLevel()
+     * @method static array pretend(\Closure $callback)
+     * @see \Illuminate\Database\DatabaseManager
+     * @see \Illuminate\Database\Connection
+     */ 
     class DB {
         
         /**
@@ -6073,6 +4498,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param int|null $toLevel
          * @return void 
+         * @throws \Exception
          * @static 
          */ 
         public static function rollBack($toLevel = null)
@@ -6095,6 +4521,20 @@ namespace Illuminate\Support\Facades {
          
     }
 
+    /**
+     * 
+     *
+     * @method static void listen(string | array $events, $listener)
+     * @method static bool hasListeners(string $eventName)
+     * @method static void subscribe(object | string $subscriber)
+     * @method static array|null until(string | object $event, $payload = [])
+     * @method static array|null dispatch(string | object $event, $payload = [], bool $halt = false)
+     * @method static void push(string $event, array $payload = [])
+     * @method static void flush(string $event)
+     * @method static void forget(string $event)
+     * @method static void forgetPushed()
+     * @see \Illuminate\Events\Dispatcher
+     */ 
     class Event {
         
         /**
@@ -6272,9 +4712,113 @@ namespace Illuminate\Support\Facades {
         {
             return \Illuminate\Events\Dispatcher::setQueueResolver($resolver);
         }
+        
+        /**
+         * Assert if an event was dispatched based on a truth-test callback.
+         *
+         * @param string $event
+         * @param callable|int|null $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function assertDispatched($event, $callback = null)
+        {
+            \Illuminate\Support\Testing\Fakes\EventFake::assertDispatched($event, $callback);
+        }
+        
+        /**
+         * Assert if a event was dispatched a number of times.
+         *
+         * @param string $event
+         * @param int $times
+         * @return void 
+         * @static 
+         */ 
+        public static function assertDispatchedTimes($event, $times = 1)
+        {
+            \Illuminate\Support\Testing\Fakes\EventFake::assertDispatchedTimes($event, $times);
+        }
+        
+        /**
+         * Determine if an event was dispatched based on a truth-test callback.
+         *
+         * @param string $event
+         * @param callable|null $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function assertNotDispatched($event, $callback = null)
+        {
+            \Illuminate\Support\Testing\Fakes\EventFake::assertNotDispatched($event, $callback);
+        }
+        
+        /**
+         * Get all of the events matching a truth-test callback.
+         *
+         * @param string $event
+         * @param callable|null $callback
+         * @return \Illuminate\Support\Collection 
+         * @static 
+         */ 
+        public static function dispatched($event, $callback = null)
+        {
+            return \Illuminate\Support\Testing\Fakes\EventFake::dispatched($event, $callback);
+        }
+        
+        /**
+         * Determine if the given event has been dispatched.
+         *
+         * @param string $event
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasDispatched($event)
+        {
+            return \Illuminate\Support\Testing\Fakes\EventFake::hasDispatched($event);
+        }
          
     }
 
+    /**
+     * 
+     *
+     * @method static bool exists(string $path)
+     * @method static string get(string $path, bool $lock = false)
+     * @method static string sharedGet(string $path)
+     * @method static mixed getRequire(string $path)
+     * @method static mixed requireOnce(string $file)
+     * @method static string hash(string $path)
+     * @method static int put(string $path, string $contents, bool $lock = false)
+     * @method static int prepend(string $path, string $data)
+     * @method static int append(string $path, string $data)
+     * @method static mixed chmod(string $path, int $mode = null)
+     * @method static bool delete(string|array $paths)
+     * @method static bool move(string $path, string $target)
+     * @method static bool copy(string $path, string $target)
+     * @method static void link(string $target, string $link)
+     * @method static string name(string $path)
+     * @method static string basename(string $path)
+     * @method static string dirname(string $path)
+     * @method static string extension(string $path)
+     * @method static string type(string $path)
+     * @method static string|false mimeType(string $path)
+     * @method static int size(string $path)
+     * @method static int lastModified(string $path)
+     * @method static bool isDirectory(string $directory)
+     * @method static bool isReadable(string $path)
+     * @method static bool isWritable(string $path)
+     * @method static bool isFile(string $file)
+     * @method static array glob(string $pattern, int $flags = 0)
+     * @method static \Symfony\Component\Finder\SplFileInfo[] files(string $directory, bool $hidden = false)
+     * @method static \Symfony\Component\Finder\SplFileInfo[] allFiles(string $directory, bool $hidden = false)
+     * @method static array directories(string $directory)
+     * @method static bool makeDirectory(string $path, int $mode = 0755,  bool $recursive = false, bool $force = false)
+     * @method static bool moveDirectory(string $from, string $to, bool $overwrite = false)
+     * @method static bool copyDirectory(string $directory, string $destination, int $options = null)
+     * @method static bool deleteDirectory(string $directory, bool $preserve = false)
+     * @method static bool cleanDirectory(string $directory)
+     * @see \Illuminate\Filesystem\Filesystem
+     */ 
     class File {
         
         /**
@@ -6710,6 +5254,18 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Remove all of the directories within a given directory.
+         *
+         * @param string $directory
+         * @return bool 
+         * @static 
+         */ 
+        public static function deleteDirectories($directory)
+        {
+            return \Illuminate\Filesystem\Filesystem::deleteDirectories($directory);
+        }
+        
+        /**
          * Empty the specified directory of all files and folders.
          *
          * @param string $directory
@@ -6761,6 +5317,24 @@ namespace Illuminate\Support\Facades {
          
     }
 
+    /**
+     * 
+     *
+     * @method static bool has(string $ability)
+     * @method static \Illuminate\Contracts\Auth\Access\Gate define(string $ability, callable | string $callback)
+     * @method static \Illuminate\Contracts\Auth\Access\Gate policy(string $class, string $policy)
+     * @method static \Illuminate\Contracts\Auth\Access\Gate before(callable $callback)
+     * @method static \Illuminate\Contracts\Auth\Access\Gate after(callable $callback)
+     * @method static bool allows(string $ability, array | mixed $arguments = [])
+     * @method static bool denies(string $ability, array | mixed $arguments = [])
+     * @method static bool check(iterable | string $abilities, array | mixed $arguments = [])
+     * @method static bool any(iterable | string $abilities, array | mixed $arguments = [])
+     * @method static \Illuminate\Auth\Access\Response authorize(string $ability, array | mixed $arguments = [])
+     * @method static mixed getPolicyFor(object | string $class)
+     * @method static \Illuminate\Contracts\Auth\Access\Gate forUser(\Illuminate\Contracts\Auth\Authenticatable | mixed $user)
+     * @method static array abilities()
+     * @see \Illuminate\Contracts\Auth\Access\Gate
+     */ 
     class Gate {
         
         /**
@@ -6966,6 +5540,15 @@ namespace Illuminate\Support\Facades {
          
     }
 
+    /**
+     * 
+     *
+     * @method static array info(string $hashedValue)
+     * @method static string make(string $value, array $options = [])
+     * @method static bool check(string $value, string $hashedValue, array $options = [])
+     * @method static bool needsRehash(string $hashedValue, array $options = [])
+     * @see \Illuminate\Hashing\HashManager
+     */ 
     class Hash {
         
         /**
@@ -7058,6 +5641,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $driver
          * @return mixed 
+         * @throws \InvalidArgumentException
          * @static 
          */ 
         public static function driver($driver = null)
@@ -7094,6 +5678,16 @@ namespace Illuminate\Support\Facades {
          
     }
 
+    /**
+     * 
+     *
+     * @method static mixed trans(string $key, array $replace = [], string $locale = null)
+     * @method static string transChoice(string $key, int | array | \Countable $number, array $replace = [], string $locale = null)
+     * @method static string getLocale()
+     * @method static void setLocale(string $locale)
+     * @method static string|array|null get(string $key, array $replace = [], string $locale = null, bool $fallback = true)
+     * @see \Illuminate\Translation\Translator
+     */ 
     class Lang {
         
         /**
@@ -7418,6 +6012,22 @@ namespace Illuminate\Support\Facades {
          
     }
 
+    /**
+     * 
+     *
+     * @method static void emergency(string $message, array $context = [])
+     * @method static void alert(string $message, array $context = [])
+     * @method static void critical(string $message, array $context = [])
+     * @method static void error(string $message, array $context = [])
+     * @method static void warning(string $message, array $context = [])
+     * @method static void notice(string $message, array $context = [])
+     * @method static void info(string $message, array $context = [])
+     * @method static void debug(string $message, array $context = [])
+     * @method static void log($level, string $message, array $context = [])
+     * @method static mixed channel(string $channel = null)
+     * @method static \Psr\Log\LoggerInterface stack(array $channels, string $channel = null)
+     * @see \Illuminate\Log\Logger
+     */ 
     class Log {
         
         /**
@@ -7425,12 +6035,12 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $message The log message
          * @param array $context The log context
-         * @return Boolean Whether the record has been processed
+         * @return bool Whether the record has been processed
          * @static 
          */ 
         public static function debug($message, $context = array())
         {
-            return \Monolog\Logger::debug($message, $context);
+            return \Monolog\Logger::addDebug($message, $context);
         }
         
         /**
@@ -7438,12 +6048,12 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $message The log message
          * @param array $context The log context
-         * @return Boolean Whether the record has been processed
+         * @return bool Whether the record has been processed
          * @static 
          */ 
         public static function info($message, $context = array())
         {
-            return \Monolog\Logger::info($message, $context);
+            return \Monolog\Logger::addInfo($message, $context);
         }
         
         /**
@@ -7451,12 +6061,12 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $message The log message
          * @param array $context The log context
-         * @return Boolean Whether the record has been processed
+         * @return bool Whether the record has been processed
          * @static 
          */ 
         public static function notice($message, $context = array())
         {
-            return \Monolog\Logger::notice($message, $context);
+            return \Monolog\Logger::addNotice($message, $context);
         }
         
         /**
@@ -7464,12 +6074,12 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $message The log message
          * @param array $context The log context
-         * @return Boolean Whether the record has been processed
+         * @return bool Whether the record has been processed
          * @static 
          */ 
         public static function warning($message, $context = array())
         {
-            return \Monolog\Logger::warning($message, $context);
+            return \Monolog\Logger::addWarning($message, $context);
         }
         
         /**
@@ -7477,12 +6087,12 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $message The log message
          * @param array $context The log context
-         * @return Boolean Whether the record has been processed
+         * @return bool Whether the record has been processed
          * @static 
          */ 
         public static function error($message, $context = array())
         {
-            return \Monolog\Logger::error($message, $context);
+            return \Monolog\Logger::addError($message, $context);
         }
         
         /**
@@ -7490,12 +6100,12 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $message The log message
          * @param array $context The log context
-         * @return Boolean Whether the record has been processed
+         * @return bool Whether the record has been processed
          * @static 
          */ 
         public static function critical($message, $context = array())
         {
-            return \Monolog\Logger::critical($message, $context);
+            return \Monolog\Logger::addCritical($message, $context);
         }
         
         /**
@@ -7503,12 +6113,12 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $message The log message
          * @param array $context The log context
-         * @return Boolean Whether the record has been processed
+         * @return bool Whether the record has been processed
          * @static 
          */ 
         public static function alert($message, $context = array())
         {
-            return \Monolog\Logger::alert($message, $context);
+            return \Monolog\Logger::addAlert($message, $context);
         }
         
         /**
@@ -7516,12 +6126,12 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $message The log message
          * @param array $context The log context
-         * @return Boolean Whether the record has been processed
+         * @return bool Whether the record has been processed
          * @static 
          */ 
         public static function emergency($message, $context = array())
         {
-            return \Monolog\Logger::emergency($message, $context);
+            return \Monolog\Logger::addEmergency($message, $context);
         }
         
         /**
@@ -7613,6 +6223,18 @@ namespace Illuminate\Support\Facades {
          
     }
 
+    /**
+     * 
+     *
+     * @method static \Illuminate\Mail\PendingMail to($users)
+     * @method static \Illuminate\Mail\PendingMail bcc($users)
+     * @method static void raw(string $text, $callback)
+     * @method static void send(string|array|\Illuminate\Contracts\Mail\Mailable $view, array $data = [], \Closure|string $callback = null)
+     * @method static array failures()
+     * @method static mixed queue(string|array|\Illuminate\Contracts\Mail\Mailable $view, string $queue = null)
+     * @method static mixed later(\DateTimeInterface|\DateInterval|int $delay, string|array|\Illuminate\Contracts\Mail\Mailable $view, string $queue = null)
+     * @see \Illuminate\Mail\Mailer
+     */ 
     class Mail {
         
         /**
@@ -7908,9 +6530,141 @@ namespace Illuminate\Support\Facades {
         {
             return \Illuminate\Mail\Mailer::hasMacro($name);
         }
+        
+        /**
+         * Assert if a mailable was sent based on a truth-test callback.
+         *
+         * @param string $mailable
+         * @param callable|int|null $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function assertSent($mailable, $callback = null)
+        {
+            \Illuminate\Support\Testing\Fakes\MailFake::assertSent($mailable, $callback);
+        }
+        
+        /**
+         * Determine if a mailable was not sent based on a truth-test callback.
+         *
+         * @param string $mailable
+         * @param callable|null $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function assertNotSent($mailable, $callback = null)
+        {
+            \Illuminate\Support\Testing\Fakes\MailFake::assertNotSent($mailable, $callback);
+        }
+        
+        /**
+         * Assert that no mailables were sent.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function assertNothingSent()
+        {
+            \Illuminate\Support\Testing\Fakes\MailFake::assertNothingSent();
+        }
+        
+        /**
+         * Assert if a mailable was queued based on a truth-test callback.
+         *
+         * @param string $mailable
+         * @param callable|int|null $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function assertQueued($mailable, $callback = null)
+        {
+            \Illuminate\Support\Testing\Fakes\MailFake::assertQueued($mailable, $callback);
+        }
+        
+        /**
+         * Determine if a mailable was not queued based on a truth-test callback.
+         *
+         * @param string $mailable
+         * @param callable|null $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function assertNotQueued($mailable, $callback = null)
+        {
+            \Illuminate\Support\Testing\Fakes\MailFake::assertNotQueued($mailable, $callback);
+        }
+        
+        /**
+         * Assert that no mailables were queued.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function assertNothingQueued()
+        {
+            \Illuminate\Support\Testing\Fakes\MailFake::assertNothingQueued();
+        }
+        
+        /**
+         * Get all of the mailables matching a truth-test callback.
+         *
+         * @param string $mailable
+         * @param callable|null $callback
+         * @return \Illuminate\Support\Collection 
+         * @static 
+         */ 
+        public static function sent($mailable, $callback = null)
+        {
+            return \Illuminate\Support\Testing\Fakes\MailFake::sent($mailable, $callback);
+        }
+        
+        /**
+         * Determine if the given mailable has been sent.
+         *
+         * @param string $mailable
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasSent($mailable)
+        {
+            return \Illuminate\Support\Testing\Fakes\MailFake::hasSent($mailable);
+        }
+        
+        /**
+         * Get all of the queued mailables matching a truth-test callback.
+         *
+         * @param string $mailable
+         * @param callable|null $callback
+         * @return \Illuminate\Support\Collection 
+         * @static 
+         */ 
+        public static function queued($mailable, $callback = null)
+        {
+            return \Illuminate\Support\Testing\Fakes\MailFake::queued($mailable, $callback);
+        }
+        
+        /**
+         * Determine if the given mailable has been queued.
+         *
+         * @param string $mailable
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasQueued($mailable)
+        {
+            return \Illuminate\Support\Testing\Fakes\MailFake::hasQueued($mailable);
+        }
          
     }
 
+    /**
+     * 
+     *
+     * @method static void send(\Illuminate\Support\Collection|array|mixed $notifiables, $notification)
+     * @method static void sendNow(\Illuminate\Support\Collection|array|mixed $notifiables, $notification)
+     * @method static mixed channel(string|null $name = null)
+     * @see \Illuminate\Notifications\ChannelManager
+     */ 
     class Notification {
         
         /**
@@ -7991,6 +6745,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $driver
          * @return mixed 
+         * @throws \InvalidArgumentException
          * @static 
          */ 
         public static function driver($driver = null)
@@ -8024,9 +6779,111 @@ namespace Illuminate\Support\Facades {
             //Method inherited from \Illuminate\Support\Manager            
             return \Illuminate\Notifications\ChannelManager::getDrivers();
         }
+        
+        /**
+         * Assert if a notification was sent based on a truth-test callback.
+         *
+         * @param mixed $notifiable
+         * @param string $notification
+         * @param callable|null $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function assertSentTo($notifiable, $notification, $callback = null)
+        {
+            \Illuminate\Support\Testing\Fakes\NotificationFake::assertSentTo($notifiable, $notification, $callback);
+        }
+        
+        /**
+         * Assert if a notification was sent a number of times.
+         *
+         * @param mixed $notifiable
+         * @param string $notification
+         * @param int $times
+         * @return void 
+         * @static 
+         */ 
+        public static function assertSentToTimes($notifiable, $notification, $times = 1)
+        {
+            \Illuminate\Support\Testing\Fakes\NotificationFake::assertSentToTimes($notifiable, $notification, $times);
+        }
+        
+        /**
+         * Determine if a notification was sent based on a truth-test callback.
+         *
+         * @param mixed $notifiable
+         * @param string $notification
+         * @param callable|null $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function assertNotSentTo($notifiable, $notification, $callback = null)
+        {
+            \Illuminate\Support\Testing\Fakes\NotificationFake::assertNotSentTo($notifiable, $notification, $callback);
+        }
+        
+        /**
+         * Assert that no notifications were sent.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function assertNothingSent()
+        {
+            \Illuminate\Support\Testing\Fakes\NotificationFake::assertNothingSent();
+        }
+        
+        /**
+         * Assert the total amount of times a notification was sent.
+         *
+         * @param int $expectedCount
+         * @param string $notification
+         * @return void 
+         * @static 
+         */ 
+        public static function assertTimesSent($expectedCount, $notification)
+        {
+            \Illuminate\Support\Testing\Fakes\NotificationFake::assertTimesSent($expectedCount, $notification);
+        }
+        
+        /**
+         * Get all of the notifications matching a truth-test callback.
+         *
+         * @param mixed $notifiable
+         * @param string $notification
+         * @param callable|null $callback
+         * @return \Illuminate\Support\Collection 
+         * @static 
+         */ 
+        public static function sent($notifiable, $notification, $callback = null)
+        {
+            return \Illuminate\Support\Testing\Fakes\NotificationFake::sent($notifiable, $notification, $callback);
+        }
+        
+        /**
+         * Determine if there are more notifications left to inspect.
+         *
+         * @param mixed $notifiable
+         * @param string $notification
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasSent($notifiable, $notification)
+        {
+            return \Illuminate\Support\Testing\Fakes\NotificationFake::hasSent($notifiable, $notification);
+        }
          
     }
 
+    /**
+     * 
+     *
+     * @method static string sendResetLink(array $credentials)
+     * @method static mixed reset(array $credentials, \Closure $callback)
+     * @method static void validator(\Closure $callback)
+     * @method static bool validateNewPassword(array $credentials)
+     * @see \Illuminate\Auth\Passwords\PasswordBroker
+     */ 
     class Password {
         
         /**
@@ -8066,6 +6923,22 @@ namespace Illuminate\Support\Facades {
          
     }
 
+    /**
+     * 
+     *
+     * @method static int size(string $queue = null)
+     * @method static mixed push(string|object $job, string $data = '', $queue = null)
+     * @method static mixed pushOn(string $queue, string|object $job, $data = '')
+     * @method static mixed pushRaw(string $payload, string $queue = null, array $options = [])
+     * @method static mixed later(\DateTimeInterface|\DateInterval|int $delay, string|object $job, $data = '', string $queue = null)
+     * @method static mixed laterOn(string $queue, \DateTimeInterface|\DateInterval|int $delay, string|object $job, $data = '')
+     * @method static mixed bulk(array $jobs, $data = '', string $queue = null)
+     * @method static \Illuminate\Contracts\Queue\Job|null pop(string $queue = null)
+     * @method static string getConnectionName()
+     * @method static \Illuminate\Contracts\Queue\Queue setConnectionName(string $name)
+     * @see \Illuminate\Queue\QueueManager
+     * @see \Illuminate\Queue\Queue
+     */ 
     class Queue {
         
         /**
@@ -8237,6 +7110,96 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Assert if a job was pushed based on a truth-test callback.
+         *
+         * @param string $job
+         * @param callable|int|null $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function assertPushed($job, $callback = null)
+        {
+            \Illuminate\Support\Testing\Fakes\QueueFake::assertPushed($job, $callback);
+        }
+        
+        /**
+         * Assert if a job was pushed based on a truth-test callback.
+         *
+         * @param string $queue
+         * @param string $job
+         * @param callable|null $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function assertPushedOn($queue, $job, $callback = null)
+        {
+            \Illuminate\Support\Testing\Fakes\QueueFake::assertPushedOn($queue, $job, $callback);
+        }
+        
+        /**
+         * Assert if a job was pushed with chained jobs based on a truth-test callback.
+         *
+         * @param string $job
+         * @param array $expectedChain
+         * @param callable|null $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function assertPushedWithChain($job, $expectedChain = array(), $callback = null)
+        {
+            \Illuminate\Support\Testing\Fakes\QueueFake::assertPushedWithChain($job, $expectedChain, $callback);
+        }
+        
+        /**
+         * Determine if a job was pushed based on a truth-test callback.
+         *
+         * @param string $job
+         * @param callable|null $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function assertNotPushed($job, $callback = null)
+        {
+            \Illuminate\Support\Testing\Fakes\QueueFake::assertNotPushed($job, $callback);
+        }
+        
+        /**
+         * Assert that no jobs were pushed.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function assertNothingPushed()
+        {
+            \Illuminate\Support\Testing\Fakes\QueueFake::assertNothingPushed();
+        }
+        
+        /**
+         * Get all of the jobs matching a truth-test callback.
+         *
+         * @param string $job
+         * @param callable|null $callback
+         * @return \Illuminate\Support\Collection 
+         * @static 
+         */ 
+        public static function pushed($job, $callback = null)
+        {
+            return \Illuminate\Support\Testing\Fakes\QueueFake::pushed($job, $callback);
+        }
+        
+        /**
+         * Determine if there are any stored jobs for a given class.
+         *
+         * @param string $job
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasPushed($job)
+        {
+            return \Illuminate\Support\Testing\Fakes\QueueFake::hasPushed($job);
+        }
+        
+        /**
          * Get the size of the queue.
          *
          * @param string $queue
@@ -8245,7 +7208,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function size($queue = null)
         {
-            return \Illuminate\Queue\SyncQueue::size($queue);
+            return \Illuminate\Support\Testing\Fakes\QueueFake::size($queue);
         }
         
         /**
@@ -8255,12 +7218,11 @@ namespace Illuminate\Support\Facades {
          * @param mixed $data
          * @param string $queue
          * @return mixed 
-         * @throws \Exception|\Throwable
          * @static 
          */ 
         public static function push($job, $data = '', $queue = null)
         {
-            return \Illuminate\Queue\SyncQueue::push($job, $data, $queue);
+            return \Illuminate\Support\Testing\Fakes\QueueFake::push($job, $data, $queue);
         }
         
         /**
@@ -8274,13 +7236,13 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function pushRaw($payload, $queue = null, $options = array())
         {
-            return \Illuminate\Queue\SyncQueue::pushRaw($payload, $queue, $options);
+            return \Illuminate\Support\Testing\Fakes\QueueFake::pushRaw($payload, $queue, $options);
         }
         
         /**
          * Push a new job onto the queue after a delay.
          *
-         * @param \DateTimeInterface|\DateInterval|int $delay
+         * @param \DateTime|int $delay
          * @param string $job
          * @param mixed $data
          * @param string $queue
@@ -8289,19 +7251,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function later($delay, $job, $data = '', $queue = null)
         {
-            return \Illuminate\Queue\SyncQueue::later($delay, $job, $data, $queue);
-        }
-        
-        /**
-         * Pop the next job off of the queue.
-         *
-         * @param string $queue
-         * @return \Illuminate\Contracts\Queue\Job|null 
-         * @static 
-         */ 
-        public static function pop($queue = null)
-        {
-            return \Illuminate\Queue\SyncQueue::pop($queue);
+            return \Illuminate\Support\Testing\Fakes\QueueFake::later($delay, $job, $data, $queue);
         }
         
         /**
@@ -8315,15 +7265,14 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function pushOn($queue, $job, $data = '')
         {
-            //Method inherited from \Illuminate\Queue\Queue            
-            return \Illuminate\Queue\SyncQueue::pushOn($queue, $job, $data);
+            return \Illuminate\Support\Testing\Fakes\QueueFake::pushOn($queue, $job, $data);
         }
         
         /**
          * Push a new job onto the queue after a delay.
          *
          * @param string $queue
-         * @param \DateTimeInterface|\DateInterval|int $delay
+         * @param \DateTime|int $delay
          * @param string $job
          * @param mixed $data
          * @return mixed 
@@ -8331,8 +7280,19 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function laterOn($queue, $delay, $job, $data = '')
         {
-            //Method inherited from \Illuminate\Queue\Queue            
-            return \Illuminate\Queue\SyncQueue::laterOn($queue, $delay, $job, $data);
+            return \Illuminate\Support\Testing\Fakes\QueueFake::laterOn($queue, $delay, $job, $data);
+        }
+        
+        /**
+         * Pop the next job off of the queue.
+         *
+         * @param string $queue
+         * @return \Illuminate\Contracts\Queue\Job|null 
+         * @static 
+         */ 
+        public static function pop($queue = null)
+        {
+            return \Illuminate\Support\Testing\Fakes\QueueFake::pop($queue);
         }
         
         /**
@@ -8346,8 +7306,30 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function bulk($jobs, $data = '', $queue = null)
         {
-            //Method inherited from \Illuminate\Queue\Queue            
-            return \Illuminate\Queue\SyncQueue::bulk($jobs, $data, $queue);
+            return \Illuminate\Support\Testing\Fakes\QueueFake::bulk($jobs, $data, $queue);
+        }
+        
+        /**
+         * Get the connection name for the queue.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getConnectionName()
+        {
+            return \Illuminate\Support\Testing\Fakes\QueueFake::getConnectionName();
+        }
+        
+        /**
+         * Set the connection name for the queue.
+         *
+         * @param string $name
+         * @return $this 
+         * @static 
+         */ 
+        public static function setConnectionName($name)
+        {
+            return \Illuminate\Support\Testing\Fakes\QueueFake::setConnectionName($name);
         }
         
         /**
@@ -8361,31 +7343,6 @@ namespace Illuminate\Support\Facades {
         {
             //Method inherited from \Illuminate\Queue\Queue            
             return \Illuminate\Queue\SyncQueue::getJobExpiration($job);
-        }
-        
-        /**
-         * Get the connection name for the queue.
-         *
-         * @return string 
-         * @static 
-         */ 
-        public static function getConnectionName()
-        {
-            //Method inherited from \Illuminate\Queue\Queue            
-            return \Illuminate\Queue\SyncQueue::getConnectionName();
-        }
-        
-        /**
-         * Set the connection name for the queue.
-         *
-         * @param string $name
-         * @return $this 
-         * @static 
-         */ 
-        public static function setConnectionName($name)
-        {
-            //Method inherited from \Illuminate\Queue\Queue            
-            return \Illuminate\Queue\SyncQueue::setConnectionName($name);
         }
         
         /**
@@ -8403,6 +7360,23 @@ namespace Illuminate\Support\Facades {
          
     }
 
+    /**
+     * 
+     *
+     * @method static \Illuminate\Http\RedirectResponse home(int $status = 302)
+     * @method static \Illuminate\Http\RedirectResponse back(int $status = 302, array $headers = [], $fallback = false)
+     * @method static \Illuminate\Http\RedirectResponse refresh(int $status = 302, array $headers = [])
+     * @method static \Illuminate\Http\RedirectResponse guest(string $path, int $status = 302, array $headers = [], bool $secure = null)
+     * @method static intended(string $default = '/', int $status = 302, array $headers = [], bool $secure = null)
+     * @method static \Illuminate\Http\RedirectResponse to(string $path, int $status = 302, array $headers = [], bool $secure = null)
+     * @method static \Illuminate\Http\RedirectResponse away(string $path, int $status = 302, array $headers = [])
+     * @method static \Illuminate\Http\RedirectResponse secure(string $path, int $status = 302, array $headers = [])
+     * @method static \Illuminate\Http\RedirectResponse route(string $route, array $parameters = [], int $status = 302, array $headers = [])
+     * @method static \Illuminate\Http\RedirectResponse action(string $action, array $parameters = [], int $status = 302, array $headers = [])
+     * @method static \Illuminate\Routing\UrlGenerator getUrlGenerator()
+     * @method static void setSession(\Illuminate\Session\Store $session)
+     * @see \Illuminate\Routing\Redirector
+     */ 
     class Redirect {
         
         /**
@@ -8521,7 +7495,7 @@ namespace Illuminate\Support\Facades {
          * Create a new redirect response to a named route.
          *
          * @param string $route
-         * @param array $parameters
+         * @param mixed $parameters
          * @param int $status
          * @param array $headers
          * @return \Illuminate\Http\RedirectResponse 
@@ -8536,7 +7510,7 @@ namespace Illuminate\Support\Facades {
          * Create a new redirect response to a controller action.
          *
          * @param string $action
-         * @param array $parameters
+         * @param mixed $parameters
          * @param int $status
          * @param array $headers
          * @return \Illuminate\Http\RedirectResponse 
@@ -8610,6 +7584,49 @@ namespace Illuminate\Support\Facades {
          
     }
 
+    /**
+     * 
+     *
+     * @method static \Illuminate\Http\Request instance()
+     * @method static string method()
+     * @method static string root()
+     * @method static string url()
+     * @method static string fullUrl()
+     * @method static string fullUrlWithQuery(array $query)
+     * @method static string path()
+     * @method static string decodedPath()
+     * @method static string|null segment(int $index, string|null $default = null)
+     * @method static array segments()
+     * @method static bool is(...$patterns)
+     * @method static bool routeIs(...$patterns)
+     * @method static bool fullUrlIs(...$patterns)
+     * @method static bool ajax()
+     * @method static bool pjax()
+     * @method static bool secure()
+     * @method static string ip()
+     * @method static array ips()
+     * @method static string userAgent()
+     * @method static \Illuminate\Http\Request merge(array $input)
+     * @method static \Illuminate\Http\Request replace(array $input)
+     * @method static \Symfony\Component\HttpFoundation\ParameterBag|mixed json(string $key = null, $default = null)
+     * @method static \Illuminate\Session\Store session()
+     * @method static \Illuminate\Session\Store|null getSession()
+     * @method static void setLaravelSession(\Illuminate\Contracts\Session\Session $session)
+     * @method static mixed user(string|null $guard = null)
+     * @method static \Illuminate\Routing\Route|object|string route(string|null $param = null)
+     * @method static string fingerprint()
+     * @method static \Illuminate\Http\Request setJson(\Symfony\Component\HttpFoundation\ParameterBag $json)
+     * @method static \Closure getUserResolver()
+     * @method static \Illuminate\Http\Request setUserResolver(\Closure $callback)
+     * @method static \Closure getRouteResolver()
+     * @method static \Illuminate\Http\Request setRouteResolver(\Closure $callback)
+     * @method static array toArray()
+     * @method static bool offsetExists(string $offset)
+     * @method static mixed offsetGet(string $offset)
+     * @method static void offsetSet(string $offset, $value)
+     * @method static void offsetUnset(string $offset)
+     * @see \Illuminate\Http\Request
+     */ 
     class Request {
         
         /**
@@ -8860,6 +7877,21 @@ namespace Illuminate\Support\Facades {
         public static function replace($input)
         {
             return \Illuminate\Http\Request::replace($input);
+        }
+        
+        /**
+         * This method belongs to Symfony HttpFoundation and is not usually needed when using Laravel.
+         * 
+         * Instead, you may use the "input" method.
+         *
+         * @param string $key
+         * @param mixed $default
+         * @return mixed 
+         * @static 
+         */ 
+        public static function get($key, $default = null)
+        {
+            return \Illuminate\Http\Request::get($key, $default);
         }
         
         /**
@@ -9301,26 +8333,6 @@ namespace Illuminate\Support\Facades {
         {
             //Method inherited from \Symfony\Component\HttpFoundation\Request            
             return \Illuminate\Http\Request::getHttpMethodParameterOverride();
-        }
-        
-        /**
-         * Gets a "parameter" value from any bag.
-         * 
-         * This method is mainly useful for libraries that want to provide some flexibility. If you don't need the
-         * flexibility in controllers, it is better to explicitly get request parameters from the appropriate
-         * public property instead (attributes, query, request).
-         * 
-         * Order of precedence: PATH (routing placeholders or custom attributes), GET, BODY
-         *
-         * @param string $key The key
-         * @param mixed $default The default value if the parameter key does not exist
-         * @return mixed 
-         * @static 
-         */ 
-        public static function get($key, $default = null)
-        {
-            //Method inherited from \Symfony\Component\HttpFoundation\Request            
-            return \Illuminate\Http\Request::get($key, $default);
         }
         
         /**
@@ -9798,7 +8810,7 @@ namespace Illuminate\Support\Facades {
          *  * _format request attribute
          *  * $default
          *
-         * @param string $default The default format
+         * @param string|null $default The default format
          * @return string The request format
          * @static 
          */ 
@@ -9923,7 +8935,7 @@ namespace Illuminate\Support\Facades {
          * Checks whether the method is cacheable or not.
          *
          * @see https://tools.ietf.org/html/rfc7231#section-4.2.3
-         * @return bool 
+         * @return bool True for GET and HEAD, false otherwise
          * @static 
          */ 
         public static function isMethodCacheable()
@@ -10555,7 +9567,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function validate($rules, $params = null)
         {
-            return \Illuminate\Http\Request::validate($rules, $params);
+            return \Illuminate\Http\Request::Illuminate\Foundation\Providers\{closure}($rules, $params);
         }
         
         /**
@@ -10565,11 +9577,28 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function hasValidSignature()
         {
-            return \Illuminate\Http\Request::hasValidSignature();
+            return \Illuminate\Http\Request::Illuminate\Foundation\Providers\{closure}();
         }
          
     }
 
+    /**
+     * 
+     *
+     * @method static \Illuminate\Http\Response make(string $content = '', int $status = 200, array $headers = [])
+     * @method static \Illuminate\Http\Response view(string $view, array $data = [], int $status = 200, array $headers = [])
+     * @method static \Illuminate\Http\JsonResponse json(string | array $data = [], int $status = 200, array $headers = [], int $options = 0)
+     * @method static \Illuminate\Http\JsonResponse jsonp(string $callback, string | array $data = [], int $status = 200, array $headers = [], int $options = 0)
+     * @method static \Symfony\Component\HttpFoundation\StreamedResponse stream(\Closure $callback, int $status = 200, array $headers = [])
+     * @method static \Symfony\Component\HttpFoundation\StreamedResponse streamDownload(\Closure $callback, string | null $name = null, array $headers = [], string | null $disposition = 'attachment')
+     * @method static \Symfony\Component\HttpFoundation\BinaryFileResponse download(\SplFileInfo | string $file, string | null $name = null, array $headers = [], string | null $disposition = 'attachment')
+     * @method static \Illuminate\Http\RedirectResponse redirectTo(string $path, int $status = 302, array $headers = [], bool | null $secure = null)
+     * @method static \Illuminate\Http\RedirectResponse redirectToRoute(string $route, array $parameters = [], int $status = 302, array $headers = [])
+     * @method static \Illuminate\Http\RedirectResponse redirectToAction(string $action, array $parameters = [], int $status = 302, array $headers = [])
+     * @method static \Illuminate\Http\RedirectResponse redirectGuest(string $path, int $status = 302, array $headers = [], bool | null $secure = null)
+     * @method static \Illuminate\Http\RedirectResponse redirectToIntended(string $default = '/', int $status = 302, array $headers = [], bool | null $secure = null)
+     * @see \Illuminate\Contracts\Routing\ResponseFactory
+     */ 
     class Response {
         
         /**
@@ -10804,6 +9833,38 @@ namespace Illuminate\Support\Facades {
          
     }
 
+    /**
+     * 
+     *
+     * @method static \Illuminate\Routing\Route get(string $uri, \Closure|array|string|null $action = null)
+     * @method static \Illuminate\Routing\Route post(string $uri, \Closure|array|string|null $action = null)
+     * @method static \Illuminate\Routing\Route put(string $uri, \Closure|array|string|null $action = null)
+     * @method static \Illuminate\Routing\Route delete(string $uri, \Closure|array|string|null $action = null)
+     * @method static \Illuminate\Routing\Route patch(string $uri, \Closure|array|string|null $action = null)
+     * @method static \Illuminate\Routing\Route options(string $uri, \Closure|array|string|null $action = null)
+     * @method static \Illuminate\Routing\Route any(string $uri, \Closure|array|string|null $action = null)
+     * @method static \Illuminate\Routing\Route match(array|string $methods, string $uri, \Closure|array|string|null $action = null)
+     * @method static \Illuminate\Routing\RouteRegistrar prefix(string  $prefix)
+     * @method static \Illuminate\Routing\RouteRegistrar where(array  $where)
+     * @method static \Illuminate\Routing\PendingResourceRegistration resource(string $name, string $controller, array $options = [])
+     * @method static \Illuminate\Routing\PendingResourceRegistration apiResource(string $name, string $controller, array $options = [])
+     * @method static void apiResources(array $resources)
+     * @method static \Illuminate\Routing\RouteRegistrar middleware(array|string|null $middleware)
+     * @method static \Illuminate\Routing\Route substituteBindings(\Illuminate\Support\Facades\Route $route)
+     * @method static void substituteImplicitBindings(\Illuminate\Support\Facades\Route $route)
+     * @method static \Illuminate\Routing\RouteRegistrar as(string $value)
+     * @method static \Illuminate\Routing\RouteRegistrar domain(string $value)
+     * @method static \Illuminate\Routing\RouteRegistrar name(string $value)
+     * @method static \Illuminate\Routing\RouteRegistrar namespace(string $value)
+     * @method static \Illuminate\Routing\Router|\Illuminate\Routing\RouteRegistrar group(array|\Closure|string $attributes, \Closure|string $routes)
+     * @method static \Illuminate\Routing\Route redirect(string $uri, string $destination, int $status = 301)
+     * @method static \Illuminate\Routing\Route view(string $uri, string $view, array $data = [])
+     * @method static void bind(string $key, string|callable $binder)
+     * @method static \Illuminate\Routing\Route current()
+     * @method static string|null currentRouteName()
+     * @method static string|null currentRouteAction()
+     * @see \Illuminate\Routing\Router
+     */ 
     class Route {
         
         /**
@@ -11037,6 +10098,20 @@ namespace Illuminate\Support\Facades {
         public static function getLastGroupPrefix()
         {
             return \Illuminate\Routing\Router::getLastGroupPrefix();
+        }
+        
+        /**
+         * Add a route to the underlying route collection.
+         *
+         * @param array|string $methods
+         * @param string $uri
+         * @param \Closure|array|string|null $action
+         * @return \Illuminate\Routing\Route 
+         * @static 
+         */ 
+        public static function addRoute($methods, $uri, $action)
+        {
+            return \Illuminate\Routing\Router::addRoute($methods, $uri, $action);
         }
         
         /**
@@ -11589,6 +10664,16 @@ namespace Illuminate\Support\Facades {
          
     }
 
+    /**
+     * 
+     *
+     * @method static \Illuminate\Database\Schema\Builder create(string $table, \Closure $callback)
+     * @method static \Illuminate\Database\Schema\Builder drop(string $table)
+     * @method static \Illuminate\Database\Schema\Builder dropIfExists(string $table)
+     * @method static \Illuminate\Database\Schema\Builder table(string $table, \Closure $callback)
+     * @method static void defaultStringLength(int $length)
+     * @see \Illuminate\Database\Schema\Builder
+     */ 
     class Schema {
         
         /**
@@ -11837,6 +10922,33 @@ namespace Illuminate\Support\Facades {
          
     }
 
+    /**
+     * 
+     *
+     * @method static string getName()
+     * @method static string getId()
+     * @method static void setId(string $id)
+     * @method static bool start()
+     * @method static bool save()
+     * @method static array all()
+     * @method static bool exists(string|array $key)
+     * @method static bool has(string|array $key)
+     * @method static mixed get(string $key, $default = null)
+     * @method static void put(string|array $key, $value = null)
+     * @method static string token()
+     * @method static mixed remove(string $key)
+     * @method static void forget(string|array $keys)
+     * @method static void flush()
+     * @method static bool migrate(bool $destroy = false)
+     * @method static bool isStarted()
+     * @method static string|null previousUrl()
+     * @method static void setPreviousUrl(string $url)
+     * @method static \SessionHandlerInterface getHandler()
+     * @method static bool handlerNeedsRequest()
+     * @method static void setRequestOnHandler(\Illuminate\Http\Request $request)
+     * @see \Illuminate\Session\SessionManager
+     * @see \Illuminate\Session\Store
+     */ 
     class Session {
         
         /**
@@ -11878,6 +10990,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $driver
          * @return mixed 
+         * @throws \InvalidArgumentException
          * @static 
          */ 
         public static function driver($driver = null)
@@ -12401,6 +11514,12 @@ namespace Illuminate\Support\Facades {
          
     }
 
+    /**
+     * 
+     *
+     * @method static \Illuminate\Contracts\Filesystem\Filesystem disk(string $name = null)
+     * @see \Illuminate\Filesystem\FilesystemManager
+     */ 
     class Storage {
         
         /**
@@ -12972,6 +12091,24 @@ namespace Illuminate\Support\Facades {
          
     }
 
+    /**
+     * 
+     *
+     * @method static string current()
+     * @method static string full()
+     * @method static string previous($fallback = false)
+     * @method static string to(string $path, $extra = [], bool $secure = null)
+     * @method static string secure(string $path, array $parameters = [])
+     * @method static string asset(string $path, bool $secure = null)
+     * @method static string route(string $name, $parameters = [], bool $absolute = true)
+     * @method static string action(string $action, $parameters = [], bool $absolute = true)
+     * @method static \Illuminate\Contracts\Routing\UrlGenerator setRootControllerNamespace(string $rootNamespace)
+     * @method static string signedRoute(string $name, array $parameters = [], \DateTimeInterface|int $expiration = null)
+     * @method static string temporarySignedRoute(string $name, \DateTimeInterface|int $expiration, array $parameters = [])
+     * @method static string hasValidSignature(\Illuminate\Http\Request $request)
+     * @method static void defaults(array $defaults)
+     * @see \Illuminate\Routing\UrlGenerator
+     */ 
     class URL {
         
         /**
@@ -13399,6 +12536,15 @@ namespace Illuminate\Support\Facades {
          
     }
 
+    /**
+     * 
+     *
+     * @method static \Illuminate\Contracts\Validation\Validator make(array $data, array $rules, array $messages = [], array $customAttributes = [])
+     * @method static void extend(string $rule, \Closure | string $extension, string $message = null)
+     * @method static void extendImplicit(string $rule, \Closure | string $extension, string $message = null)
+     * @method static void replacer(string $rule, \Closure | string $replacer)
+     * @see \Illuminate\Validation\Factory
+     */ 
     class Validator {
         
         /**
@@ -13535,6 +12681,19 @@ namespace Illuminate\Support\Facades {
          
     }
 
+    /**
+     * 
+     *
+     * @method static bool exists(string $view)
+     * @method static \Illuminate\Contracts\View\View file(string $path, array $data = [], array $mergeData = [])
+     * @method static \Illuminate\Contracts\View\View make(string $view, array $data = [], array $mergeData = [])
+     * @method static mixed share(array | string $key, $value = null)
+     * @method static array composer(array | string $views, \Closure | string $callback)
+     * @method static array creator(array | string $views, \Closure | string $callback)
+     * @method static \Illuminate\Contracts\View\Factory addNamespace(string $namespace, string | array $hints)
+     * @method static \Illuminate\Contracts\View\Factory replaceNamespace(string $namespace, string | array $hints)
+     * @see \Illuminate\View\Factory
+     */ 
     class View {
         
         /**
@@ -13572,6 +12731,7 @@ namespace Illuminate\Support\Facades {
          * @param array $data
          * @param array $mergeData
          * @return \Illuminate\Contracts\View\View 
+         * @throws \InvalidArgumentException
          * @static 
          */ 
         public static function first($views, $data = array(), $mergeData = array())
@@ -14296,6 +13456,10 @@ namespace Illuminate\Support\Facades {
 
 namespace Barryvdh\Debugbar { 
 
+    /**
+     * 
+     *
+     */ 
     class Facade {
         
         /**
@@ -14844,6 +14008,10 @@ namespace Barryvdh\Debugbar {
 
 namespace Clockwork\Support\Laravel { 
 
+    /**
+     * 
+     *
+     */ 
     class Facade {
         
         /**
@@ -15083,8 +14251,6 @@ namespace Clockwork\Support\Laravel {
 
 namespace  { 
 
-    class Twitter extends \Thujohn\Twitter\Facades\Twitter {}
-
     class App extends \Illuminate\Support\Facades\App {}
 
     class Artisan extends \Illuminate\Support\Facades\Artisan {}
@@ -15277,7 +14443,7 @@ namespace  {
              *
              * @param mixed $id
              * @param array $columns
-             * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection 
+             * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|static|static[] 
              * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
              * @static 
              */ 
@@ -15428,7 +14594,7 @@ namespace  {
              *
              * @param int $count
              * @param callable $callback
-             * @param string $column
+             * @param string|null $column
              * @param string|null $alias
              * @return bool 
              * @static 
@@ -15701,7 +14867,7 @@ namespace  {
              * @param mixed $value
              * @param callable $callback
              * @param callable $default
-             * @return mixed 
+             * @return mixed|$this 
              * @static 
              */ 
             public static function when($value, $callback, $default = null)
@@ -15727,7 +14893,7 @@ namespace  {
              * @param mixed $value
              * @param callable $callback
              * @param callable $default
-             * @return mixed 
+             * @return mixed|$this 
              * @static 
              */ 
             public static function unless($value, $callback, $default = null)
