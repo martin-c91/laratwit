@@ -9,7 +9,7 @@ env:
 # key: "value"
 
 phases:
-  gitclone:
+  install:
     commands:
       - echo Clonning git repo
       - git clone https://github.com/martin-c91/laratwit.git /app
