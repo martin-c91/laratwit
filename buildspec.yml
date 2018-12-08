@@ -1,17 +1,36 @@
 version: 0.2
-#env:
-#  variables:
+env:
+  variables:
+    APP_DEBUG: "TRUE"
+    APP_ENV: "development"
+    APP_URL: "laratwit.martinchea.com"
 #parameter-store:
 # key: "value"
 # key: "value"
 
 phases:
-  install:
+  gitclone:
     commands:
-      - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+      - echo Clonning git repo
+      - git clone https://github.com/martin-c91/laratwit.git /app
+      - cd /app
 
-# Expose apache.
-#  EXPOSE 80
   pre_build:
     commands:
-      - composer install
+      - echo pre_build phase
+      - mv /etc/apache2/sites-enabled/000-default.conf /etc/apache2/sites-enabled/000-default.conf.backup
+      - cp mysite.conf /etc/apache2/sites-enabled/000-default.conf
+      - chown -R www-data:www-data /app && mv .env.example .env
+
+  build:
+    commands:
+      - echo Building phase
+      - composer install --no-dev
+      - php artisan key:generate --ansi
+      - npm install
+      - npm run production
+  # Expose apache.
+#  EXPOSE 80
+#  pre_build:
+#    commands:
+#      - composer install
