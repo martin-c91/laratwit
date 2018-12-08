@@ -9,21 +9,18 @@ env:
 # key: "value"
 
 phases:
-  install:
+  pre_build:
     commands:
       - echo Clonning git repo
       - git clone https://github.com/martin-c91/laratwit.git /app
       - cd /app
 
-  pre_build:
+  build:
     commands:
       - echo pre_build phase
       - mv /etc/apache2/sites-enabled/000-default.conf /etc/apache2/sites-enabled/000-default.conf.backup
       - cp mysite.conf /etc/apache2/sites-enabled/000-default.conf
       - chown -R www-data:www-data /app && mv .env.example .env
-
-  build:
-    commands:
       - echo Building phase
       - composer install --no-dev
       - php artisan key:generate --ansi
