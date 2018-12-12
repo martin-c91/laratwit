@@ -1,31 +1,21 @@
 version: 0.2
-env:
-  variables:
-    APP_DEBUG: "TRUE"
-    APP_ENV: "development"
-    APP_URL: "laratwit.martinchea.com"
-#parameter-store:
-# key: "value"
-# key: "value"
 
 phases:
   pre_build:
     commands:
-      - echo Clonning git repo
-      - git clone https://github.com/martin-c91/laratwit.git /app
-      - cd /app
-
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --region us-west-2)
   build:
     commands:
-      - echo pre_build phase
-      - mv /etc/apache2/sites-enabled/000-default.conf /etc/apache2/sites-enabled/000-default.conf.backup
-      - cp mysite.conf /etc/apache2/sites-enabled/000-default.conf
-      - chown -R www-data:www-data /app && mv .env.example .env
-      - echo Building phase
-      - composer install --no-dev
-      - php artisan key:generate --ansi
-      - npm install
-      - npm run production
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t <CONTAINER_NAME> .
+      - docker tag <CONTAINER_NAME>:latest <ID>.dkr.ecr.us-west-2.amazonaws.com/<CONTAINER_NAME>:latest
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push <ID>.dkr.ecr.us-west-2.amazonaws.com/<CONTAINER_NAME>:latest
   # Expose apache.
 #  EXPOSE 80
 #  pre_build:
