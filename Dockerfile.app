@@ -1,26 +1,30 @@
-FROM laratwit_apache2
-# virtualhost
-#backup original .conf enabled file
-RUN mv /etc/apache2/sites-enabled/000-default.conf /etc/apache2/sites-enabled/000-default.conf.backup
+FROM php:7.3-apache
+MAINTAINER Martin Chea<martinchea@gmail.com>
+
+RUN a2enmod rewrite && service apache2 restart
+RUN docker-php-ext-install pdo pdo_mysql
+##todo: install xdebug
+RUN apt-get update
+RUN apt-get -y install gnupg2 zip unzip
+
+#install composer and node
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN curl -sL https://deb.nodesource.com/setup_11.x | bash - && apt-get install -y nodejs
+
+#
 COPY mysite.conf /etc/apache2/sites-enabled/000-default.conf
 #COPY php.ini /usr/local/etc/php
 
-#RUN service apache2 restart
-#RUN git clone https://github.com/martin-c91/laratwit.git /app
-ADD ./ /app
+#
 WORKDIR /app
+#COPY . /app
 
-#permission
-RUN chown -R www-data:www-data /app && mv .env.example .env
+#RUN chown -R www-data:www-data /app && mv .env.example .env
+#
+#RUN composer install --no-dev
+#RUN php artisan key:generate --ansi
+#
+#RUN npm install
+#RUN npm run production
 
-RUN composer install --no-dev
-RUN php artisan key:generate --ansi
-
-RUN npm install
-RUN npm run production
-
-#post install
-
-# Expose apache.
-
-#CMD service apache2 star
+EXPOSE 80
