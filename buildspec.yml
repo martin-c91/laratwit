@@ -1,5 +1,11 @@
 version: 0.2
 
+env:
+  variables:
+    IMAGE_REPO_NAME: "laratwit-container"
+    IMAGE_TAG: "latest"
+    AWS_DEFAULT_REGION: "us-west-2"
+
 phases:
   pre_build:
     commands:
@@ -7,13 +13,13 @@ phases:
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
   build:
     commands:
-      - echo Build started on 'date'
+      - echo Build started on `date`
       - echo Building the Docker image...
       - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
       - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
   post_build:
     commands:
-      - echo Build completed on 'date'
+      - echo Build completed on `date`
       - echo Pushing the Docker image...
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
   # Expose apache.
