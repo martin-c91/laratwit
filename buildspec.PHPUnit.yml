@@ -5,6 +5,6 @@ phases:
 
   build:
     commands:
-      - docker run --rm --volume $PWD:/app composer install
-      - php artisan key:generate --ansi
+      - docker run --rm -v $PWD:/app composer install
+      - docker run --rm -v $PWD:/app php:cli php artisan key:generate --ansi
 #      - docker run -v $(pwd):/app --rm phpunit/phpunit run
