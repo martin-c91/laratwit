@@ -16,8 +16,8 @@ class CreateLikesTable extends Migration
         Schema::create('likes', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('user_id');
-            $table->integer('tweet_id');
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('tweet_id');
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('tweet_id')->references('id')->on('tweets');
