@@ -1,0 +1,11 @@
+version: 0.2
+
+
+phases:
+
+  build:
+    commands:
+      - docker run --rm --interactive --tty \
+        --volume $PWD:/app \
+        composer install
+      - docker run -v $(pwd):/app --rm phpunit/phpunit run
