@@ -2,6 +2,10 @@ version: '3'
 
 services:
   app:
+    environment:
+      - APP_DEBUG=0
+      - APP_ENV=production
+      - DB_CONNECTION=sqlite
     build:
       context: .
       dockerfile: Dockerfile.app
@@ -11,6 +15,8 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./:/app
-    environment:
-      - "APP_ENV=local"
+      - ./:/app # will be mounted on /var/www
+# that the important thing
+#volumes:
+#  appcode-unison-sync:
+#    external: true
