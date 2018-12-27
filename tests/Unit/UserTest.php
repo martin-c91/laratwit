@@ -19,6 +19,7 @@ class UserTest extends TestCase
         $this->assertEquals($this->user1->id, $user->id);
     }
 
+
     ///** @test */
     //public function user_can_upload_avatar_to_assets()
     //{
