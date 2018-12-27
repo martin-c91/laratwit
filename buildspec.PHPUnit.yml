@@ -8,4 +8,5 @@ phases:
       - docker run --rm --interactive --tty \
         --volume $PWD:/app \
         composer install
-      - docker run -v $(pwd):/app --rm phpunit/phpunit run
+      - php artisan key:generate --ansi
+#      - docker run -v $(pwd):/app --rm phpunit/phpunit run
