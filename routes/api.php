@@ -18,7 +18,7 @@ use App\User;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user()->append('isFollowing');
 });
-Route::get('/test', function(Request $request){
+Route::get('/test', function (Request $request) {
     //return Auth::user()->followings;
     return User::find(6)->append('isFollowing');
 })->middleware('auth:api');
@@ -37,16 +37,21 @@ Route::middleware(['auth:api'])->group(function () {
     Route::delete('like/{id}', 'LikeController@destroy');
 });
 
-
-
 //following list actions
 Route::get('/{user}', 'TweetController@getUserTweets')->name('api.user.tweets');
 Route::get('/{user}/followings', 'UserController@followings')->name('api.user.followings');
 Route::get('/{user}/followers', 'UserController@followers')->name('api.user.followers');
 Route::post('{user}/getFeaturedUsers/{limit?}', 'UserController@getNotFollowingUsers');
 
+Route::group(['prefix' => 'auth',], function () {
+    Route::post('login', 'AuthController@login');
+    Route::post('register', 'AuthController@register');
 
-//test function
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('logout', 'AuthController@logout');
+        Route::get('user', 'AuthController@user');
+    });
+});//test function
 //Route::post('test/{user}/{limit?}', 'UserController@getNotFollowingUsers');
 
 //Route::post('test/{user}', function(){
