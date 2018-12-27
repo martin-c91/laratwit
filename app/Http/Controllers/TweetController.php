@@ -34,7 +34,7 @@ class TweetController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'content' => 'required|max:400',
+            'content' => 'required|max:250',
         ]);
         $tweet = Auth::user()->tweets()->create($validated);
 
