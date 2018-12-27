@@ -8,4 +8,4 @@ phases:
       - docker run --rm -v $(pwd):/app -w /app composer install
       - mv .env.example .env
       - docker run --rm -v $(pwd):/app -w /app php:cli php artisan key:generate --ansi
-      - docker run --rm -v $(pwd):/app -w /app phpunit/phpunit run
+      - docker run --rm -v $(pwd):/app -w /app php:cli php ./vendor/bin/phpunit
