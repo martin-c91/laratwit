@@ -44,3 +44,8 @@ Route::get('/{user}', 'TweetController@index')->name('user.profile');
 //get user followers, followings
 Route::get('/{user}/followers', 'UserController@followers')->name('user.followers');
 Route::get('/{user}/followings', 'UserController@followings')->name('user.followings');
+
+Route::get('/healthcheck', function(){
+    return response('System up', 200)
+        ->header('Content-Type', 'text/plain');
+});
