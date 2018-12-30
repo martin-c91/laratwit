@@ -1,11 +1,20 @@
 version: 0.2
 
+env:
+  variables:
+    IMAGE_REPO_NAME: "laratwit-container"
+    REPOSITORY_URI: "438545546473.dkr.ecr.us-west-2.amazonaws.com/laratwit-container"
 
 phases:
+  pre_build:
+    commands:
+      - docker version
+      - $(aws ecr get-login --no-include-email)
+      - docker pull $REPOSITORY_URI:latest || true
 
   build:
     commands:
-      - docker run --rm -v $(pwd):/app -w /app composer install
+      - docker run --rm -v $(pwd):/app -w /app --cache-from $REPOSITORY_URI:latest composer install
       - mv .env.example .env
       - docker run --rm -v $(pwd):/app -w /app php:cli php artisan key:generate --ansi
       - docker run --rm -v $(pwd):/app -w /app php:cli php ./vendor/bin/phpunit
