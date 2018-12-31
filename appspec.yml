@@ -3,7 +3,7 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: "arn:aws:ecs:us-west-2:438545546473:task-definition/laratwit-container-ec2:5"
+        TaskDefinition: "arn:aws:ecs:us-west-2:438545546473:task-definition/laratwit-container-ec2"
         LoadBalancerInfo:
           ContainerName: "laratwit-container"
           ContainerPort: 80
