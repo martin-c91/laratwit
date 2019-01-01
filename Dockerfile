@@ -27,5 +27,5 @@ RUN php artisan key:generate --ansi
 RUN npm install
 RUN npm run production
 
-HEALTHCHECK CMD curl --fail http://localhost:80/ || exit 1
+#HEALTHCHECK CMD curl --fail http://localhost:80/healthcheck || exit 1
 EXPOSE 80
