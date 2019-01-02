@@ -28,6 +28,7 @@ RUN cp .env.example .env
 RUN composer dump-autoload --no-dev --optimize
 RUN composer run-script --no-dev post-install-cmd
 
+RUN npm install
 RUN npm run production
 #HEALTHCHECK CMD curl --fail http://localhost:80/healthcheck || exit 1
 EXPOSE 80
