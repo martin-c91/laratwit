@@ -21,7 +21,7 @@ COPY . /app
 
 RUN chown -R www-data:www-data /app && mv .env.example .env
 
-RUN composer install --no-dev --optimize
+RUN composer install --no-dev
 
 RUN npm install
 RUN npm run production
