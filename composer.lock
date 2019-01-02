@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "914adb3e635b1c09af6174f0970b7266",
+    "content-hash": "999980249f948abbcfda398861e58c95",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -3554,16 +3554,16 @@
     "packages-dev": [
         {
             "name": "barryvdh/laravel-debugbar",
-            "version": "dev-master",
+            "version": "v3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "94a12a5c27119e46e15cb96a31eb0f7670828d44"
+                "reference": "9d5caf43c5f3a3aea2178942f281054805872e7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/94a12a5c27119e46e15cb96a31eb0f7670828d44",
-                "reference": "94a12a5c27119e46e15cb96a31eb0f7670828d44",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/9d5caf43c5f3a3aea2178942f281054805872e7c",
+                "reference": "9d5caf43c5f3a3aea2178942f281054805872e7c",
                 "shasum": ""
             },
             "require": {
@@ -3618,7 +3618,7 @@
                 "profiler",
                 "webprofiler"
             ],
-            "time": "2018-11-28T14:27:04+00:00"
+            "time": "2018-11-09T08:37:55+00:00"
         },
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -6159,9 +6159,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "barryvdh/laravel-debugbar": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
