@@ -30,4 +30,4 @@ phases:
       - docker push $REPOSITORY_URI:$IMAGE_TAG
 artifacts:
   files:
-    - appspec.yaml
+    - appspec.yml
