@@ -16,7 +16,7 @@
             <div class="col-md-3">
                 <div class="row">
                     <img class="profile_pic"
-                         src="{{'http://'.$user->avatarUrl}}">
+                         src="{{$user->avatarUrl}}">
                 </div>
 
 
