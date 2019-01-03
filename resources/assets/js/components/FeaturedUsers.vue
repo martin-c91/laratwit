@@ -12,7 +12,7 @@
                 <div class="row">
                     <div style="float: left; margin-left: 8px ;width: 48px;">
                         <a :href="user.slug">
-                            <img :src="'http://'+user.avatar_url" class="avatar" alt="avatar">
+                            <img :src="user.avatar_url" class="avatar" alt="avatar">
                         </a>
                     </div>
 

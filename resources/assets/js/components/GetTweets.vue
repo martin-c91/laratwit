@@ -4,7 +4,7 @@
             <div class="panel-body mt-3 mb-3 h-50">
                 <div style="float: left; width: 48px;">
                     <a :href="tweet.user.slug">
-                        <img :src="'http://'+tweet.user.avatar_url" class="avatar" alt="avatar">
+                        <img :src="tweet.user.avatar_url" class="avatar" alt="avatar">
                     </a>
                 </div>
                 <div style="margin-left: -48px; margin-left: 58px;">
