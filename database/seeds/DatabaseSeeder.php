@@ -101,7 +101,6 @@ class DatabaseSeeder extends Seeder
         'AvrilLavigne',
         'davidguetta',
         'elonmusk',
-        'MohamadAlarefe',
         'ChampionsLeague',
         'NICKIMINAJ',
         'MariahCarey',
@@ -114,6 +113,7 @@ class DatabaseSeeder extends Seeder
         'AlejandroSanz',
         'LeoDiCaprio',
         'Dr_alqarnee',
+        'NikkiHaley'
     ];
 
     protected function get_seed_user()
@@ -142,10 +142,10 @@ class DatabaseSeeder extends Seeder
         $user = new User;
 
         $avatar_origin_url = str_replace('_normal.jpg','_400x400.jpg', $seed_user->profile_image_url);
-        if(!storage::exists('images/avatars/'.$seed_user->screen_name.'.jpg')){
-           Storage::put("images/avatars/$seed_user->screen_name.jpg", $avatar_origin_url);
-           echo "$seed_user->screen_name avatar not in storage, put new one in. \n";
-        }
+        //if(!storage::exists('avatars/'.$seed_user->screen_name.'.jpg')){
+        //    Storage::put("avatars/$seed_user->screen_name.jpg", file_get_contents($avatar_origin_url));
+        //    echo "$seed_user->screen_name avatar not in storage, put new one in. \n";
+        //}
 
         $data = [
             'name' => $seed_user->name,
@@ -160,7 +160,7 @@ class DatabaseSeeder extends Seeder
 
         $new_user = $user->updateOrCreate(['slug' => $twitter_username], $data);
         if ($new_user AND $new_user->get_and_store_avatar($avatar_origin_url)) {
-            return $new_user->slug;
+            return $new_user->slug. "\n";
         }
     }
 
@@ -178,15 +178,15 @@ class DatabaseSeeder extends Seeder
 
         foreach ($tweets as $tweet) {
             $data = [
-                'id' => $tweet->id,
+                //'id' => $tweet->id,
                 //'json_raw' => json_encode($tweet),
                 'content' => $tweet->text,
-                'user_id' => $user->id,
+                //'user_id' => $user->id,
                 'created_at' => strtotime($tweet->created_at),
                 'updated_at' => strtotime($tweet->created_at),
             ];
 
-            Tweet::updateOrCreate(['id' => $tweet->id], $data);
+            $user->tweets()->create($data);
         }
     }
 }
